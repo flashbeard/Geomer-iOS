@@ -1,0 +1,225 @@
+{
+	"theorems": [
+		{
+			"class": "TheoremEqualityTriangleSideSideSide",
+			"name": "Theorem equality triangle side side side",
+			"description": "If three sides of one triangle are equal to three corresponding sides of the other triangle then these triangles are equal to each other",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					"if triangle1.equal(triangle2) {",
+					"\treturn",
+					"}",
+					"let shifted_reversed2 = triangle1.shifted(by: Shift(2, reversed: true))",
+					"let shifted_reversed1 = triangle1.shifted(by: Shift(1, reversed: true))",
+					"let shifted_reversed0 = triangle1.shifted(by: Shift(reversed: true))",
+					"let shifted0 = triangle1.shifted(by: Shift())",
+					"let shifted1 = triangle1.shifted(by: Shift(1))",
+					"let shifted2 = triangle1.shifted(by: Shift(2))"
+				],
+				"algorithm": [
+					{
+						"condition": "shifted_reversed2.side(.AB).equal(triangle2.side(.AB)) && shifted_reversed2.side(.BC).equal(triangle2.side(.BC)) && shifted_reversed2.side(.CA).equal(triangle2.side(.CA))",
+						"result": [
+							"res = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(2, reversed: true))"
+						]
+					},
+					{
+						"condition": "shifted_reversed1.side(.AB).equal(triangle2.side(.AB)) && shifted_reversed1.side(.BC).equal(triangle2.side(.BC)) && shifted_reversed1.side(.CA).equal(triangle2.side(.CA))",
+						"result": [
+							"res = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(1, reversed: true))"
+						]
+					},
+					{
+						"condition": "shifted_reversed0.side(.AB).equal(triangle2.side(.AB)) && shifted_reversed0.side(.BC).equal(triangle2.side(.BC)) && shifted_reversed0.side(.CA).equal(triangle2.side(.CA))",
+						"result": [
+							"res = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(reversed: true))"
+						]
+					},
+					{
+						"condition": "shifted0.side(.AB).equal(triangle2.side(.AB)) && shifted0.side(.BC).equal(triangle2.side(.BC)) && shifted0.side(.CA).equal(triangle2.side(.CA))",
+						"result": [
+							"res = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift())"
+						]
+					},
+					{
+						"condition": "shifted1.side(.AB).equal(triangle2.side(.AB)) && shifted1.side(.BC).equal(triangle2.side(.BC)) && shifted1.side(.CA).equal(triangle2.side(.CA))",
+						"result": [
+							"res = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(1))"
+						]
+					},
+					{
+						"condition": "shifted2.side(.AB).equal(triangle2.side(.AB)) && shifted2.side(.BC).equal(triangle2.side(.BC)) && shifted2.side(.CA).equal(triangle2.side(.CA))",
+						"result": [
+							"res = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(2))"
+						]
+					}
+				]	
+			}
+		},
+		{
+			"class": "TheoremCosineTriangle",
+			"name": "Theorem cosine triangle",
+			"description": "The triangle side's length can be calculated as: c * c = a * a + b * b - 2 * a * b * cos(phi)",
+			"input types": [
+				"Triangle"
+			],
+			"parameters": [
+				"triangle"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					{
+						"condition": "triangle.side(.AB).length != nil && triangle.side(.BC).length != nil && triangle.angle(.B).value != nil",
+						"result": [
+							"let a = triangle.side(.AB).length!.value",
+							"let b = triangle.side(.BC).length!.value",
+							"let len = Length.new(value: sqrt(a * a + b * b - 2 * a * b * cos(triangle.angleB.value!.converted(to: .radians).value)))",
+							"res = triangle.side(.CA)",
+							"nodeRegistry.find(instance: &res)",
+							"(res as! Segment).length = len"
+						]
+					}
+				]	
+			}
+		},
+		{
+			"class": "TheoremSimilarityTrianglesSideAngleSide",
+			"name": "Theorem Similarity Triangles Side Angle Side",
+			"description": "If two sides of one triangle are proportional to two sides of another triangle and the angles enclosed between these sides are equal, then such triangles are similar.",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					"if triangle1.equal(triangle2) {",
+					"\treturn",
+					"}",
+					"let shifted_reversed2 = triangle1.shifted(by: Shift(2, reversed: true))",
+					"let shifted_reversed1 = triangle1.shifted(by: Shift(1, reversed: true))",
+					"let shifted_reversed0 = triangle1.shifted(by: Shift(reversed: true))",
+					"let shifted0 = triangle1.shifted(by: Shift())",
+					"let shifted1 = triangle1.shifted(by: Shift(1))",
+					"let shifted2 = triangle1.shifted(by: Shift(2))"
+				],
+				"algorithm": [
+					{
+						"condition": "shifted_reversed2.angle(.A).value == triangle2.angle(.A).value && triangle2.angle(.A).value != nil && shifted_reversed2.side(.AB).value != nil && shifted_reversed2.side(.AC).value != nil && triangle2.side(.AB).value != nil && triangle2.side(.AC).value != nil && shifted_reversed2.side(.AC).value != 0 && triangle2.side(.AC).value != 0 && (shifted_reversed2.side(.AB).value / shifted_reversed2.side(.AC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.AC).value).fraction()",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(2, reversed: true))"
+						]
+					},
+					{
+						"condition": "shifted_reversed1.angle(.A).value == triangle2.angle(.A).value && triangle2.angle(.A).value != nil && shifted_reversed1.side(.AB).value != nil && shifted_reversed1.side(.AC).value != nil && triangle2.side(.AB).value != nil && triangle2.side(.AC).value != nil && shifted_reversed1.side(.AC).value != 0 && triangle2.side(.AC).value != 0 && (shifted_reversed1.side(.AB).value / shifted_reversed1.side(.AC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.AC).value).fraction()",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(1, reversed: true))"
+						]
+					},
+					{
+						"condition": "shifted_reversed0.angle(.A).value == triangle2.angle(.A).value && triangle2.angle(.A).value != nil && shifted_reversed0.side(.AB).value != nil && shifted_reversed0.side(.AC).value != nil && triangle2.side(.AB).value != nil && triangle2.side(.AC).value != nil && shifted_reversed0.side(.AC).value != 0 && triangle2.side(.AC).value != 0 && (shifted_reversed0.side(.AB).value / shifted_reversed0.side(.AC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.AC).value).fraction()",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(0, reversed: true))"
+						]
+					},
+					{
+						"condition": "shifted0.angle(.A).value == triangle2.angle(.A).value && triangle2.angle(.A).value != nil && shifted0.side(.AB).value != nil && shifted0.side(.AC).value != nil && triangle2.side(.AB).value != nil && triangle2.side(.AC).value != nil && shifted0.side(.AC).value != 0 && triangle2.side(.AC).value != 0 && (shifted0.side(.AB).value / shifted0.side(.AC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.AC).value).fraction()",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift())"
+						]
+					},
+					{
+						"condition": "shifted1.angle(.A).value == triangle2.angle(.A).value && triangle2.angle(.A).value != nil && shifted1.side(.AB).value != nil && shifted1.side(.AC).value != nil && triangle2.side(.AB).value != nil && triangle2.side(.AC).value != nil && shifted1.side(.AC).value != 0 && triangle2.side(.AC).value != 0 && (shifted1.side(.AB).value / shifted1.side(.AC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.AC).value).fraction()",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(1))"
+						]
+					},
+					{
+						"condition": "shifted2.angle(.A).value == triangle2.angle(.A).value && triangle2.angle(.A).value != nil && shifted2.side(.AB).value != nil && shifted2.side(.AC).value != nil && triangle2.side(.AB).value != nil && triangle2.side(.AC).value != nil && shifted2.side(.AC).value != 0 && triangle2.side(.AC).value != 0 && (shifted2.side(.AB).value / shifted2.side(.AC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.AC).value).fraction()",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(2))"
+						]
+					}
+				]	
+			}
+		},
+		{
+			"class": "TheoremSimilarityTrianglesAngleAngle",
+			"name": "Theorem Similarity Triangles Angle Angle",
+			"description": "If two corners of one triangle are equal to two corners of another triangle, then such triangles are similar.",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					"if triangle1.equal(triangle2) {",
+					"\treturn",
+					"}",
+					"let shifted_reversed2 = triangle1.shifted(by: Shift(2, reversed: true))",
+					"let shifted_reversed1 = triangle1.shifted(by: Shift(1, reversed: true))",
+					"let shifted_reversed0 = triangle1.shifted(by: Shift(reversed: true))",
+					"let shifted0 = triangle1.shifted(by: Shift())",
+					"let shifted1 = triangle1.shifted(by: Shift(1))",
+					"let shifted2 = triangle1.shifted(by: Shift(2))"
+				],
+				"algorithm": [
+					{
+						"condition": "(shifted_reversed2.angle(.A).value == triangle2.angle(.A).value && shifted_reversed2.angle(.B).value == triangle2.angle(.B).value && triangle2.angle(.A).value != nil && triangle2.angle(.B).value != nil) || (shifted_reversed2.angle(.A).value == triangle2.angle(.A).value && shifted_reversed2.angle(.С).value == triangle2.angle(.С).value && triangle2.angle(.A).value != nil && triangle2.angle(.С).value != nil) || (shifted_reversed2.angle(.B).value == triangle2.angle(.C).value && shifted_reversed2.angle(.B).value == triangle2.angle(.C).value && triangle2.angle(.B).value != nil && triangle2.angle(.C).value != nil)",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(2, reversed: true))"
+						]
+					},
+					{
+						"condition": "(shifted_reversed1.angle(.A).value == triangle2.angle(.A).value && shifted_reversed1.angle(.B).value == triangle2.angle(.B).value && triangle2.angle(.A).value != nil && triangle2.angle(.B).value != nil) || (shifted_reversed1.angle(.A).value == triangle2.angle(.A).value && shifted_reversed1.angle(.С).value == triangle2.angle(.С).value && triangle2.angle(.A).value != nil && triangle2.angle(.С).value != nil) || (shifted_reversed1.angle(.B).value == triangle2.angle(.C).value && shifted_reversed1.angle(.B).value == triangle2.angle(.C).value && triangle2.angle(.B).value != nil && triangle2.angle(.C).value != nil)",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(1, reversed: true))"
+						]
+					},
+					{
+						"condition": "(shifted_reversed0.angle(.A).value == triangle2.angle(.A).value && shifted_reversed0.angle(.B).value == triangle2.angle(.B).value && triangle2.angle(.A).value != nil && triangle2.angle(.B).value != nil) || (shifted_reversed0.angle(.A).value == triangle2.angle(.A).value && shifted_reversed0.angle(.С).value == triangle2.angle(.С).value && triangle2.angle(.A).value != nil && triangle2.angle(.С).value != nil) || (shifted_reversed0.angle(.B).value == triangle2.angle(.C).value && shifted_reversed0.angle(.B).value == triangle2.angle(.C).value && triangle2.angle(.B).value != nil && triangle2.angle(.C).value != nil)",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(0, reversed: true))"
+						]
+					},
+					{
+						"condition": "(shifted0.angle(.A).value == triangle2.angle(.A).value && shifted0.angle(.B).value == triangle2.angle(.B).value && triangle2.angle(.A).value != nil && triangle2.angle(.B).value != nil) || (shifted0.angle(.A).value == triangle2.angle(.A).value && shifted0.angle(.С).value == triangle2.angle(.С).value && triangle2.angle(.A).value != nil && triangle2.angle(.С).value != nil) || (shifted0.angle(.B).value == triangle2.angle(.C).value && shifted0.angle(.B).value == triangle2.angle(.C).value && triangle2.angle(.B).value != nil && triangle2.angle(.C).value != nil)",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift())"
+						]
+					},
+					{
+						"condition": "(shifted1.angle(.A).value == triangle2.angle(.A).value && shifted1.angle(.B).value == triangle2.angle(.B).value && triangle2.angle(.A).value != nil && triangle2.angle(.B).value != nil) || (shifted1.angle(.A).value == triangle2.angle(.A).value && shifted1.angle(.С).value == triangle2.angle(.С).value && triangle2.angle(.A).value != nil && triangle2.angle(.С).value != nil) || (shifted1.angle(.B).value == triangle2.angle(.C).value && shifted1.angle(.B).value == triangle2.angle(.C).value && triangle2.angle(.B).value != nil && triangle2.angle(.C).value != nil)",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(1))"
+						]
+					},
+					{
+						"condition": "(shifted2.angle(.A).value == triangle2.angle(.A).value && shifted2.angle(.B).value == triangle2.angle(.B).value && triangle2.angle(.A).value != nil && triangle2.angle(.B).value != nil) || (shifted2.angle(.A).value == triangle2.angle(.A).value && shifted2.angle(.С).value == triangle2.angle(.С).value && triangle2.angle(.A).value != nil && triangle2.angle(.С).value != nil) || (shifted2.angle(.B).value == triangle2.angle(.C).value && shifted2.angle(.B).value == triangle2.angle(.C).value && triangle2.angle(.B).value != nil && triangle2.angle(.C).value != nil)",
+						"result": [
+							"res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(2))"
+						]
+					}
+				]	
+			}
+		}
+	]
+}

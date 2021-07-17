@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AddNewDataButton.body.getter:AddNewDataView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Theorem.apply():Theorem.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Data.same(_:):Data.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "info()">
+            </PersistentString>
+            <PersistentString
+               value = "name">
+            </PersistentString>
+            <PersistentString
+               value = "to.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PolygonEquality.execute():PolygonEquality.swift">
+      </ContextState>
+      <ContextState
+         contextName = "solve():Core.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Segment.equal(_:):Segment.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "lhs.info()">
+            </PersistentString>
+            <PersistentString
+               value = "rhs.info()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TheoremCosineTriangle.execute():TheoremCosineTriangle.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Segment.same(_:):Segment.swift">
+      </ContextState>
+      <ContextState
+         contextName = "solve():Solver.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nodeRegistry.hasChanges">
+            </PersistentString>
+            <PersistentString
+               value = "nodeRegistry.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NodeRegistry.findEqual(instance:):NodeRegistry.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "instance.info()">
+            </PersistentString>
+            <PersistentString
+               value = "tmp.info()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in NewDataPropertiesView.body.getter:AddNewDataView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in NewPointPropertiesView.body.getter:AddNewDataView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Node.equal(_:):Node.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Task.init(name:task:):Task.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Node.addReference(reference:):Node.swift">
+      </ContextState>
+      <ContextState
+         contextName = "loadInputData():InputData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Length.new(value: 3)">
+            </PersistentString>
+            <PersistentString
+               value = "abc.value">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "&lt;=&gt; infix(_:_:):Core.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Proportion.init(operands:isInput:):Proportion.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Registry.have(instance:):Registry.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "instance.info()">
+            </PersistentString>
+            <PersistentString
+               value = "tmp.info()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TaskRegistry.checkNewData(instances:):TaskRegistry.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Solver.solve():Solver.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Registry.getInstances(for_type:):Registries.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "instances.first!.dateType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cos.execute():Cos.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(res as! Segment).length">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BinaryExpression.init(left:right:commutative:isInput:):BinaryExpression.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "paramRight.name">
+            </PersistentString>
+            <PersistentString
+               value = "paramLeft.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Polygon.init(vertexes:angles:isInput:):Polygon.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in NewDataPropertiesView.body.getter:AddNewDataView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TaskRegistry.checkAchieved(instances:):TaskRegistry.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "node.info()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TriangleEqualityByThreeSides.execute():TriangleEqualityBySides.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "e.info()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewDataPropertiesView.init(newDataAddingStep:newDataType:preparator:):AddNewDataView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static Fraction.normalize(operands:):Arithmetics.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TriangleSimilarityByTwoAngles.execute():TriangleSimilarityByTwoAngles.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "e1.angleA">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewDataPropertiesView.init(newDataAddingStep:newDataType:):AddNewDataView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Registry.replace(instance:):Registry.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(instance as! Segment).length">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NodeRegistry.getKit(for_pattern:):Registries.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "type.wrappedType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NodeRegistry.getKit(for_pattern:with_protocols:):Registries.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PointPreparator.init():Preparator.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TheoremEqualityTriangleSideSideSide.execute():TriangleEqualityByThreeSides.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "shifted_neg2.info()">
+            </PersistentString>
+            <PersistentString
+               value = "triangle1.info()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Polygon.cycleShifted():Polygon.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Data.info():Data.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

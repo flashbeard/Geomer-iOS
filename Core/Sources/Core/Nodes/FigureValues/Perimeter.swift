@@ -1,0 +1,26 @@
+//
+//  Perimeter.swift
+//  
+//
+//  Created by Daniel Pustotin on 07.07.2021.
+//
+
+import Foundation
+
+@available(iOS 10.0, *)
+public class Perimeter: Node, FigureValue {
+
+	// MARK: Properties
+	public internal(set) var figure: Figure
+	public internal(set) var value: LengthValue?
+
+	// MARK: Initialization
+
+	public init(figure: Figure, value: LengthValue? = nil) {
+		var paramFigure: Node = figure
+		nodeRegistry.getInstance(equal_to: &paramFigure)
+		self.figure = figure
+		self.value = value
+		super.init(name: "Perimeter(\(figure.name))")
+	}
+}
