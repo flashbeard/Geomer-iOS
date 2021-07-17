@@ -7,21 +7,17 @@
 
 import Foundation
 
-public protocol NumericValue {
-	var value is MeasurementValue? { get set }
-}
-
 @available(iOS 10.0, *)
-public class Segment: Line, NumericValue {
+public class Segment: Line {
 	
 	// MARK: Properties
 	
-	public var value: LengthValue?
+	public var length: LengthValue?
 	
 	// MARK: Initialization
 	
 	public init(a: Point, b: Point, length: LengthValue? = nil, isInput: Bool = false) {
-		self.value = length
+		self.length = length
 		super.init(a: a, b: b, commutative: true, isInput: isInput)
 	}
 	
@@ -33,6 +29,6 @@ public class Segment: Line, NumericValue {
 		}
 		let lhs = self
 		let rhs = to as! Segment
-		return super.equal(rhs) || lhs.value != nil && lhs.value == rhs.value
+		return super.equal(rhs) || lhs.length != nil && lhs.length == rhs.length
 	}
 }
