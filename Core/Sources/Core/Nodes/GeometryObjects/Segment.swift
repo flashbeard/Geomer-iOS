@@ -12,11 +12,11 @@ public class Segment: Line {
 	
 	// MARK: Properties
 	
-	public var length: LengthValue?
+	public var length: LinearUnit?
 	
 	// MARK: Initialization
 	
-	public init(a: Point, b: Point, length: LengthValue? = nil, isInput: Bool = false) {
+	public init(a: Point, b: Point, length: LinearUnit? = nil, isInput: Bool = false) {
 		self.length = length
 		super.init(a: a, b: b, commutative: true, isInput: isInput)
 	}

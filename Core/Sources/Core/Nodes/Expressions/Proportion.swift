@@ -29,9 +29,9 @@ public class Proportion: Node, Expression {
 
 		var paramName = ""
 		for i in 0 ..< n - 1 {
-			paramName += "\(paramOperands[i].info()) : "
+			paramName += "\(paramOperands[i].name) : "
 		}
-		paramName += paramOperands.last!.info()
+		paramName += paramOperands.last!.name
 		super.init(name: paramName, isInput: isInput)
 	}
 }

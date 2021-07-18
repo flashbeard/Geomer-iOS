@@ -181,9 +181,9 @@ struct NewDataPropertiesView: View {
 						} else {
 							switch newDataKind {
 							case .input:
-								solver.addNewInput(node: preparator.prepare()!)
+								solver.addInput(node: preparator.prepare()!)
 							case .task:
-								solver.addNewTask(node: preparator.prepare()!)
+								solver.addTask(node: preparator.prepare()!)
 							}
 							newDataType = Core.Data.self
 							newDataAddingStep = .none

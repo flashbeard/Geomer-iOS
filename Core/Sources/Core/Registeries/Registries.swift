@@ -50,8 +50,8 @@ public class Registry<T: Data> {
 		hasChanges = false
 		newInstances = []
 	}
-	
-	internal func have(instance: T) -> Bool {
+
+	internal func contains(_ instance: T) -> Bool {
 		let type = instance.dataType
 		
 		return (instances[type] ?? []).contains(instance)
@@ -61,16 +61,17 @@ public class Registry<T: Data> {
 		(instances[type] ?? []).count
 	}
 
-	/// Changes given instance to instance from registry which is equal to given.
-	/// - Parameter instance: given instance
-	public func find(instance: inout T) {
-		let type = instance.dataType
+	public func find(instance: inout T, put: Bool = false) {
 
-		if !(instances[type] ?? []).contains(instance) {
-			return
+		if !contains(instance) && put {
+			add(instances: instance)
+		} else {
+			let type = instance.dataType
+			if !(instances[type] ?? []).contains(instance) {
+				return
+			}
+			instance = (instances[type]!)[instances[type]!.firstIndex(of: instance)!]
 		}
-
-		instance = (instances[type]!)[instances[type]!.firstIndex(of: instance)!]
 	}
 	
 	private func replace(instance: T) {
@@ -78,9 +79,6 @@ public class Registry<T: Data> {
 		
 		for tmp in instances[type] ?? [] {
 			if tmp == instance {
-				if tmp.isInput {
-					break
-				}
 				let wasChanges = hasChanges
 				hasChanges = true
 				if let a = tmp as? Node, let b = instance as? Node {
@@ -95,16 +93,6 @@ public class Registry<T: Data> {
 			}
 		}
 		return
-	}
-
-	/// Changes given instance to instance from registry which is equal to given. If there is not such instance, adds given instance to registry.
-	/// - Parameter instance: given instance
-	public func getInstance(equal_to instance: inout T) {
-		if !have(instance: instance) {
-			add(instances: instance)
-		} else {
-			find(instance: &instance)
-		}
 	}
 	
 	public func getInstances(for_type type: DataType) -> Set<T> {
@@ -126,7 +114,7 @@ public class Registry<T: Data> {
 	public func add(instances data: T...) {
 		for instance in data {
 			
-			if have(instance: instance) {
+			if contains(instance) {
 				replace(instance: instance)
 				continue
 			}
@@ -154,7 +142,7 @@ public class Registry<T: Data> {
 		for var instance in data {
 			let type = instance.dataType
 			
-			if !have(instance: instance) {
+			if !contains(instance) {
 				continue
 			}
 			

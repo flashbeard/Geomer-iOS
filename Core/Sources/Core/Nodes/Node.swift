@@ -12,14 +12,16 @@ import Foundation
 public class Node: Data, DefinedName {
 	
 	// MARK: Properties
-	
+
+	public let isInput: Bool
 	public private (set) var references: Set<Reference>
 	
 	// MARK: Initialization
 	
-	public override init(name: String, isInput: Bool = false) {
+	public init(name: String, isInput: Bool = false) {
 		references = []
-		super.init(name: name, isInput: isInput)
+		self.isInput = isInput
+		super.init(name: name)
 	}
 	
 	// MARK: Operators
@@ -30,7 +32,7 @@ public class Node: Data, DefinedName {
 		}
 		let lhs = self
 		let rhs = to
-		return lhs == rhs || nodeRegistry.have(instance: BEEquality(left: lhs, right: rhs))
+		return lhs == rhs || nodeRegistry.contains(BEEquality(left: lhs, right: rhs))
 	}
 	
 	// MARK: Methods

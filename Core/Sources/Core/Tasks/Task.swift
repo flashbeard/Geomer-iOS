@@ -21,7 +21,7 @@ public class Task: Data {
 	public init(task: Node) {
 		self.task = task
 		achieved = false
-		super.init(isInput: true)
+		super.init()
 	}
 	
 	// MARK: Methods

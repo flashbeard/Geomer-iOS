@@ -12,13 +12,13 @@ public class Area: Node, FigureValue {
 
 	// MARK: Properties
 	public internal(set) var figure: Figure
-	public internal(set) var value: AreaValue?
+	public internal(set) var value: SquareUnit?
 
 	// MARK: Initialization
 
-	public init(figure: Figure, value: AreaValue? = nil) {
+	public init(figure: Figure, value: SquareUnit? = nil) {
 		var paramFigure: Node = figure
-		nodeRegistry.getInstance(equal_to: &paramFigure)
+		nodeRegistry.find(instance: &paramFigure, put: true)
 		self.figure = figure
 		self.value = value
 		super.init(name: "Area(\(figure.name))")

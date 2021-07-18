@@ -16,7 +16,7 @@ public func description(data op: Core.Data?) -> String {
 	}
 	let data = op!
 	let undefined = "Undefined"
-	var str = "| type: \(data.dataType) | input: \(data.isInput ? "(+) yes" : "(-) no") | name: \(data.name) |"
+	var str = "| type: \(data.dataType) | name: \(data.name) |"
 	
 	switch data.dataTypeString {
 	// MARK: Non geometry objects
@@ -34,61 +34,55 @@ public func description(data op: Core.Data?) -> String {
 		let t = data as! Reference
 		str = " from: [ "
 		for i in 0 ..< t.fromNodes.count - 1 {
-			str += "\(t.fromNodes[i].info()); "
+			str += "\(t.fromNodes[i].name); "
 		}
-		str += "\(t.fromNodes.last!.info()) ]\tby theorem: \(t.byTheorem.info())"
+		str += "\(t.fromNodes.last!.name) ]\tby theorem: \(t.byTheorem.name)"
 		return str
 
 	// MARK: Nodes
 	// MARK: Figure values
 	case Area.dataTypeString:
 		let t = data as! Area
-		str += " figure: \(t.figure.name) | value: \(t.value?.info() ?? undefined) |"
+		str += " figure: \(t.figure.name) | value: \(t.value?.name ?? undefined) |"
 	// MARK: Geometry objects
 	case Point.dataTypeString:
 		break
 	case Angle.dataTypeString:
 		let t = data as! Angle
-		str += " vertex: \(t.vertex.info()) | value: \(t.value?.info() ?? undefined) | rays: [ \(t.r1.info()); \(t.r2.info()) ] |"
+		str += " vertex: \(t.vertex.name) | value: \(t.value?.name ?? undefined) | rays: [ \(t.r1.name); \(t.r2.name) ] |"
 	case Line.dataTypeString:
 		let t = data as! Line
-		str += " A: \(t.a.info()) B: \(t.b.info()) |"
+		str += " A: \(t.a.name) B: \(t.b.name) |"
 	case Ray.dataTypeString:
 		let t = data as! Ray
-		str += " from: \(t.a.info()) through: \(t.b.info()) |"
+		str += " from: \(t.a.name) through: \(t.b.name) |"
 	case Segment.dataTypeString:
 		let t = data as! Segment
-		str += " A: \(t.a.info()) B: \(t.b.info()) | length: \(t.length?.info() ?? undefined) |"
-		
+		str += " A: \(t.a.name) B: \(t.b.name) | length: \(t.length?.name ?? undefined) |"
 	// MARK: Figures
 	case Polygon.dataTypeString, Triangle.dataTypeString:
 		let t = data as! Polygon
 		str += " from: [ "
 		for i in 0 ..< t.vertexes.count - 1 {
-			str += "\(t.vertexes[i].info()); "
+			str += "\(t.vertexes[i].name); "
 		}
-		str += "\(t.vertexes.last!.info()) ] |"
+		str += "\(t.vertexes.last!.name) ] |"
 		
 	// MARK: Binary expression
 	case BEBelong.dataTypeString, BEEquality.dataTypeString, BEParallelism.dataTypeString, BEPerpendicularity.dataTypeString:
 		break
-	// TODO: Add shifting to similarity and equality
 	case BEPolygonSimilarity.dataTypeString:
 		let t = data as! BEPolygonSimilarity
-		str += " left shift: \(shiftDescription(shift: t.leftShift)) |"
-		str += " proportion: \(t.proportion?.info() ?? undefined) |"
+		str += " left shift: \(t.leftShift.name) |"
+		str += " proportion: \(t.proportion?.name ?? undefined) |"
 	case BEPolygonEquality.dataTypeString:
 		let t = data as! BEPolygonEquality
-		str += " left shift: \(shiftDescription(shift: t.leftShift)) |"
+		str += " left shift: \(t.leftShift.name) |"
 	default:
 		break
 	}
 
 	return str
-}
-
-public func shiftDescription(shift: Shift) -> String {
-	"[\(shift.reversed ? "reversed" : "") \(shift.value)]"
 }
 
 @available(iOS 10.0, *)
@@ -135,7 +129,7 @@ public func descriptionSolution(solution: Solution, depth: Int = 0) -> String {
 		str += "|\n"
 		str += String(repeating: "   ", count: depth - 1)
 		str += "---> "
-		str += node.info()
+		str += node.name
 		str += "\n"
 
 		if reference != nil {

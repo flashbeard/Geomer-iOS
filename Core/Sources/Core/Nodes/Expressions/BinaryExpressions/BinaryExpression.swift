@@ -22,7 +22,7 @@ public class BinaryExpression: Node, Expression {
 		self.left = left
 		self.right = right
 		
-		let paramName = "\(left.info()) \(type(of: self).sign) \(right.info())"
+		let paramName = "\(left.name) \(type(of: self).sign) \(right.name)"
 		super.init(name: paramName, isInput: isInput)
 	}
 }

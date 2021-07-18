@@ -52,7 +52,7 @@ public class Polygon: Node, Figure {
 
 		var paramName = ""
 		for vertex in paramVertexes {
-			paramName += "\(vertex.info())"
+			paramName += "\(vertex.name)"
 		}
 		super.init(name: paramName, isInput: isInput)
 

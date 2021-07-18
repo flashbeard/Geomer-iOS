@@ -8,6 +8,6 @@ git:
 release:
 	agvtool new-version -all "$v"
 	git add .
-	git commit -m "v$v"
+	git commit -m "v$v" -m "$m"
 	git push -f
 	cloc .

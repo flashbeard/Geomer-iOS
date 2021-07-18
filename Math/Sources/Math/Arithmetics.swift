@@ -27,12 +27,12 @@ public struct Fraction: Equatable {
 		self.denumerator = denumerator
 	}
 
-	public func info() -> String {
-		var infoStr = "\(sign >= 0 ? "" : "-")"
-		infoStr += "\(integer == 0 ? "" : String(integer))"
-		infoStr += "\(integer != 0 && numerator != 0 ? " " : "")"
-		infoStr += "\(numerator == 0 ? "" : "\(numerator)/\(denumerator)")"
-		return infoStr
+	public var name: String {
+		var str = "\(sign >= 0 ? "" : "-")"
+		str += "\(integer == 0 ? "" : String(integer))"
+		str += "\(integer != 0 && numerator != 0 ? " " : "")"
+		str += "\(numerator == 0 ? "" : "\(numerator)/\(denumerator)")"
+		return str
 	}
 
 	public mutating func multiply(by val: Int) {

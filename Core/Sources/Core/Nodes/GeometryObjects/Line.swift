@@ -19,15 +19,15 @@ public class Line: Node, GeometryObject {
 	public init(a: Point, b: Point, commutative: Bool = true, isInput: Bool = false) {
 		var paramA: Node = a
 		var paramB: Node = b
-		nodeRegistry.getInstance(equal_to: &paramA)
-		nodeRegistry.getInstance(equal_to: &paramB)
+		nodeRegistry.find(instance: &paramA, put: true)
+		nodeRegistry.find(instance: &paramB, put: true)
 		if commutative && paramA > paramB {
 			swap(&paramA, &paramB)
 		}
 		self.a = paramA as! Point
 		self.b = paramB as! Point
 		
-		let paramName = "\(paramA.info())\(paramB.info())"
+		let paramName = "\(paramA.name)\(paramB.name)"
 		super.init(name: paramName, isInput: isInput)
 	}
 	

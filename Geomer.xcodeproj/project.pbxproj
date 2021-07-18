@@ -17,13 +17,13 @@
 		A92A0A83268C6AEC00E628A6 /* NewDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A0A82268C6AEC00E628A6 /* NewDataProperties.swift */; };
 		A92A0A86268C6C2600E628A6 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A0A85268C6C2600E628A6 /* UIConstants.swift */; };
 		A9478E5D265B92F300308C62 /* NewProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9478E5C265B92F200308C62 /* NewProblemView.swift */; };
-		A9683B7426A30E8D008725CC /* Math in Frameworks */ = {isa = PBXBuildFile; productRef = A9683B7326A30E8D008725CC /* Math */; };
-		A9683B7626A30E92008725CC /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = A9683B7526A30E92008725CC /* Core */; };
-		A9683B7826A30E9B008725CC /* BasicTheorems in Frameworks */ = {isa = PBXBuildFile; productRef = A9683B7726A30E9B008725CC /* BasicTheorems */; };
-		A9683B7A26A30EA6008725CC /* Developer in Frameworks */ = {isa = PBXBuildFile; productRef = A9683B7926A30EA6008725CC /* Developer */; };
-		A9683B7C26A30EAC008725CC /* Solver in Frameworks */ = {isa = PBXBuildFile; productRef = A9683B7B26A30EAC008725CC /* Solver */; };
 		A96D1C7C266611DD00D4CD60 /* AddNewDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D1C7B266611DD00D4CD60 /* AddNewDataView.swift */; };
 		A96D1C7E2666169700D4CD60 /* SwitchInputTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D1C7D2666169700D4CD60 /* SwitchInputTaskView.swift */; };
+		A9D17D2E26A44579005EBD58 /* Math in Frameworks */ = {isa = PBXBuildFile; productRef = A9D17D2D26A44579005EBD58 /* Math */; };
+		A9D17D3026A4457F005EBD58 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = A9D17D2F26A4457F005EBD58 /* Core */; };
+		A9D17D3226A44586005EBD58 /* BasicTheorems in Frameworks */ = {isa = PBXBuildFile; productRef = A9D17D3126A44586005EBD58 /* BasicTheorems */; };
+		A9D17D3426A4458C005EBD58 /* Developer in Frameworks */ = {isa = PBXBuildFile; productRef = A9D17D3326A4458C005EBD58 /* Developer */; };
+		A9D17D3626A44592005EBD58 /* Solver in Frameworks */ = {isa = PBXBuildFile; productRef = A9D17D3526A44592005EBD58 /* Solver */; };
 		A9FC01EB2665859F00A0562B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FC01EA2665859F00A0562B /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,11 +55,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9683B7C26A30EAC008725CC /* Solver in Frameworks */,
-				A9683B7426A30E8D008725CC /* Math in Frameworks */,
-				A9683B7826A30E9B008725CC /* BasicTheorems in Frameworks */,
-				A9683B7626A30E92008725CC /* Core in Frameworks */,
-				A9683B7A26A30EA6008725CC /* Developer in Frameworks */,
+				A9D17D3626A44592005EBD58 /* Solver in Frameworks */,
+				A9D17D2E26A44579005EBD58 /* Math in Frameworks */,
+				A9D17D3226A44586005EBD58 /* BasicTheorems in Frameworks */,
+				A9D17D3026A4457F005EBD58 /* Core in Frameworks */,
+				A9D17D3426A4458C005EBD58 /* Developer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,11 +157,11 @@
 			);
 			name = Geomer;
 			packageProductDependencies = (
-				A9683B7326A30E8D008725CC /* Math */,
-				A9683B7526A30E92008725CC /* Core */,
-				A9683B7726A30E9B008725CC /* BasicTheorems */,
-				A9683B7926A30EA6008725CC /* Developer */,
-				A9683B7B26A30EAC008725CC /* Solver */,
+				A9D17D2D26A44579005EBD58 /* Math */,
+				A9D17D2F26A4457F005EBD58 /* Core */,
+				A9D17D3126A44586005EBD58 /* BasicTheorems */,
+				A9D17D3326A4458C005EBD58 /* Developer */,
+				A9D17D3526A44592005EBD58 /* Solver */,
 			);
 			productName = Geomer;
 			productReference = A9219C492619D43700F64514 /* Geomer.app */;
@@ -369,7 +369,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.5.5.6;
+				CURRENT_PROJECT_VERSION = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = XHRWYM4T65;
 				ENABLE_PREVIEWS = YES;
@@ -393,7 +393,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.5.5.6;
+				CURRENT_PROJECT_VERSION = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = XHRWYM4T65;
 				ENABLE_PREVIEWS = YES;
@@ -435,23 +435,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A9683B7326A30E8D008725CC /* Math */ = {
+		A9D17D2D26A44579005EBD58 /* Math */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Math;
 		};
-		A9683B7526A30E92008725CC /* Core */ = {
+		A9D17D2F26A4457F005EBD58 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
 		};
-		A9683B7726A30E9B008725CC /* BasicTheorems */ = {
+		A9D17D3126A44586005EBD58 /* BasicTheorems */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BasicTheorems;
 		};
-		A9683B7926A30EA6008725CC /* Developer */ = {
+		A9D17D3326A4458C005EBD58 /* Developer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Developer;
 		};
-		A9683B7B26A30EAC008725CC /* Solver */ = {
+		A9D17D3526A44592005EBD58 /* Solver */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Solver;
 		};

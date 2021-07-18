@@ -23,8 +23,7 @@ public class Solution {
 	}
 
 	// MARK: Methods
-	
-	public func backtrackSolution() {
+	public func backtrack() {
 		if problem.isInput {
 			steps = [(node: problem, reference: nil)]
 			return
@@ -34,7 +33,7 @@ public class Solution {
 			var fromSteps: [(node: Node, reference: Reference?)] = []
 			for fromNode in reference.fromNodes {
 				let fromNodeSolution = Solution(for: fromNode)
-				fromNodeSolution.backtrackSolution()
+				fromNodeSolution.backtrack()
 				fromSteps.append(contentsOf: fromNodeSolution.steps)
 			}
 			if steps.count == 0 || steps.count - 1 > fromSteps.count {

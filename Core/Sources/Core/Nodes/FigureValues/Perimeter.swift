@@ -12,13 +12,13 @@ public class Perimeter: Node, FigureValue {
 
 	// MARK: Properties
 	public internal(set) var figure: Figure
-	public internal(set) var value: LengthValue?
+	public internal(set) var value: LinearUnit?
 
 	// MARK: Initialization
 
-	public init(figure: Figure, value: LengthValue? = nil) {
+	public init(figure: Figure, value: LinearUnit? = nil) {
 		var paramFigure: Node = figure
-		nodeRegistry.getInstance(equal_to: &paramFigure)
+		nodeRegistry.find(instance: &paramFigure, put: true)
 		self.figure = figure
 		self.value = value
 		super.init(name: "Perimeter(\(figure.name))")

@@ -14,22 +14,21 @@ import Foundation
 	
 	public static var dataType: DataType { Self.self }
 	public static var dataTypeString: String { String(describing: dataType) }
+
 	public var dataType: DataType { get { return type(of: self).dataType } }
 	public var dataTypeString: String { get { return type(of: self).dataTypeString } }
 	
 	// MARK: Properties
 
-	public private (set) var name: String
-	public let isInput: Bool
+	public let name: String
 	
 	// MARK: Initialization
 	
-	public init(name: String = "", isInput: Bool = false) {
+	public init(name: String = "") {
 		if name.isEmpty && Self.dataType is DefinedName {
 			fatalError("Cannot create \(Data.dataType) class instance with undefined name")
 		}
-		self.name = name
-		self.isInput = isInput
+		self.name = name.isEmpty ? "Unnamed" : name
 	}
 	
 	// MARK: Operators
@@ -52,22 +51,6 @@ import Foundation
 
 	open override func isEqual(_ object: Any?) -> Bool {
 		self == object as! Data
-	}
-//	public func hash(into hasher: inout Hasher) {
-//		hasher.combine(Data.dataTypeString)
-//		hasher.combine(name)
-//	}
-
-	// MARK: Methods
-	public func test(to: Protocol) {
-
-	}
-	
-	// MARK: info function
-	
-	public func info() -> String {
-		let str = "\(name == "" ? "Unnamed" : name)"
-		return str
 	}
 }
 

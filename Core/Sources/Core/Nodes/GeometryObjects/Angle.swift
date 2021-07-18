@@ -14,18 +14,18 @@ public class Angle: Node, GeometryObject {
 	
 	public var vertex: Point { r1.a }
 	public var r1, r2: Ray
-	public var value: AngleValue?
+	public var value: AngularUnit?
 	
 	// MARK: Initialization
 	
-	public init(ray1 r1: Ray, ray2 r2: Ray, angular: AngleValue? = nil, isInput: Bool = false) {
+	public init(ray1 r1: Ray, ray2 r2: Ray, angular: AngularUnit? = nil, isInput: Bool = false) {
 		var paramR1: Node = r1
 		var paramR2: Node = r2
 		nodeRegistry.findEqual(instance: &paramR1)
 		nodeRegistry.findEqual(instance: &paramR2)
 		
 		if r1.a != r2.a {
-			fatalError("Cannot create angle because rays \(r1.info()) and \(r2.info()) are not coming out of the same point")
+			fatalError("Cannot create angle because rays \(r1.name) and \(r2.name) are not coming out of the same point")
 		}
 		
 		if paramR1 < paramR2 {
@@ -36,13 +36,13 @@ public class Angle: Node, GeometryObject {
 		self.r2 = paramR2 as! Ray
 		self.value = angular
 		
-		let paramName = "\((paramR1 as! Ray).b.info())\((paramR1 as! Ray).a.info())\((paramR2 as! Ray).b.info())"
+		let paramName = "\((paramR1 as! Ray).b.name)\((paramR1 as! Ray).a.name)\((paramR2 as! Ray).b.name)"
 		super.init(name: paramName, isInput: isInput)
 		
 		nodeRegistry.add(instances: r1.a, r1.b, r2.b)
 	}
 	
-	public convenience init(a: Point, b: Point, c: Point, value: AngleValue? = nil, isInput: Bool = false) {
+	public convenience init(a: Point, b: Point, c: Point, value: AngularUnit? = nil, isInput: Bool = false) {
 		let r1 = Ray(from: b, through: a, isInput: isInput)
 		let r2 = Ray(from: b, through: c, isInput: isInput)
 		self.init(ray1: r1, ray2: r2, angular: value, isInput: isInput)
