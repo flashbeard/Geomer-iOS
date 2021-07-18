@@ -11,16 +11,14 @@ import Foundation
 @available(iOS 10.0, *)
 open class Theorem: Data {
 
-	// MARK: Properties
-
+	// MARK: - Properties
 	public let theoremDescription: String
 	public let inputTypes: [DataType]
 	public var input: [Node]!
 	public var protocols: [Protocol]?
 	public var result: [Node]!
 
-	// MARK: Initialization
-
+	// MARK: - Initialization
 	public init(name: String, description: String, inputTypes: [DataType], protocols: [Protocol]? = nil) {
 		self.theoremDescription = description
 		self.inputTypes = inputTypes
@@ -28,8 +26,7 @@ open class Theorem: Data {
 		super.init(name: name)
 	}
 
-	// MARK: Methods
-
+	// MARK: - Methods
 	public func apply() {
 		execute()
 		for i in 0 ..< result.count {

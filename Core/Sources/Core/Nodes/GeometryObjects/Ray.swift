@@ -10,8 +10,7 @@ import Foundation
 @available(iOS 10.0, *)
 public class Ray: Line {
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public init(from a: Point, through b: Point, isInput: Bool = false) {
 		super.init(a: a, b: b, commutative: false, isInput: isInput)
 	}

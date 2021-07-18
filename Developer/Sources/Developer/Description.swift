@@ -19,7 +19,7 @@ public func description(data op: Core.Data?) -> String {
 	var str = "| type: \(data.dataType) | name: \(data.name) |"
 	
 	switch data.dataTypeString {
-	// MARK: Non geometry objects
+	// MARK: - Non geometry objects
 	case Task.dataTypeString:
 		let t = data as! Task
 		str += " achieved: \(t.achieved ? "(+) yes" : "(-) no") | \n\t\ttask: { \(description(data: t.task)) } |"
@@ -39,12 +39,12 @@ public func description(data op: Core.Data?) -> String {
 		str += "\(t.fromNodes.last!.name) ]\tby theorem: \(t.byTheorem.name)"
 		return str
 
-	// MARK: Nodes
-	// MARK: Figure values
+	// MARK: - Nodes
+	// MARK: - Figure values
 	case Area.dataTypeString:
 		let t = data as! Area
 		str += " figure: \(t.figure.name) | value: \(t.value?.name ?? undefined) |"
-	// MARK: Geometry objects
+	// MARK: - Geometry objects
 	case Point.dataTypeString:
 		break
 	case Angle.dataTypeString:
@@ -58,8 +58,8 @@ public func description(data op: Core.Data?) -> String {
 		str += " from: \(t.a.name) through: \(t.b.name) |"
 	case Segment.dataTypeString:
 		let t = data as! Segment
-		str += " A: \(t.a.name) B: \(t.b.name) | length: \(t.length?.name ?? undefined) |"
-	// MARK: Figures
+		str += " A: \(t.a.name) B: \(t.b.name) | length: \(t.value?.name ?? undefined) |"
+	// MARK: - Figures
 	case Polygon.dataTypeString, Triangle.dataTypeString:
 		let t = data as! Polygon
 		str += " from: [ "
@@ -68,7 +68,7 @@ public func description(data op: Core.Data?) -> String {
 		}
 		str += "\(t.vertexes.last!.name) ] |"
 		
-	// MARK: Binary expression
+	// MARK: - Binary expression
 	case BEBelong.dataTypeString, BEEquality.dataTypeString, BEParallelism.dataTypeString, BEPerpendicularity.dataTypeString:
 		break
 	case BEPolygonSimilarity.dataTypeString:

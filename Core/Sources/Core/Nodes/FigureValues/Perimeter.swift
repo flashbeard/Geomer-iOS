@@ -10,12 +10,11 @@ import Foundation
 @available(iOS 10.0, *)
 public class Perimeter: Node, FigureValue {
 
-	// MARK: Properties
+	// MARK: - Properties
 	public internal(set) var figure: Figure
 	public internal(set) var value: LinearUnit?
 
-	// MARK: Initialization
-
+	// MARK: - Initialization
 	public init(figure: Figure, value: LinearUnit? = nil) {
 		var paramFigure: Node = figure
 		nodeRegistry.find(instance: &paramFigure, put: true)

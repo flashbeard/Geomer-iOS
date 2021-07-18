@@ -52,7 +52,7 @@ struct HomeView_Previews: PreviewProvider {
 	}
 }
 
-// MARK: Button to show NewProblemView
+// MARK: - Button to show NewProblemView
 struct ShowNewProblemButton: View {
 
 	@Binding var showingNewProblem: Bool
@@ -71,7 +71,7 @@ struct ShowNewProblemButton: View {
 	}
 }
 
-// MARK: Button to show NewProblemView
+// MARK: - Button to show NewProblemView
 struct ShowHistoryButton: View {
 
 	@Binding var showingHistory: Bool

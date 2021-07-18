@@ -10,13 +10,11 @@ import Foundation
 @available(iOS 10.0, *)
 public class BEPolygonSimilarity: BEPolygon {
 	
-	// MARK: Properties
-	
+	// MARK: - Properties
 	public var proportion: Proportion?
 	public override class var sign: String { "∾" }
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public init(left: Polygon, right: Polygon, leftShift: Shift, proportion: Proportion? = nil, isInput: Bool = false) {
 		self.proportion = proportion
 		super.init(left: left, right: right, leftShift: leftShift, isInput: isInput)

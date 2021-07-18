@@ -9,22 +9,25 @@ import Foundation
 
 import Math
 
+enum ProportionError: Error {
+	case invalidOperandsCount
+}
+
 @available(iOS 10.0, *)
 public class Proportion: Node, Expression {
 
-	// MARK: Properties
-
+	// MARK: - Properties
 	public var operands: [Fraction]
 
-	// MARK: Initialization
-
-	public init(operands: [Fraction], isInput: Bool = false) {
+	// MARK: - Initialization
+	public init(operands: [Fraction], isInput: Bool = false) throws {
 		let n = operands.count
-		if  n < 2 {
-			fatalError("Proportion can not have \(n) operands")
+		guard n >= 2 else {
+			throw ProportionError.invalidOperandsCount
 		}
+		
 		var paramOperands = operands
-		Fraction.normalize(operands: &paramOperands)
+		paramOperands.normalize()
 		self.operands = paramOperands
 
 		var paramName = ""

@@ -7,23 +7,24 @@
 
 import Foundation
 
+/// Type which must have defined and not empty name
+public protocol DefinedName {
+
+}
+
 /// Basic class for all stored objects
 @objc open class Data: NSObject, Comparable {
 	
-	// MARK: data type
-	
+	// MARK: - Properties
 	public static var dataType: DataType { Self.self }
 	public static var dataTypeString: String { String(describing: dataType) }
 
 	public var dataType: DataType { get { return type(of: self).dataType } }
 	public var dataTypeString: String { get { return type(of: self).dataTypeString } }
-	
-	// MARK: Properties
 
 	public let name: String
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public init(name: String = "") {
 		if name.isEmpty && Self.dataType is DefinedName {
 			fatalError("Cannot create \(Data.dataType) class instance with undefined name")
@@ -31,8 +32,7 @@ import Foundation
 		self.name = name.isEmpty ? "Unnamed" : name
 	}
 	
-	// MARK: Operators
-	
+	// MARK: - Operators
 	public static func < (lhs: Data, rhs: Data) -> Bool {
 		lhs.name < rhs.name || lhs.name == rhs.name && String(describing: lhs.dataType) < String(describing: rhs.dataType)
 	}
@@ -41,7 +41,7 @@ import Foundation
 		lhs.dataType == rhs.dataType && lhs.name == rhs.name
 	}
 	
-	// MARK: Hasher function
+	// MARK: - Hasher function
 	override open var hash: Int {
 		var hasher: Hasher = Hasher()
 		hasher.combine(name)
@@ -52,9 +52,4 @@ import Foundation
 	open override func isEqual(_ object: Any?) -> Bool {
 		self == object as! Data
 	}
-}
-
-/// protocol for objects which always should have defined name
-public protocol DefinedName {
-
 }

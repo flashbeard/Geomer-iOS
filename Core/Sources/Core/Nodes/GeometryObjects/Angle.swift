@@ -10,14 +10,12 @@ import Foundation
 @available(iOS 10.0, *)
 public class Angle: Node, GeometryObject {
 	
-	// MARK: Properties
-	
+	// MARK: - Properties
 	public var vertex: Point { r1.a }
 	public var r1, r2: Ray
 	public var value: AngularUnit?
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public init(ray1 r1: Ray, ray2 r2: Ray, angular: AngularUnit? = nil, isInput: Bool = false) {
 		var paramR1: Node = r1
 		var paramR2: Node = r2
@@ -48,8 +46,7 @@ public class Angle: Node, GeometryObject {
 		self.init(ray1: r1, ray2: r2, angular: value, isInput: isInput)
 	}
 	
-	// MARK: Operators
-	
+	// MARK: - Operators
 	public override func equal(_ to: Node) -> Bool {
 		if dataType != to.dataType {
 			return false

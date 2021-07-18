@@ -10,19 +10,19 @@ import Foundation
 @available(iOS 10.0, *)
 public class Solution {
 	
-	// MARK: Properties
+	// MARK: - Properties
 	
 	public let problem: Node
 	public private (set) var steps: [(node: Node, reference: Reference?)]
 	
-	// MARK: Initialization
+	// MARK: - Initialization
 	
 	public init(for problem: Node) {
 		self.problem = problem
 		steps = []
 	}
 
-	// MARK: Methods
+	// MARK: - Methods
 	public func backtrack() {
 		if problem.isInput {
 			steps = [(node: problem, reference: nil)]

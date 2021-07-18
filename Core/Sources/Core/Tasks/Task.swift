@@ -11,21 +11,18 @@ import Foundation
 @available(iOS 10.0, *)
 public class Task: Data {
 	
-	// MARK: Properties
-	
+	// MARK: - Properties
 	public private (set) var task: Node
 	public private (set) var achieved: Bool
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public init(task: Node) {
 		self.task = task
 		achieved = false
 		super.init()
 	}
 	
-	// MARK: Methods
-	
+	// MARK: - Methods
 	public func achieve() {
 		achieved = true
 	}

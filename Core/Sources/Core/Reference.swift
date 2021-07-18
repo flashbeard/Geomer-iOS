@@ -11,12 +11,12 @@ import Foundation
 @available(iOS 10.0, *)
 public class Reference: Data {
 	
-	// MARK: Properties
+	// MARK: - Properties
 	
 	public private (set) var fromNodes: [Node]
 	public private (set) var byTheorem: Theorem
 	
-	// MARK: Initialization
+	// MARK: - Initialization
 	
 	public init(from fromNodes: [Node], by byTheorem: Theorem) {
 		self.fromNodes = fromNodes
@@ -24,13 +24,13 @@ public class Reference: Data {
 		super.init()
 	}
 	
-	// MARK: Operators
+	// MARK: - Operators
 	
 	public static func == (lhs: Reference, rhs: Reference) -> Bool {
 		lhs as Data == rhs as Data && lhs.fromNodes == rhs.fromNodes && lhs.byTheorem == rhs.byTheorem
 	}
 	
-	// MARK: hasher function
+	// MARK: - hasher function
 	
 //	public override func hash(into hasher: inout Hasher) {
 //		super.hash(into: &hasher)

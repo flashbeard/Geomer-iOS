@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: Sizes
+// MARK: - Sizes
 let screen = UIScreen.main.bounds
 let heightAddNewData: CGFloat = screen.height / 2
 let cornersRadiusLarge: CGFloat = 30
@@ -22,7 +22,7 @@ let textfieldWidth: CGFloat = min(screen.height, screen.width) / 3
 let textfieldHeight: CGFloat = min(screen.height, screen.width) / 6
 let dragCancelOffset: CGFloat = 100
 
-// MARK: Colors
+// MARK: - Colors
 let backgroundColor = Color("Background")
 let vitalColor = Color("Vital")
 let highlightedColor = Color("Highlighted")

@@ -10,12 +10,10 @@ import Foundation
 @available(iOS 10.0, *)
 public class BEPolygonEquality: BEPolygon {
 
-	// MARK: Properties
-
+	// MARK: - Properties
 	public override class var sign: String { "=" }
 
-	// MARK: Initialization
-
+	// MARK: - Initialization
 	public override init(left: Polygon, right: Polygon, leftShift: Shift, isInput: Bool = false) {
 		super.init(left: left, right: right, leftShift: leftShift, isInput: isInput)
 	}

@@ -10,25 +10,22 @@ import Foundation
 @available(iOS 10.0, *)
 public class Segment: Line {
 	
-	// MARK: Properties
+	// MARK: - Properties
+	public var value: LinearUnit?
 	
-	public var length: LinearUnit?
-	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public init(a: Point, b: Point, length: LinearUnit? = nil, isInput: Bool = false) {
-		self.length = length
+		self.value = length
 		super.init(a: a, b: b, commutative: true, isInput: isInput)
 	}
 	
-	// MARK: Operators
-	
+	// MARK: - Operators
 	public override func equal(_ to: Node) -> Bool {
 		if dataType != to.dataType {
 			return false
 		}
 		let lhs = self
 		let rhs = to as! Segment
-		return super.equal(rhs) || lhs.length != nil && lhs.length == rhs.length
+		return super.equal(rhs) || lhs.value != nil && lhs.value == rhs.value
 	}
 }

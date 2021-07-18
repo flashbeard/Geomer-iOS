@@ -9,6 +9,7 @@ import Foundation
 
 @available(iOS 10.0, *)
 protocol FigureValue: Node {
-	// MARK: Properties
+	
+	// MARK: - Properties
 	var figure: Figure { get set }
 }

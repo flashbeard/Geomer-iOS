@@ -10,18 +10,14 @@ import Foundation
 @available(iOS 10.0, *)
 public class BinaryExpression: Node, Expression {
 	
-	// MARK: Properties
-	
+	// MARK: - Properties
 	public var left, right: Node
 	public class var sign: String { "🏳️‍🌈" }
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public required init(left: Node, right: Node, isInput: Bool = false) {
-		
 		self.left = left
 		self.right = right
-		
 		let paramName = "\(left.name) \(type(of: self).sign) \(right.name)"
 		super.init(name: paramName, isInput: isInput)
 	}

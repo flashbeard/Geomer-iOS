@@ -22,14 +22,13 @@ public enum TriangleSideName {
 @available(iOS 10.0, *)
 public class Triangle: Polygon {
 
-	// MARK: Properties
-
+	// MARK: - Properties
 	private var definedAngles: Bool {
 		return angle(.A).value != nil && angle(.B).value != nil && angle(.C).value != nil
 	}
 
 	private var definedSides: Bool {
-		return side(.AB).length != nil && side(.BC).length != nil && side(.CA).length != nil
+		return side(.AB).value != nil && side(.BC).value != nil && side(.CA).value != nil
 	}
 
 	public var isAcute: Bool {
@@ -55,19 +54,18 @@ public class Triangle: Polygon {
 
 	public var isIsosceles: Bool {
 		return definedSides && (
-			side(.AB).length == side(.BC).length ||
-			side(.BC).length == side(.CA).length ||
-			side(.CA).length == side(.AB).length)
+			side(.AB).value == side(.BC).value ||
+			side(.BC).value == side(.CA).value ||
+			side(.CA).value == side(.AB).value)
 	}
 
 	public var isEquilateral: Bool {
 		return definedSides &&
-			side(.AB).length == side(.BC).length &&
-			side(.BC).length == side(.CA).length
+			side(.AB).value == side(.BC).value &&
+			side(.BC).value == side(.CA).value
 	}
 
-	// MARK: Initialization
-
+	// MARK: - Initialization
 	public required init(vertexes: [Point], isInput: Bool = false) {
 
 		var paramVertexes: [Point] = vertexes
@@ -77,8 +75,7 @@ public class Triangle: Polygon {
 		super.init(vertexes: paramVertexes, isInput: isInput)
 	}
 
-	// MARK: Methods
-
+	// MARK: - Methods
 	public func vertex(_ vertexName: TriangleVertexName) -> Point {
 		switch vertexName {
 		case .A:

@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+import Core
+
 public enum PropertyType {
 	case text
 	case number

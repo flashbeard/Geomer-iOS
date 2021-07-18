@@ -7,25 +7,22 @@
 
 import Foundation
 
-/// Basic class for real stored objects
+/// Basic class for stored objects avaliable for user.
 @available(iOS 10.0, *)
 public class Node: Data, DefinedName {
-	
-	// MARK: Properties
 
+	// MARK: - Properties
 	public let isInput: Bool
 	public private (set) var references: Set<Reference>
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public init(name: String, isInput: Bool = false) {
 		references = []
 		self.isInput = isInput
 		super.init(name: name)
 	}
 	
-	// MARK: Operators
-	
+	// MARK: - Operators
 	public func equal(_ to: Node) -> Bool {
 		if dataType != to.dataType {
 			return false
@@ -35,8 +32,7 @@ public class Node: Data, DefinedName {
 		return lhs == rhs || nodeRegistry.contains(BEEquality(left: lhs, right: rhs))
 	}
 	
-	// MARK: Methods
-	
+	// MARK: - Methods
 	public func addReference(reference: Reference) {
 		self.references.insert(reference)
 	}

@@ -17,7 +17,7 @@ public let solver = Solver.shared
 @available(iOS 10.0, *)
 public class Solver {
 	
-	// MARK: Singleton pattern
+	// MARK: - Singleton pattern
 	public static let shared = Solver()
 
 	public func addInput(node: Node) {
@@ -31,18 +31,18 @@ public class Solver {
 	
 	public func solve() {
 		
-		// MARK: Preparing
+		// MARK: - Preparing
 		loadTheorems()
 		loadInputData()
 		
-		// MARK: Input info
+		// MARK: - Input info
 		#if DEBUG
 		print("================================================================\n")
 		print("\t\t\tInput data:")
 		descriptionNodeRegistry()
 		#endif
 		
-		// MARK: Main loop
+		// MARK: - Main loop
 		
 		//	taskRegistry.checkAchieved(instances: nodeRegistry)
 		
@@ -58,7 +58,15 @@ public class Solver {
 				}
 			}
 
-			// MARK: Result info
+			for i in 0 ... 10000 {
+				var p: Node = Point(name: String(i))
+
+				nodeRegistry.find(instance: &p, put: Bool.random())
+			}
+
+			print("done")
+
+			// MARK: - Result info
 			#if DEBUG
 			print("================================================================\n")
 			print("\t\t\tResult data:")
@@ -67,18 +75,18 @@ public class Solver {
 			
 			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
 			
-			// MARK: this code stops computing solution if all the tasks are achieved, even if there are another solutions for them (possible easier)
+			// MARK: - this code stops computing solution if all the tasks are achieved, even if there are another solutions for them (possible easier)
 			//		if taskRegistry.allAchieved { break }
 		}
 		
-		// MARK: Result info
+		// MARK: - Result info
 		#if DEBUG
 		print("================================================================\n")
 		print("\t\t\tResult data:")
 		descriptionNodeRegistry()
 		#endif
 		
-		// MARK: Tasks check and info
+		// MARK: - Tasks check and info
 		#if DEBUG
 		print("================================================================\n")
 		print("\t\t\tTasks:")
@@ -89,7 +97,7 @@ public class Solver {
 		descriptionTaskRegistry()
 		#endif
 		
-		// MARK: Tasks solution
+		// MARK: - Tasks solution
 		#if DEBUG
 		print("================================================================\n")
 		print("\t\t\tTasks solution:\n")
@@ -109,7 +117,7 @@ public class Solver {
 			print(descriptionSolution(solution: solution))
 		}
 		
-		// MARK: Testing data
+		// MARK: - Testing data
 		#if DEBUG
 		print("End")
 		#endif

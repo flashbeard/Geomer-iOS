@@ -10,8 +10,7 @@ import Foundation
 @available(iOS 10.0, *)
 public class BEParallelism: BECommutative {
 	
-	// MARK: Properties
-	
+	// MARK: - Properties
 	public override class var sign: String { "‖" }
 	
 }
