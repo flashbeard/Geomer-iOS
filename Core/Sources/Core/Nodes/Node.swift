@@ -7,34 +7,32 @@
 
 import Foundation
 
-/// Basic class for real stored objects
+/// Basic class for stored objects avaliable for user.
 @available(iOS 10.0, *)
 public class Node: Data, DefinedName {
-	
-	// MARK: Properties
-	
+
+	// MARK: - Properties
+	public let isInput: Bool
 	public private (set) var references: Set<Reference>
 	
-	// MARK: Initialization
-	
-	public override init(name: String, isInput: Bool = false) {
+	// MARK: - Initialization
+	public init(name: String, isInput: Bool = false) {
 		references = []
-		super.init(name: name, isInput: isInput)
+		self.isInput = isInput
+		super.init(name: name)
 	}
 	
-	// MARK: Operators
-	
+	// MARK: - Operators
 	public func equal(_ to: Node) -> Bool {
 		if dataType != to.dataType {
 			return false
 		}
 		let lhs = self
 		let rhs = to
-		return lhs == rhs || nodeRegistry.have(instance: BEEquality(left: lhs, right: rhs))
+		return lhs == rhs || nodeRegistry.contains(BEEquality(left: lhs, right: rhs))
 	}
 	
-	// MARK: Methods
-	
+	// MARK: - Methods
 	public func addReference(reference: Reference) {
 		self.references.insert(reference)
 	}

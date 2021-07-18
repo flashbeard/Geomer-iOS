@@ -10,13 +10,11 @@ import Foundation
 @available(iOS 10.0, *)
 public class BELineIntersection: BinaryExpression {
 
-	// MARK: Properties
-
+	// MARK: - Properties
 	public private (set) var intersectionPoint: Point?
 	public override class var sign: String { "∩" }
 
-	// MARK: Initialization
-
+	// MARK: - Initialization
 	public init(left: Line, right: Line, intersectionPoint: Point? = nil, isInput: Bool = false) {
 		self.intersectionPoint = intersectionPoint
 		super.init(left: left, right: right, isInput: isInput)

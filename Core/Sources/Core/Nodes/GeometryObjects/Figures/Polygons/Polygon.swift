@@ -10,8 +10,7 @@ import Foundation
 @available(iOS 10.0, *)
 public class Polygon: Node, Figure {
 
-	// MARK: Properties
-
+	// MARK: - Properties
 	public var sides: [Segment]
 	public var vertexes: [Point]
 	public var angles: [Angle]
@@ -19,8 +18,7 @@ public class Polygon: Node, Figure {
 	public var area: Area?
 	public var perimeter: Perimeter?
 
-	// MARK: Initialization
-
+	// MARK: - Initialization
 	public required init(vertexes: [Point], isInput: Bool = false) {
 		let count = vertexes.count
 		if count <= 2 {
@@ -52,15 +50,14 @@ public class Polygon: Node, Figure {
 
 		var paramName = ""
 		for vertex in paramVertexes {
-			paramName += "\(vertex.info())"
+			paramName += "\(vertex.name)"
 		}
 		super.init(name: paramName, isInput: isInput)
 
 		nodeRegistry.add(instances: vertexes)
 	}
 
-	// MARK: Methods
-
+	// MARK: - Methods
 	public func shifted(by shift: Shift) -> Self {
 		Self(vertexes: vertexes.shifted(by: shift))
 	}

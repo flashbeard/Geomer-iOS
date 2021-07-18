@@ -9,18 +9,19 @@ import Foundation
 
 import Core
 
+#if DEBUG
 @available(iOS 10.0, *)
-internal class TestTheorem: Theorem {
+class TestTheorem: Theorem {
 
-	// MARK: Initialization
+	// MARK: - Initialization
 
-	internal init() {
+	init() {
 		super.init(name: "Test", description: "Just test", inputTypes: [Point.self, Point.self])
 	}
 
-	// MARK: Methods
+	// MARK: - Methods
 
-	internal override func execute() {
+	override func execute() {
 		super.execute()
 		let e1 = input[0] as! Point
 		let e2 = input[1] as! Point
@@ -34,3 +35,4 @@ internal class TestTheorem: Theorem {
 		}
 	}
 }
+#endif

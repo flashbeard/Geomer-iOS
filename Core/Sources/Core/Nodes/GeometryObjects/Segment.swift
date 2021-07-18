@@ -7,26 +7,19 @@
 
 import Foundation
 
-public protocol NumericValue {
-	var value is MeasurementValue? { get set }
-}
-
 @available(iOS 10.0, *)
-public class Segment: Line, NumericValue {
+public class Segment: Line {
 	
-	// MARK: Properties
+	// MARK: - Properties
+	public var value: LinearUnit?
 	
-	public var value: LengthValue?
-	
-	// MARK: Initialization
-	
-	public init(a: Point, b: Point, length: LengthValue? = nil, isInput: Bool = false) {
+	// MARK: - Initialization
+	public init(a: Point, b: Point, length: LinearUnit? = nil, isInput: Bool = false) {
 		self.value = length
 		super.init(a: a, b: b, commutative: true, isInput: isInput)
 	}
 	
-	// MARK: Operators
-	
+	// MARK: - Operators
 	public override func equal(_ to: Node) -> Bool {
 		if dataType != to.dataType {
 			return false

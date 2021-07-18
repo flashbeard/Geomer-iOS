@@ -10,12 +10,10 @@ import Foundation
 @available(iOS 10.0, *)
 public class BEPolygon: BinaryExpression {
 	
-	// MARK: Properties
-	
+	// MARK: - Properties
 	public private (set) var leftShift: Shift
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	public init(left: Polygon, right: Polygon, leftShift: Shift, isInput: Bool = false) {
 		self.leftShift = leftShift
 		super.init(left: left, right: right, isInput: isInput)

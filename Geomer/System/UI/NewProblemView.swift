@@ -112,7 +112,7 @@ struct NewProblemView_Previews: PreviewProvider {
 }
 
 
-// MARK: Button to show AddNewDataView
+// MARK: - Button to show AddNewDataView
 struct showAddButton: View {
 
 	@Binding var showingAddNewData: Bool

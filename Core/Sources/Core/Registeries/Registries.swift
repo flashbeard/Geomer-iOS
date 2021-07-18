@@ -14,15 +14,14 @@ public let theoremRegistry = TheoremRegistry.shared
 @available(iOS 10.0, *)
 public let taskRegistry = TaskRegistry.shared
 
-// MARK: Registry
-/// Registries are used to store data
+// MARK: - Registry
+/// Data structure for storing any `Data` objects
 @available(iOS 10.0, *)
 public class Registry<T: Data> {
 	
-	// MARK: Properties
-	
+	// MARK: - Properties
 	public private (set) var dataTypes: Set<AnyMetatypeWrapper>
-	internal private (set) var instances: Dictionary<AnyMetatypeWrapper, Set<T>>
+	private (set) var instances: Dictionary<AnyMetatypeWrapper, Set<T>>
 	public private (set) var newInstances: Set<T>
 	public private (set) var hasChanges: Bool
 	public var count: Int {
@@ -35,8 +34,7 @@ public class Registry<T: Data> {
 		}
 	}
 	
-	// MARK: Initialization
-	
+	// MARK: - Initialization
 	fileprivate init() {
 		dataTypes = []
 		instances = [:]
@@ -44,14 +42,13 @@ public class Registry<T: Data> {
 		hasChanges = true
 	}
 	
-	// MARK: Methods
-	
+	// MARK: - Methods
 	public func fixState() {
 		hasChanges = false
 		newInstances = []
 	}
-	
-	internal func have(instance: T) -> Bool {
+
+	func contains(_ instance: T) -> Bool {
 		let type = instance.dataType
 		
 		return (instances[type] ?? []).contains(instance)
@@ -61,16 +58,17 @@ public class Registry<T: Data> {
 		(instances[type] ?? []).count
 	}
 
-	/// Changes given instance to instance from registry which is equal to given.
-	/// - Parameter instance: given instance
-	public func find(instance: inout T) {
-		let type = instance.dataType
+	public func find(instance: inout T, put: Bool = false) {
 
-		if !(instances[type] ?? []).contains(instance) {
-			return
+		if !contains(instance) && put {
+			add(instances: instance)
+		} else {
+			let type = instance.dataType
+			if !(instances[type] ?? []).contains(instance) {
+				return
+			}
+			instance = (instances[type]!)[instances[type]!.firstIndex(of: instance)!]
 		}
-
-		instance = (instances[type]!)[instances[type]!.firstIndex(of: instance)!]
 	}
 	
 	private func replace(instance: T) {
@@ -78,9 +76,6 @@ public class Registry<T: Data> {
 		
 		for tmp in instances[type] ?? [] {
 			if tmp == instance {
-				if tmp.isInput {
-					break
-				}
 				let wasChanges = hasChanges
 				hasChanges = true
 				if let a = tmp as? Node, let b = instance as? Node {
@@ -96,16 +91,6 @@ public class Registry<T: Data> {
 		}
 		return
 	}
-
-	/// Changes given instance to instance from registry which is equal to given. If there is not such instance, adds given instance to registry.
-	/// - Parameter instance: given instance
-	public func getInstance(equal_to instance: inout T) {
-		if !have(instance: instance) {
-			add(instances: instance)
-		} else {
-			find(instance: &instance)
-		}
-	}
 	
 	public func getInstances(for_type type: DataType) -> Set<T> {
 		instances[type] ?? []
@@ -119,14 +104,14 @@ public class Registry<T: Data> {
 		return union
 	}
 	
-	internal func instancesCount(for_type type: DataType) -> Int {
+	func instancesCount(for_type type: DataType) -> Int {
 		(instances[type] ?? []).count
 	}
 	
 	public func add(instances data: T...) {
 		for instance in data {
 			
-			if have(instance: instance) {
+			if contains(instance) {
 				replace(instance: instance)
 				continue
 			}
@@ -150,11 +135,11 @@ public class Registry<T: Data> {
 		}
 	}
 	
-	internal func remove(instances data: T...) {
+	func remove(instances data: T...) {
 		for var instance in data {
 			let type = instance.dataType
 			
-			if !have(instance: instance) {
+			if !contains(instance) {
 				continue
 			}
 			
@@ -171,24 +156,24 @@ public class Registry<T: Data> {
 		}
 	}
 	
-	internal func remove(instances data: [T]) {
+	func remove(instances data: [T]) {
 		for instance in data {
 			remove(instances: instance)
 		}
 	}
 }
 
-// MARK: Node registry
+// MARK: - Node registry
 /// Registries are used to store data
 @available(iOS 10.0, *)
 public class NodeRegistry: Registry<Node> {
 	
-	// MARK: Singleton pattern
-	internal static let shared = NodeRegistry()
+	// MARK: - Singleton pattern
+	static let shared = NodeRegistry()
 	
-	// MARK: Methods
+	// MARK: - Methods
 	
-	internal func findEqual(instance: inout Node) {
+	func findEqual(instance: inout Node) {
 		let type = instance.dataType
 		if !dataTypes.contains(AnyMetatypeWrapper(metatype: type)) {
 			return
@@ -229,15 +214,15 @@ public class NodeRegistry: Registry<Node> {
 	}
 }
 
-// MARK: Task registry
+// MARK: - Task registry
 /// Registries are used to store data
 @available(iOS 10.0, *)
 public class TaskRegistry: Registry<Task> {
 	
-	// MARK: Singleton pattern
-	internal static let shared = TaskRegistry()
+	// MARK: - Singleton pattern
+	static let shared = TaskRegistry()
 	
-	// MARK: Methods
+	// MARK: - Methods
 	
 	public var achievedCount: Int {
 		var cnt = 0
@@ -263,11 +248,11 @@ public class TaskRegistry: Registry<Task> {
 	
 }
 
-// MARK: Theorem registry
+// MARK: - Theorem registry
 /// Registries are used to store data
 @available(iOS 10.0, *)
 public class TheoremRegistry: Registry<Theorem> {
 	
-	// MARK: Singleton pattern
-	internal static let shared = TheoremRegistry()
+	// MARK: - Singleton pattern
+	static let shared = TheoremRegistry()
 }

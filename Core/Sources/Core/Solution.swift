@@ -10,21 +10,20 @@ import Foundation
 @available(iOS 10.0, *)
 public class Solution {
 	
-	// MARK: Properties
+	// MARK: - Properties
 	
 	public let problem: Node
 	public private (set) var steps: [(node: Node, reference: Reference?)]
 	
-	// MARK: Initialization
+	// MARK: - Initialization
 	
 	public init(for problem: Node) {
 		self.problem = problem
 		steps = []
 	}
 
-	// MARK: Methods
-	
-	public func backtrackSolution() {
+	// MARK: - Methods
+	public func backtrack() {
 		if problem.isInput {
 			steps = [(node: problem, reference: nil)]
 			return
@@ -34,7 +33,7 @@ public class Solution {
 			var fromSteps: [(node: Node, reference: Reference?)] = []
 			for fromNode in reference.fromNodes {
 				let fromNodeSolution = Solution(for: fromNode)
-				fromNodeSolution.backtrackSolution()
+				fromNodeSolution.backtrack()
 				fromSteps.append(contentsOf: fromNodeSolution.steps)
 			}
 			if steps.count == 0 || steps.count - 1 > fromSteps.count {

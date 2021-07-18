@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+import Core
+
 public enum PropertyType {
 	case text
 	case number
@@ -55,8 +57,6 @@ public class Preparator: ObservableObject {
 
 @available(iOS 13.0, *)
 public class PointPreparator: Preparator {
-
-
 
 	public override class func propertyNames() -> [String] {
 		["Name"]
@@ -127,7 +127,7 @@ public class SegmentPreparator: Preparator {
 		}
 		return Segment(a: Point(name: propertyPointA, isInput: true),
 					   b: Point(name: propertyPointB, isInput: true),
-					   length: LengthValue.new(value: propertyLenght),
+					   length: LinearUnit.new(value: propertyLenght),
 					   isInput: true)
 	}
 }
