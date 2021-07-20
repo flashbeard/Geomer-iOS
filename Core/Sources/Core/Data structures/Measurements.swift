@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 @available(iOS 10.0, *) public typealias LinearUnit = Measurement<UnitLength>
 @available(iOS 10.0, *) public typealias SquareUnit = Measurement<UnitArea>
 @available(iOS 10.0, *) public typealias AngularUnit = Measurement<UnitAngle>

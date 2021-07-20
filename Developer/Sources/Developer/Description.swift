@@ -10,58 +10,33 @@ import Foundation
 import Core
 
 @available(iOS 10.0, *)
-public func description(data op: Core.Data?) -> String {
-	if op == nil {
-		return ""
-	}
-	let data = op!
+public func description(node: Node, with_references references: Bool = false) -> String {
 	let undefined = "Undefined"
-	var str = "| type: \(data.dataType) | name: \(data.name) |"
+	var str = "| {Node} | type: \(node.dataType) | name: \(node.name) |"
 	
-	switch data.dataTypeString {
-	// MARK: - Non geometry objects
-	case Task.dataTypeString:
-		let t = data as! Task
-		str += " achieved: \(t.achieved ? "(+) yes" : "(-) no") | \n\t\ttask: { \(description(data: t.task)) } |"
-	case Theorem.dataTypeString:
-		let t = data as! Theorem
-		str += " input types: [ "
-		for i in 0 ..< t.inputTypes.count - 1 {
-			str += "\(t.inputTypes[i]); "
-		}
-		str += "\(t.inputTypes.last!) ] |"
-	case Reference.dataTypeString:
-		let t = data as! Reference
-		str = " from: [ "
-		for i in 0 ..< t.fromNodes.count - 1 {
-			str += "\(t.fromNodes[i].name); "
-		}
-		str += "\(t.fromNodes.last!.name) ]\tby theorem: \(t.byTheorem.name)"
-		return str
-
-	// MARK: - Nodes
+	switch node.dataTypeString {
 	// MARK: - Figure values
-	case Area.dataTypeString:
-		let t = data as! Area
+	case Perimeter.dataTypeString, Area.dataTypeString:
+		let t = node as! Area
 		str += " figure: \(t.figure.name) | value: \(t.value?.name ?? undefined) |"
 	// MARK: - Geometry objects
 	case Point.dataTypeString:
 		break
 	case Angle.dataTypeString:
-		let t = data as! Angle
+		let t = node as! Angle
 		str += " vertex: \(t.vertex.name) | value: \(t.value?.name ?? undefined) | rays: [ \(t.r1.name); \(t.r2.name) ] |"
 	case Line.dataTypeString:
-		let t = data as! Line
+		let t = node as! Line
 		str += " A: \(t.a.name) B: \(t.b.name) |"
 	case Ray.dataTypeString:
-		let t = data as! Ray
+		let t = node as! Ray
 		str += " from: \(t.a.name) through: \(t.b.name) |"
 	case Segment.dataTypeString:
-		let t = data as! Segment
+		let t = node as! Segment
 		str += " A: \(t.a.name) B: \(t.b.name) | length: \(t.value?.name ?? undefined) |"
 	// MARK: - Figures
 	case Polygon.dataTypeString, Triangle.dataTypeString:
-		let t = data as! Polygon
+		let t = node as! Polygon
 		str += " from: [ "
 		for i in 0 ..< t.vertexes.count - 1 {
 			str += "\(t.vertexes[i].name); "
@@ -72,49 +47,83 @@ public func description(data op: Core.Data?) -> String {
 	case BEBelong.dataTypeString, BEEquality.dataTypeString, BEParallelism.dataTypeString, BEPerpendicularity.dataTypeString:
 		break
 	case BEPolygonSimilarity.dataTypeString:
-		let t = data as! BEPolygonSimilarity
+		let t = node as! BEPolygonSimilarity
 		str += " left shift: \(t.leftShift.name) |"
 		str += " proportion: \(t.proportion?.name ?? undefined) |"
 	case BEPolygonEquality.dataTypeString:
-		let t = data as! BEPolygonEquality
+		let t = node as! BEPolygonEquality
 		str += " left shift: \(t.leftShift.name) |"
 	default:
 		break
 	}
 
+	str += "\n"
+
 	return str
 }
 
 @available(iOS 10.0, *)
-public func referencesDescription(node: Node) -> String {
-	var str = ""
-	var i = 1
-	for reference in node.references {
-		str += "\t\t[\(i)]: \(description(data: reference))\n"
-		i += 1
+public func description(task: Task) -> String {
+	"| {Task} | achieved: \(task.achieved ? "(+) yes" : "(-) no") | task: \(description(node: task.task)) |"
+}
+
+@available(iOS 10.0, *)
+public func description(theorem: Theorem) -> String {
+	let undefined = "Undefined"
+	var str = "| {Theorem} |\nname: \(theorem.name) |\ndescription: \(theorem.theoremDescription ?? undefined) |"
+	str += " input types: [ "
+	for type in theorem.inputTypes {
+		str += type.dataTypeString
+	}
+	str += "] |\nprotocols: "
+	if let protocols = theorem.protocols {
+		str += " [ "
+		for proto in protocols {
+			str += String(describing: proto)
+		}
+		str += " ] |\n"
+	} else {
+		str += undefined + " |\n"
+	}
+	return str
+}
+
+
+@available(iOS 10.0, *)
+public func description(reference: Reference) -> String {
+	let undefined = "Undefined"
+	var str = "| {Reference} |\nfrom: "
+	if reference.fromNodes.count > 0 {
+		str += "["
+		for node in reference.fromNodes {
+			str += "\(node.name) "
+		}
+		str += "] |\n"
+	} else {
+		str += undefined
 	}
 	return str
 }
 
 @available(iOS 10.0, *)
 public func descriptionNodeRegistry() {
-	for type in nodeRegistry.dataTypes {
-		print("\(type.metatype.dataTypeString) [\(nodeRegistry.countInstances(for_type: type.metatype)) instances]:")
-		for instance in nodeRegistry.getInstances(for_type: type.metatype) {
-			print("\t\(description(data: instance))")
-			print(referencesDescription(node: instance))
-		}
-	}
+//	for type in nodeRegistry.dataTypes {
+//		print("\(type.metatype.dataTypeString) [\(nodeRegistry.countInstances(for_type: type.metatype)) instances]:")
+//		for instance in nodeRegistry.getInstances(for_type: type.metatype) {
+//			print("\t\(description(data: instance))")
+//			print(referencesDescription(node: instance))
+//		}
+//	}
 }
 
 @available(iOS 10.0, *)
 public func descriptionTaskRegistry() {
-	for type in taskRegistry.dataTypes {
-		print("\(type.metatype.dataTypeString):")
-		for instance in taskRegistry.getInstances(for_type: type.metatype) {
-			print("\t\(description(data: instance))")
-		}
-	}
+//	for type in taskRegistry.dataTypes {
+//		print("\(type.metatype.dataTypeString):")
+//		for instance in taskRegistry.getInstances(for_type: type.metatype) {
+//			print("\t\(description(data: instance))")
+//		}
+//	}
 }
 
 @available(iOS 10.0, *)

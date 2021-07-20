@@ -23,47 +23,7 @@ public enum TriangleSideName {
 public class Triangle: Polygon {
 
 	// MARK: - Properties
-	private var definedAngles: Bool {
-		return angle(.A).value != nil && angle(.B).value != nil && angle(.C).value != nil
-	}
-
-	private var definedSides: Bool {
-		return side(.AB).value != nil && side(.BC).value != nil && side(.CA).value != nil
-	}
-
-	public var isAcute: Bool {
-		return definedAngles &&
-			angle(.A).value!.value < 90 &&
-			angle(.B).value!.value < 90 &&
-			angle(.C).value!.value < 90
-	}
-
-	public var isRight: Bool {
-		return 	definedAngles && (
-			angle(.A).value!.value == 90 ||
-			angle(.B).value!.value == 90 ||
-			angle(.C).value!.value == 90)
-	}
-
-	public var isObtuse: Bool {
-		return definedAngles && (
-			angle(.A).value!.value > 90 ||
-			angle(.B).value!.value > 90 ||
-			angle(.C).value!.value > 90)
-	}
-
-	public var isIsosceles: Bool {
-		return definedSides && (
-			side(.AB).value == side(.BC).value ||
-			side(.BC).value == side(.CA).value ||
-			side(.CA).value == side(.AB).value)
-	}
-
-	public var isEquilateral: Bool {
-		return definedSides &&
-			side(.AB).value == side(.BC).value &&
-			side(.BC).value == side(.CA).value
-	}
+	
 
 	// MARK: - Initialization
 	public required init(vertexes: [Point], isInput: Bool = false) {
@@ -98,8 +58,8 @@ public class Triangle: Polygon {
 		}
 	}
 
-	public func side(_ angleName: TriangleSideName) -> Segment {
-		switch angleName {
+	public func side(_ sideName: TriangleSideName) -> Segment {
+		switch sideName {
 		case .AB:
 			return sides[0]
 		case .BC:

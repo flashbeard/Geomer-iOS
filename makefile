@@ -1,13 +1,11 @@
 vers:
+	agvtool vers
+newvers:
 	agvtool new-version -all "$v"
 	agvtool vers
-git:
-	git add .
-	git commit -m "$t" -m "$b"
-	git push -f
 release:
 	agvtool new-version -all "$v"
 	git add .
-	git commit -m "v$v" -m "$m"
+	git commit -m "v$v: $t" -m "$b"
 	git push -f
 	cloc .

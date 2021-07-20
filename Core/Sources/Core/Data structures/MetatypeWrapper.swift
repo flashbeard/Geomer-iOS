@@ -9,25 +9,31 @@ import Foundation
 
 public typealias DataType = Core.Data.Type
 
-public struct AnyMetatypeWrapper {
+public struct MetatypeWrapper {
 	public let metatype: DataType
 }
 
-extension AnyMetatypeWrapper: Equatable {
+extension MetatypeWrapper: Equatable {
 	public static func ==(lhs: Self, rhs: Self) -> Bool {
 		lhs.metatype == rhs.metatype
 	}
 }
 
-extension AnyMetatypeWrapper: Hashable {
+extension MetatypeWrapper: Hashable {
 	public func hash(into hasher: inout Hasher) {
 		hasher.combine(ObjectIdentifier(metatype))
 	}
 }
 
 extension Dictionary {
-	subscript(_ key: DataType) -> Value? where Key == AnyMetatypeWrapper {
-		get { self[AnyMetatypeWrapper(metatype: key)] }
-		_modify { yield &self[AnyMetatypeWrapper(metatype: key)] }
+	subscript(_ key: DataType) -> Value? where Key == MetatypeWrapper {
+		get {
+			self[MetatypeWrapper(metatype: key)]
+		}
+		_modify {
+			yield &self[MetatypeWrapper(metatype: key)]
+		}
 	}
 }
+
+
