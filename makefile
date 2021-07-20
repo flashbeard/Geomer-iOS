@@ -7,5 +7,5 @@ release:
 	agvtool new-version -all "$v"
 	git add .
 	git commit -m "v$v: $t" -m "$b"
-	git push -f
+	git push origin developer -f
 	cloc .

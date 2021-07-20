@@ -39,7 +39,7 @@ public class Solver {
 		#if DEBUG
 		print("================================================================\n")
 		print("\t\t\tInput data:")
-		descriptionNodeRegistry()
+		print(descriptionNodeRegistry())
 		#endif
 		
 		// MARK: - Main loop
@@ -70,7 +70,7 @@ public class Solver {
 			#if DEBUG
 			print("================================================================\n")
 			print("\t\t\tResult data:")
-			descriptionNodeRegistry()
+			print(descriptionNodeRegistry())
 			#endif
 			
 			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
@@ -83,7 +83,7 @@ public class Solver {
 		#if DEBUG
 		print("================================================================\n")
 		print("\t\t\tResult data:")
-		descriptionNodeRegistry()
+		print(descriptionNodeRegistry())
 		#endif
 		
 		// MARK: - Tasks check and info
@@ -94,7 +94,7 @@ public class Solver {
 		if taskRegistry.allAchieved {
 			print("\t\t\tAll tasts are achieved")
 		}
-		descriptionTaskRegistry()
+		print(descriptionTaskRegistry())
 		#endif
 		
 		// MARK: - Tasks solution
@@ -107,14 +107,14 @@ public class Solver {
 			nodeRegistry.find(instance: &node)
 			let solution = Solution(for: node)
 			solution.backtrack()
-			print(descriptionSolution(solution: solution))
+			print(description(solution: solution))
 		}
 		#endif
 
 		for node in nodeRegistry.getAllInstances() {
 			let solution = Solution(for: node)
 			solution.backtrack()
-			print(descriptionSolution(solution: solution))
+			print(description(solution: solution))
 		}
 		
 		// MARK: - Testing data
