@@ -22,7 +22,6 @@ class TestTheorem: Theorem {
 	// MARK: - Methods
 
 	override func execute() {
-		super.execute()
 		let e1 = input[0] as! Point
 		let e2 = input[1] as! Point
 

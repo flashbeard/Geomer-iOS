@@ -8,15 +8,29 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BasicTheorems"
+               BuildableName = "BasicTheorems"
+               BlueprintName = "BasicTheorems"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CoreTests"
-               BuildableName = "CoreTests"
-               BlueprintName = "CoreTests"
+               BlueprintIdentifier = "BasicTheoremsTests"
+               BuildableName = "BasicTheoremsTests"
+               BlueprintName = "BasicTheoremsTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CoreTests"
-               BuildableName = "CoreTests"
-               BlueprintName = "CoreTests"
+               BlueprintIdentifier = "BasicTheoremsTests"
+               BuildableName = "BasicTheoremsTests"
+               BlueprintName = "BasicTheoremsTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -57,6 +71,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BasicTheorems"
+            BuildableName = "BasicTheorems"
+            BlueprintName = "BasicTheorems"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

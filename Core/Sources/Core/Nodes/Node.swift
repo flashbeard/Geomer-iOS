@@ -7,22 +7,32 @@
 
 import Foundation
 
+open class AdditionalKind {
+
+}
+
+public protocol AdditionalKindProtocol {
+
+}
+
 /// Basic class for stored objects avaliable for user.
 @available(iOS 10.0, *)
-public class Node: Data, DefinedName {
+public class Node: Data, DataInheritor {
 
 	// MARK: - Properties
+	public let name: String
 	public let isInput: Bool
 	public private (set) var references: Set<Reference>
+	private var addidionalKinds: Dictionary<ProtocolWrapper, AdditionalKind> = [:]
 	
 	// MARK: - Initialization
 	public init(name: String, isInput: Bool = false) {
 		references = []
 		self.isInput = isInput
-		super.init(name: name)
+		self.name = name
 	}
 	
-	// MARK: - Operators
+	// MARK: - Geometry equality
 	public func equal(_ to: Node) -> Bool {
 		if dataType != to.dataType {
 			return false
@@ -36,4 +46,32 @@ public class Node: Data, DefinedName {
 	public func addReference(reference: Reference) {
 		self.references.insert(reference)
 	}
+
+	public func addAddidionalKind(for proto: Protocol, _ addidionalKind: AdditionalKind) {
+		addidionalKinds[ProtocolWrapper(proto: proto)] = addidionalKind
+	}
+
+	public func conforms(to proto: Protocol) -> AdditionalKind? {
+		addidionalKinds[ProtocolWrapper(proto: proto)]
+	}
+
+	// MARK: - DataInheritor
+	public static func < (lhs: Node, rhs: Node) -> Bool {
+		lhs.name < rhs.name || lhs.name == rhs.name && String(describing: lhs.dataType) < String(describing: rhs.dataType)
+	}
+
+	public static func == (lhs: Node, rhs: Node) -> Bool {
+		lhs as Data == rhs as Data && lhs.name == rhs.name
+	}
+
+	static func hashValue(for object: Node) -> Int {
+		var hasher = Hasher()
+		hasher.combine(object.dataTypeString)
+		hasher.combine(object.name)
+		hasher.combine(object.isInput)
+		hasher.combine(object.references)
+		return hasher.finalize()
+	}
+
+
 }

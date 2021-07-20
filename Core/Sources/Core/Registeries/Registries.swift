@@ -20,8 +20,8 @@ public let taskRegistry = TaskRegistry.shared
 public class Registry<T: Data> {
 	
 	// MARK: - Properties
-	public private (set) var dataTypes: Set<AnyMetatypeWrapper>
-	private (set) var instances: Dictionary<AnyMetatypeWrapper, Set<T>>
+	public private (set) var dataTypes: Set<MetatypeWrapper>
+	private (set) var instances: Dictionary<MetatypeWrapper, Set<T>>
 	public private (set) var newInstances: Set<T>
 	public private (set) var hasChanges: Bool
 	public var count: Int {
@@ -118,8 +118,8 @@ public class Registry<T: Data> {
 			
 			let type = instance.dataType
 			
-			if !dataTypes.contains(AnyMetatypeWrapper(metatype: type)) {
-				dataTypes.insert(AnyMetatypeWrapper(metatype: type))
+			if !dataTypes.contains(MetatypeWrapper(metatype: type)) {
+				dataTypes.insert(MetatypeWrapper(metatype: type))
 				instances[type] = []
 			}
 			
@@ -150,8 +150,8 @@ public class Registry<T: Data> {
 			instances[type]!.remove(instance)
 			
 			if instances[type]!.count == 0 {
-				instances.removeValue(forKey: AnyMetatypeWrapper(metatype: type))
-				dataTypes.remove(AnyMetatypeWrapper(metatype: type))
+				instances.removeValue(forKey: MetatypeWrapper(metatype: type))
+				dataTypes.remove(MetatypeWrapper(metatype: type))
 			}
 		}
 	}
@@ -175,7 +175,7 @@ public class NodeRegistry: Registry<Node> {
 	
 	func findEqual(instance: inout Node) {
 		let type = instance.dataType
-		if !dataTypes.contains(AnyMetatypeWrapper(metatype: type)) {
+		if !dataTypes.contains(MetatypeWrapper(metatype: type)) {
 			return
 		}
 		for tmp in instances[type]! {

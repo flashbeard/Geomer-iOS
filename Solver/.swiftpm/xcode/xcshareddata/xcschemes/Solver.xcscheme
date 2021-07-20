@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A9219C482619D43700F64514"
-               BuildableName = "Geomer.app"
-               BlueprintName = "Geomer"
-               ReferencedContainer = "container:Geomer.xcodeproj">
+               BlueprintIdentifier = "Solver"
+               BuildableName = "Solver"
+               BlueprintName = "Solver"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SolverTests"
+               BuildableName = "SolverTests"
+               BlueprintName = "SolverTests"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +46,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A999CB5D26A4E93F00FE4E6E"
-               BuildableName = "GeomerTests.xctest"
-               BlueprintName = "GeomerTests"
-               ReferencedContainer = "container:Geomer.xcodeproj">
+               BlueprintIdentifier = "SolverTests"
+               BuildableName = "SolverTests"
+               BlueprintName = "SolverTests"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -50,16 +64,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9219C482619D43700F64514"
-            BuildableName = "Geomer.app"
-            BlueprintName = "Geomer"
-            ReferencedContainer = "container:Geomer.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -67,16 +71,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9219C482619D43700F64514"
-            BuildableName = "Geomer.app"
-            BlueprintName = "Geomer"
-            ReferencedContainer = "container:Geomer.xcodeproj">
+            BlueprintIdentifier = "Solver"
+            BuildableName = "Solver"
+            BlueprintName = "Solver"
+            ReferencedContainer = "container:">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

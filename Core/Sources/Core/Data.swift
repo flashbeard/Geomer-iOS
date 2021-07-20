@@ -7,49 +7,53 @@
 
 import Foundation
 
-/// Type which must have defined and not empty name
-public protocol DefinedName {
+protocol ComparableData {
+	static func <(lhs: Self, rhs: Self) -> Bool
+	static func ==(lhs: Self, rhs: Self) -> Bool
+}
+
+protocol HashableData {
+	static func hashValue(for object: Self) -> Int
+}
+
+protocol DataInheritor: ComparableData, HashableData {
 
 }
 
 /// Basic class for all stored objects
 @objc open class Data: NSObject, Comparable {
-	
+
 	// MARK: - Properties
 	public static var dataType: DataType { Self.self }
 	public static var dataTypeString: String { String(describing: dataType) }
 
 	public var dataType: DataType { get { return type(of: self).dataType } }
 	public var dataTypeString: String { get { return type(of: self).dataTypeString } }
-
-	public let name: String
 	
 	// MARK: - Initialization
-	public init(name: String = "") {
-		if name.isEmpty && Self.dataType is DefinedName {
-			fatalError("Cannot create \(Data.dataType) class instance with undefined name")
-		}
-		self.name = name.isEmpty ? "Unnamed" : name
-	}
 	
-	// MARK: - Operators
+	// MARK: - ComparableData
 	public static func < (lhs: Data, rhs: Data) -> Bool {
-		lhs.name < rhs.name || lhs.name == rhs.name && String(describing: lhs.dataType) < String(describing: rhs.dataType)
+		lhs.dataTypeString < rhs.dataTypeString
 	}
 	
 	public static func == (lhs: Data, rhs: Data) -> Bool {
-		lhs.dataType == rhs.dataType && lhs.name == rhs.name
+		lhs.dataType == rhs.dataType
+	}
+
+	// MARK: - HashableData
+	static func hashValue(for object: Data) -> Int {
+		var hasher: Hasher = Hasher()
+		hasher.combine(object.dataTypeString)
+		return hasher.finalize()
 	}
 	
-	// MARK: - Hasher function
+	// MARK: - Overriding NSObject hash for Data
 	override open var hash: Int {
-		var hasher: Hasher = Hasher()
-		hasher.combine(name)
-		hasher.combine(dataTypeString)
-		return hasher.finalize()
+		Self.hashValue(for: self)
 	}
 
 	open override func isEqual(_ object: Any?) -> Bool {
-		self == object as! Data
+		self == object as! Self
 	}
 }

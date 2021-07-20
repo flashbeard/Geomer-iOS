@@ -37,7 +37,7 @@ struct NewProblemView: View {
 					ScrollView {
 						VStack(alignment: .leading) {
 							ForEach(nodeRegistry.getAllInstances().sorted(by: <), id: \.self) { node in
-								Text(description(data: node))
+								Text(description(node: node))
 									.padding()
 									.background(highlightedColor)
 									.clipShape(RoundedRectangle(cornerRadius: cornersRadiusSmall))
@@ -50,7 +50,7 @@ struct NewProblemView: View {
 						ScrollView {
 							VStack(alignment: .leading) {
 								ForEach(taskRegistry.getAllInstances().sorted(by: <), id: \.self) { node in
-									Text(description(data: node))
+									Text(description(task: node))
 										.padding()
 										.background(highlightedColor)
 										.clipShape(RoundedRectangle(cornerRadius: cornersRadiusSmall))
