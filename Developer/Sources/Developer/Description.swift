@@ -106,28 +106,7 @@ public func description(reference: Reference) -> String {
 }
 
 @available(iOS 10.0, *)
-public func descriptionNodeRegistry() {
-//	for type in nodeRegistry.dataTypes {
-//		print("\(type.metatype.dataTypeString) [\(nodeRegistry.countInstances(for_type: type.metatype)) instances]:")
-//		for instance in nodeRegistry.getInstances(for_type: type.metatype) {
-//			print("\t\(description(data: instance))")
-//			print(referencesDescription(node: instance))
-//		}
-//	}
-}
-
-@available(iOS 10.0, *)
-public func descriptionTaskRegistry() {
-//	for type in taskRegistry.dataTypes {
-//		print("\(type.metatype.dataTypeString):")
-//		for instance in taskRegistry.getInstances(for_type: type.metatype) {
-//			print("\t\(description(data: instance))")
-//		}
-//	}
-}
-
-@available(iOS 10.0, *)
-public func descriptionSolution(solution: Solution, depth: Int = 0) -> String {
+public func description(solution: Solution, depth: Int = 0) -> String {
 	var str = ""
 	var depth = 1
 	for (node, reference) in solution.steps.reversed() {
@@ -149,4 +128,29 @@ public func descriptionSolution(solution: Solution, depth: Int = 0) -> String {
 	str = String(str.suffix(str.count - 3))
 
 	return str
+}
+
+@available(iOS 10.0, *)
+public func descriptionNodeRegistry() -> String {
+	var str = "{NodeRegistry}\n"
+	for type in nodeRegistry.dataTypes {
+		str += "\(type.metatype.dataTypeString) [\(nodeRegistry.countInstances(for_type: type.metatype)) instances]:"
+		for node in nodeRegistry.getInstances(for_type: type.metatype) {
+			str += "\t\(description(node: node, with_references: true))"
+		}
+	}
+	return str
+}
+
+@available(iOS 10.0, *)
+public func descriptionTaskRegistry() -> String {
+	var str = "{NodeRegistry}\n"
+	for type in taskRegistry.dataTypes {
+		str += "\(type.metatype.dataTypeString):"
+		for task in taskRegistry.getInstances(for_type: type.metatype) {
+			str += "\t\(description(task: task))"
+		}
+	}
+	return str
+
 }
