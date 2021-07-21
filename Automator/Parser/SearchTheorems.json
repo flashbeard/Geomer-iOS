@@ -1,0 +1,160 @@
+{
+	"theorems": [
+		{
+			"class": "SearchAngle",
+			"name": "Search Angle",
+			"description": "",
+			"input types": [
+				"Ray",
+				"Ray"
+			],
+			"parameters": [
+				"ray1",
+				"ray2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"if ray1 == ray2 {",
+                    "\tresult = []",
+                    "\treturn",
+                    "}",
+                    "",
+                    "if (ray1.a.equal(ray2.a)) {",
+                    "\tvar res: Node",
+                    "\tres = Angle(ray1: ray1, ray2: ray2)",
+                    "\tresult.append(res)",
+                    "}"
+				]	
+			}
+		},
+        {
+			"class": "SearchRay",
+			"name": "Search Ray",
+			"description": "",
+			"input types": [
+				"Point",
+				"Point"
+			],
+			"parameters": [
+				"point1",
+				"point2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"if point1 == point2 {",
+                    "\tresult = []",
+                    "\treturn",
+                    "}",
+                    "",
+                    "if (true) {",
+                    "\tvar res: Node",
+                    "\tres = Ray(from: point1, through: point2)",
+                    "\tresult.append(res)",
+                    "\tres = Ray(from: point2, through: point1)",
+                    "\tresult.append(res)",
+                    "}"
+				]	
+			}
+		},
+        {
+			"class": "SearchLine",
+			"name": "Search Line",
+			"description": "",
+			"input types": [
+				"Point",
+				"Point"
+			],
+			"parameters": [
+				"point1",
+				"point2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"if point1 == point2 {",
+                    "\tresult = []",
+                    "\treturn",
+                    "}",
+                    "",
+                    "if (true) {",
+                    "\tvar res: Node",
+                    "\tres = Line(a: point1, b: point2)",
+                    "\tresult.append(res)",
+                    "}"
+				]	
+			}
+		},
+        {
+			"class": "SearchSegment",
+			"name": "Search Segment",
+			"description": "",
+			"input types": [
+				"Point",
+				"Point"
+			],
+			"parameters": [
+				"point1",
+				"point2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"if point1 == point2 {",
+                    "\tresult = []",
+                    "\treturn",
+                    "}",
+                    "",
+                    "if (true) {",
+                    "\tvar res: Node",
+                    "\tres = Segment(a: point1, b: point2)",
+                    "\tresult.append(res)",
+                    "\tres = Segment(a: point2, b: point1)",
+                    "\tresult.append(res)",
+                    "}"
+				]	
+			}
+		},
+        {
+			"class": "SearchTriangle",
+			"name": "Search Triangle",
+			"description": "",
+			"input types": [
+				"Point",
+				"Point",
+                "Point"
+			],
+			"parameters": [
+				"point1",
+				"point2",
+                "point3"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"if point1 == point2 || point2 == point3 || point3 == point1 {",
+                    "\tresult = []",
+                    "\treturn",
+                    "}",
+                    "",
+                    "if (true) {",
+                    "\tvar res: Node",
+                    "\tres = Triangle(vertexes: [point1, point2, point3])",
+                    "\tresult.append(res)",
+                    "}"
+				]	
+			}
+		}
+	]
+}

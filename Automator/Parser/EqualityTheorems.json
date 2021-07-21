@@ -1,0 +1,103 @@
+{
+	"theorems": [
+		{
+			"class": "TheoremEqualityTriangleSideSideSide",
+			"name": "Theorem equality triangle side side side",
+			"description": "If three sides of one triangle are equal to three corresponding sides of the other triangle then these triangles are equal to each other",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"if triangle1.equal(triangle2) {",
+					"\treturn",
+					"}",
+					"for i in 0...2 {",
+					"\tlet shifted = triangle1.shifted(by: Shift(i))",
+					"\tlet shifted_reversed = triangle1.shifted(by: Shift(i, reversed: true))",
+					"\tif (shifted.side(.AB).equal(triangle2.side(.AB)) && shifted.side(.BC).equal(triangle2.side(.BC)) && shifted.side(.CA).equal(triangle2.side(.CA))) {",
+					"\t\tres = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i))",
+					"\t}",
+					"\tif (shifted_reversed.side(.AB).equal(triangle2.side(.AB)) && shifted_reversed.side(.BC).equal(triangle2.side(.BC)) && shifted_reversed.side(.CA).equal(triangle2.side(.CA))) {",
+					"\t\tres = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: true))",
+					"\t}",
+					"}"
+				]	
+			}
+		},
+		{
+			"class": "TheoremEqualityTriangleSideAngleSide",
+			"name": "Theorem Equality Triangle Side Angle Side",
+			"description": "If two sides and the angle between them of one triangle are respectively equal to two sides and the angle between them of another triangle, then such triangles are equal.",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"if triangle1.equal(triangle2) {",
+					"\treturn",
+					"}",
+					"for i in 0...2 {",
+					"\tlet shifted = triangle1.shifted(by: Shift(i))",
+					"\tlet shifted_reversed = triangle1.shifted(by: Shift(i, reversed: true))",
+					"\tif ((shifted.side(.AB).equal(triangle2.side(.AB)) && shifted.side(.BC).equal(triangle2.side(.BC)) && shifted.angle(.B).equal(triangle2.angle(.B))) || (shifted.side(.AB).equal(triangle2.side(.AB)) && shifted.side(.CA).equal(triangle2.side(.CA)) && shifted.angle(.A).equal(triangle2.angle(.A))) || (shifted.side(.BC).equal(triangle2.side(.BC)) && shifted.side(.CA).equal(triangle2.side(.CA)) && shifted.angle(.C).equal(triangle2.angle(.C)))) {",
+					"\t\tres = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i))",
+					"\t}",
+					"\tif ((shifted_reversed.side(.AB).equal(triangle2.side(.AB)) && shifted_reversed.side(.BC).equal(triangle2.side(.BC)) && shifted_reversed.angle(.B).equal(triangle2.angle(.B))) || (shifted_reversed.side(.AB).equal(triangle2.side(.AB)) && shifted_reversed.side(.CA).equal(triangle2.side(.CA)) && shifted_reversed.angle(.A).equal(triangle2.angle(.A))) || (shifted_reversed.side(.BC).equal(triangle2.side(.BC)) && shifted_reversed.side(.CA).equal(triangle2.side(.CA)) && shifted_reversed.angle(.C).equal(triangle2.angle(.C)))) {",
+					"\t\tres = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: true))",
+					"\t}",
+					"}"
+				]	
+			}
+		},
+		{
+			"class": "TheoremEqualityTriangleAngleSideAngle",
+			"name": "Theorem Equality Triangle Angle Side Angle",
+			"description": "If a side and two adjacent angles of one triangle are respectively equal to the side and two adjacent angles of another triangle, then such triangles are equal.",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"if triangle1.equal(triangle2) {",
+					"\treturn",
+					"}",
+					"for i in 0...2 {",
+					"\tlet shifted = triangle1.shifted(by: Shift(i))",
+					"\tlet shifted_reversed = triangle1.shifted(by: Shift(i, reversed: true))",
+					"\tif ((shifted.side(.AB).equal(triangle2.side(.AB)) && shifted.angle(.A).equal(triangle2.angle(.A)) && shifted.angle(.B).equal(triangle2.angle(.B))) || (shifted.side(.BC).equal(triangle2.side(.BC)) && shifted.angle(.B).equal(triangle2.angle(.B)) && shifted.angle(.C).equal(triangle2.angle(.C))) || (shifted.side(.CA).equal(triangle2.side(.CA)) && shifted.angle(.C).equal(triangle2.angle(.C)) && shifted.angle(.A).equal(triangle2.angle(.A)))) {",
+					"\t\tres = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i))",
+					"\t}",
+					"\tif ((shifted_reversed.side(.AB).equal(triangle2.side(.AB)) && shifted_reversed.angle(.A).equal(triangle2.angle(.A)) && shifted_reversed.angle(.B).equal(triangle2.angle(.B))) || (shifted_reversed.side(.BC).equal(triangle2.side(.BC)) && shifted_reversed.angle(.B).equal(triangle2.angle(.B)) && shifted_reversed.angle(.C).equal(triangle2.angle(.C))) || (shifted_reversed.side(.CA).equal(triangle2.side(.CA)) && shifted_reversed.angle(.C).equal(triangle2.angle(.C)) && shifted_reversed.angle(.A).equal(triangle2.angle(.A)))) {",
+					"\t\tres = BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: true))",
+					"\t}",
+					"}"
+				]	
+			}
+		}
+	]
+}
