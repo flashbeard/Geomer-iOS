@@ -12,7 +12,7 @@ import Core
 @available(iOS 10.0, *)
 public func description(node: Node, with_references references: Bool = false) -> String {
 	let undefined = "Undefined"
-	var str = "| {Node} | type: \(node.dataType) | name: \(node.name) |"
+	var str = "| {\(node.dataType)} | name: \(node.name) |"
 	
 	switch node.dataTypeString {
 	// MARK: - Figure values
@@ -25,15 +25,15 @@ public func description(node: Node, with_references references: Bool = false) ->
 	case Angle.dataTypeString:
 		let t = node as! Angle
 		str += " vertex: \(t.vertex.name) | value: \(t.value?.name ?? undefined) | rays: [ \(t.r1.name); \(t.r2.name) ] |"
-	case Line.dataTypeString:
-		let t = node as! Line
-		str += " A: \(t.a.name) B: \(t.b.name) |"
+//	case Line.dataTypeString:
+//		let t = node as! Line
+//		str += " A: \(t.points.first!.name) B: \(t.points.last!.name) |"
 	case Ray.dataTypeString:
 		let t = node as! Ray
-		str += " from: \(t.a.name) through: \(t.b.name) |"
+		str += " from: \(t.from.name) through: \(t.through.name) |"
 	case Segment.dataTypeString:
 		let t = node as! Segment
-		str += " A: \(t.a.name) B: \(t.b.name) | length: \(t.value?.name ?? undefined) |"
+		str += " A: \(t.pointA.name) B: \(t.pointB.name) | length: \(t.value?.name ?? undefined) |"
 	// MARK: - Figures
 	case Polygon.dataTypeString, Triangle.dataTypeString:
 		let t = node as! Polygon

@@ -10,13 +10,6 @@ import SwiftUI
 
 import Core
 
-public enum PropertyType {
-	case text
-	case number
-	case textOptional
-	case numberOptional
-}
-
 @available(iOS 13.0, *)
 public class Preparator: ObservableObject {
 
@@ -26,13 +19,13 @@ public class Preparator: ObservableObject {
 	public class func propertyNames() -> [String] {
 		[]
 	}
-	public class func propertyTypes() -> [PropertyType] {
+	public class func propertyTypes() -> [UIKeyboardType] {
 		[]
 	}
 	@Published public var propertyValues: Dictionary<String, String> = [:]
 
 	public var propertyNames: [String] { Self.propertyNames() }
-	public var propertyTypes: [PropertyType] { Self.propertyTypes() }
+	public var propertyTypes: [UIKeyboardType] { Self.propertyTypes() }
 
 	public func prepare() -> Node? {
 		nil
@@ -62,8 +55,8 @@ public class PointPreparator: Preparator {
 		["Name"]
 	}
 
-	public override class func propertyTypes() -> [PropertyType] {
-		[.text]
+	public override class func propertyTypes() -> [UIKeyboardType] {
+		[.alphabet]
 	}
 
 	public override func prepare() -> Node? {
@@ -80,11 +73,11 @@ public class PointPreparator: Preparator {
 public class LinePreparator: Preparator {
 
 	public override class func propertyNames() -> [String] {
-		["PointA", "PointB"]
+		["Name"]
 	}
 
-	public override class func propertyTypes() -> [PropertyType] {
-		[.text, .text]
+	public override class func propertyTypes() -> [UIKeyboardType] {
+		[.alphabet]
 	}
 
 	public override init() {
@@ -92,14 +85,11 @@ public class LinePreparator: Preparator {
 	}
 
 	public override func prepare() -> Node? {
-		let propertyPointA = propertyValues["PointA"]!
-		let propertyPointB = propertyValues["PointB"]!
-		if propertyPointA.isEmpty || propertyPointB.isEmpty {
+		let propertyName = propertyValues["Name"]!
+		if propertyName.isEmpty {
 			return nil
 		}
-		return Line(a: Point(name: propertyPointA, isInput: true),
-					b: Point(name: propertyPointB, isInput: true),
-					isInput: true)
+		return Line(name: propertyName, isInput: true)
 	}
 }
 
@@ -107,11 +97,11 @@ public class LinePreparator: Preparator {
 public class SegmentPreparator: Preparator {
 
 	public override class func propertyNames() -> [String] {
-		["PointA", "PointB", "LengthValue"]
+		["PointA", "PointB", "Length"]
 	}
 
-	public override class func propertyTypes() -> [PropertyType] {
-		[.text, .text, .numberOptional]
+	public override class func propertyTypes() -> [UIKeyboardType] {
+		[.alphabet, .alphabet, .numberPad]
 	}
 
 	public override init() {
@@ -121,8 +111,8 @@ public class SegmentPreparator: Preparator {
 	public override func prepare() -> Node? {
 		let propertyPointA = propertyValues["PointA"]!
 		let propertyPointB = propertyValues["PointB"]!
-		let propertyLenght = Double(propertyValues["LengthValue"]!)
-		if propertyPointA.isEmpty || propertyPointB.isEmpty || propertyLenght ?? 0 < 0 || propertyLenght == nil && propertyValues["LengthValue"] != "" {
+		let propertyLenght = Double(propertyValues["Length"]!)
+		if propertyPointA.isEmpty || propertyPointB.isEmpty || propertyLenght ?? 0 < 0 || propertyLenght == nil && propertyValues["Length"] != "" {
 			return nil
 		}
 		return Segment(a: Point(name: propertyPointA, isInput: true),
@@ -141,11 +131,6 @@ public class PreparatorRegistry {
 		Line.dataTypeString : LinePreparator(),
 		Segment.dataTypeString: SegmentPreparator(),
 	]
-
-	//	@available(iOS 13.0, *)
-	//	public static func setPreparator(type: DataType, preparator: Preparator) {
-	//		registry[type] = preparator
-	//	}
 
 	@available(iOS 13.0, *)
 	public static func getPreparator(type: DataType) -> Preparator {

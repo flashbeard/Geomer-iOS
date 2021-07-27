@@ -12,11 +12,17 @@ public class Segment: Line {
 	
 	// MARK: - Properties
 	public var value: LinearUnit?
+	public var pointA: Point
+	public var pointB: Point
 	
 	// MARK: - Initialization
 	public init(a: Point, b: Point, length: LinearUnit? = nil, isInput: Bool = false) {
-		self.value = length
-		super.init(a: a, b: b, commutative: true, isInput: isInput)
+		pointA = a
+		pointB = b
+		value = length
+		super.init(name: "\(a.name)\(b.name)", isInput: isInput)
+		insertPoint(a, after: a)
+		insertPoint(b, after: a)
 	}
 	
 	// MARK: - Operators

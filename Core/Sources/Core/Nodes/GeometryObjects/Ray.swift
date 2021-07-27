@@ -9,9 +9,15 @@ import Foundation
 
 @available(iOS 10.0, *)
 public class Ray: Line {
+
+	// MARK: - Properties
+	public var from: Point
+	public var through: Point
 	
 	// MARK: - Initialization
-	public init(from a: Point, through b: Point, isInput: Bool = false) {
-		super.init(a: a, b: b, commutative: false, isInput: isInput)
+	public init(from: Point, through: Point, isInput: Bool = false) {
+		self.from = from
+		self.through = through
+		super.init(name: "\(from.name)\(through.name)", isInput: isInput)
 	}
 }

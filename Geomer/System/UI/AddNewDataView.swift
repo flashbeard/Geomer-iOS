@@ -160,6 +160,7 @@ struct NewDataPropertiesView: View {
 									.padding()
 
 								TextField(preparator.propertyNames[i], text: preparator.binding(for: preparator.propertyNames[i]))
+									.keyboardType(preparator.propertyTypes[i])
 									.multilineTextAlignment(.center)
 									.padding()
 									.background(highlightedColor)

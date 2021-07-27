@@ -54,6 +54,9 @@ protocol DataInheritor: ComparableData, HashableData {
 	}
 
 	open override func isEqual(_ object: Any?) -> Bool {
-		self == object as! Self
+		if object == nil || !(object! is Self) {
+			return false
+		}
+		return self == object as! Self
 	}
 }
