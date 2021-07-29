@@ -14,7 +14,7 @@ public class BEBelong: BinaryExpression {
 	public override class var sign: String { "∈" }
 	
 	// MARK: - Initialization
-	public required init(left: Node, right: Node, isInput: Bool = false) {
-		super.init(left: left, right: right, isInput: isInput)
+	public required init(left: Node, right: Node) {
+		super.init(left: left, right: right)
 	}
 }

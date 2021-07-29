@@ -64,8 +64,7 @@ public class PointPreparator: Preparator {
 		if propertyName.isEmpty {
 			return nil
 		}
-		return Point(name: propertyValues["Name"]!,
-					 isInput: true)
+		return Point(name: propertyValues["Name"]!)
 	}
 }
 
@@ -89,7 +88,7 @@ public class LinePreparator: Preparator {
 		if propertyName.isEmpty {
 			return nil
 		}
-		return Line(name: propertyName, isInput: true)
+		return Line(name: propertyName)
 	}
 }
 
@@ -115,10 +114,9 @@ public class SegmentPreparator: Preparator {
 		if propertyPointA.isEmpty || propertyPointB.isEmpty || propertyLenght ?? 0 < 0 || propertyLenght == nil && propertyValues["Length"] != "" {
 			return nil
 		}
-		return Segment(a: Point(name: propertyPointA, isInput: true),
-					   b: Point(name: propertyPointB, isInput: true),
-					   length: LinearUnit.new(value: propertyLenght),
-					   isInput: true)
+		return Segment(a: Point(name: propertyPointA),
+					   b: Point(name: propertyPointB),
+					   length: LinearUnit.new(value: propertyLenght))
 	}
 }
 

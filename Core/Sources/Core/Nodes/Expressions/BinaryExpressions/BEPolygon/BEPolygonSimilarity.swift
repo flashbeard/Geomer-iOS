@@ -15,12 +15,13 @@ public class BEPolygonSimilarity: BEPolygon {
 	public override class var sign: String { "∾" }
 	
 	// MARK: - Initialization
-	public init(left: Polygon, right: Polygon, leftShift: Shift, proportion: Proportion? = nil, isInput: Bool = false) {
+	public init(left: Polygon, right: Polygon, leftShift: Shift, proportion: Proportion? = nil) {
 		self.proportion = proportion
-		super.init(left: left, right: right, leftShift: leftShift, isInput: isInput)
+		super.init(left: left, right: right, leftShift: leftShift)
+	}
+
+	public required init(left: Node, right: Node) {
+		fatalError("init(left:right:) has not been implemented")
 	}
 	
-	public required init(left: Node, right: Node, isInput: Bool = false) {
-		fatalError("init(left:right:isInput:) has not been implemented")
-	}
 }

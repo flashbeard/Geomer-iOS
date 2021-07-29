@@ -19,7 +19,7 @@ public class Polygon: Node, Figure {
 	public var perimeter: Perimeter?
 
 	// MARK: - Initialization
-	public required init(vertexes: [Point], isInput: Bool = false) {
+	public required init(vertexes: [Point]) {
 		let count = vertexes.count
 		if count <= 2 {
 			fatalError("\(Self.dataType) cannot have \(count) \(count == 1 ? "vertex" : "vertexes")")
@@ -52,7 +52,7 @@ public class Polygon: Node, Figure {
 		for vertex in paramVertexes {
 			paramName += "\(vertex.name)"
 		}
-		super.init(name: paramName, isInput: isInput)
+		super.init(name: paramName)
 
 		nodeRegistry.add(instances: vertexes)
 	}

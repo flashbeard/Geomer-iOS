@@ -11,12 +11,12 @@ import Foundation
 public class BECommutative: BinaryExpression {
 	
 	// MARK: - Initialization
-	public required init(left: Node, right: Node, isInput: Bool = false) {
+	public required init(left: Node, right: Node) {
 		var paramLeft = left
 		var paramRight = right
 		if paramLeft > paramRight {
 			swap(&paramLeft, &paramRight)
 		}
-		super.init(left: paramLeft, right: paramRight, isInput: isInput)
+		super.init(left: paramLeft, right: paramRight)
 	}
 }

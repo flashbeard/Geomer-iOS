@@ -21,14 +21,13 @@ public class Node: Data, DataInheritor {
 
 	// MARK: - Properties
 	public let name: String
-	public let isInput: Bool
+	public var isInput: Bool { references.count == 0 }
 	public private (set) var references: Set<Reference>
 	private var addidionalKinds: Dictionary<ProtocolWrapper, AdditionalKind> = [:]
 	
 	// MARK: - Initialization
-	public init(name: String, isInput: Bool = false) {
+	public init(name: String) {
 		references = []
-		self.isInput = isInput
 		self.name = name
 	}
 	

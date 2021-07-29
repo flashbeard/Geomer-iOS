@@ -14,12 +14,13 @@ public class BEPolygon: BinaryExpression {
 	public private (set) var leftShift: Shift
 	
 	// MARK: - Initialization
-	public init(left: Polygon, right: Polygon, leftShift: Shift, isInput: Bool = false) {
+	public init(left: Polygon, right: Polygon, leftShift: Shift) {
 		self.leftShift = leftShift
-		super.init(left: left, right: right, isInput: isInput)
+		super.init(left: left, right: right)
+	}
+
+	public required init(left: Node, right: Node) {
+		fatalError("init(left:right:) has not been implemented")
 	}
 	
-	public required init(left: Node, right: Node, isInput: Bool = false) {
-		fatalError("init(left:right:isInput:) has not been implemented")
-	}
 }

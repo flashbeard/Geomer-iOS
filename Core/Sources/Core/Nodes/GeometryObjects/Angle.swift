@@ -16,7 +16,7 @@ public class Angle: Node, GeometryObject {
 	public var value: AngularUnit?
 	
 	// MARK: - Initialization
-	public init(ray1 r1: Ray, ray2 r2: Ray, angular: AngularUnit? = nil, isInput: Bool = false) {
+	public init(ray1 r1: Ray, ray2 r2: Ray, angular: AngularUnit? = nil) {
 		var paramR1: Node = r1
 		var paramR2: Node = r2
 		nodeRegistry.findEqual(instance: &paramR1)
@@ -35,15 +35,15 @@ public class Angle: Node, GeometryObject {
 		self.value = angular
 		
 		let paramName = "\((paramR1 as! Ray).through.name)\((paramR1 as! Ray).from.name)\((paramR2 as! Ray).through.name)"
-		super.init(name: paramName, isInput: isInput)
+		super.init(name: paramName)
 		
 		nodeRegistry.add(instances: r1.from, r1.through, r2.through)
 	}
 	
-	public convenience init(a: Point, b: Point, c: Point, value: AngularUnit? = nil, isInput: Bool = false) {
-		let r1 = Ray(from: b, through: a, isInput: isInput)
-		let r2 = Ray(from: b, through: c, isInput: isInput)
-		self.init(ray1: r1, ray2: r2, angular: value, isInput: isInput)
+	public convenience init(a: Point, b: Point, c: Point, value: AngularUnit? = nil) {
+		let r1 = Ray(from: b, through: a)
+		let r2 = Ray(from: b, through: c)
+		self.init(ray1: r1, ray2: r2, angular: value)
 	}
 	
 	// MARK: - Operators

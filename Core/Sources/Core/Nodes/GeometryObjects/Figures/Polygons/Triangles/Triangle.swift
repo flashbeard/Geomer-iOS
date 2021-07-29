@@ -26,13 +26,13 @@ public class Triangle: Polygon {
 	
 
 	// MARK: - Initialization
-	public required init(vertexes: [Point], isInput: Bool = false) {
+	public required init(vertexes: [Point]) {
 
 		var paramVertexes: [Point] = vertexes
 
 		paramVertexes.sort(by: { $0.name < $1.name })
 
-		super.init(vertexes: paramVertexes, isInput: isInput)
+		super.init(vertexes: paramVertexes)
 	}
 
 	// MARK: - Methods

@@ -14,9 +14,9 @@ public class Line: Node, GeometryObject {
 	public var points: [Point]
 	
 	// MARK: - Initialization
-	public override init(name: String, isInput: Bool = false) {
+	public override init(name: String) {
 		points = []
-		super.init(name: name, isInput: isInput)
+		super.init(name: name)
 	}
 
 	// MARK: - Operators

@@ -15,9 +15,9 @@ public class Ray: Line {
 	public var through: Point
 	
 	// MARK: - Initialization
-	public init(from: Point, through: Point, isInput: Bool = false) {
+	public init(from: Point, through: Point) {
 		self.from = from
 		self.through = through
-		super.init(name: "\(from.name)\(through.name)", isInput: isInput)
+		super.init(name: "\(from.name)\(through.name)")
 	}
 }
