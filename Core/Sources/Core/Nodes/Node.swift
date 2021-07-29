@@ -60,8 +60,11 @@ public class Node: Data, DataInheritor {
 		lhs.name < rhs.name || lhs.name == rhs.name && String(describing: lhs.dataType) < String(describing: rhs.dataType)
 	}
 
-	public static func == (lhs: Node, rhs: Node) -> Bool {
-		lhs as Data == rhs as Data && lhs.name == rhs.name
+	open override func isEqual(_ object: Any?) -> Bool {
+		if let obj = object as? Self {
+			return self.dataType == obj.dataType && self.name  == obj.name
+		}
+		return false
 	}
 
 	static func hashValue(for object: Node) -> Int {

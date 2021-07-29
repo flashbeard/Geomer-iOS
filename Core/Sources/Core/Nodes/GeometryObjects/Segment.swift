@@ -17,8 +17,12 @@ public class Segment: Line {
 	
 	// MARK: - Initialization
 	public init(a: Point, b: Point, length: LinearUnit? = nil, isInput: Bool = false) {
-		pointA = a
-		pointB = b
+		var paramA: Node = a
+		var paramB: Node = b
+		nodeRegistry.findEqual(instance: &paramA)
+		nodeRegistry.findEqual(instance: &paramB)
+		pointA = paramA as! Point
+		pointB = paramB as! Point
 		value = length
 		super.init(name: "\(a.name)\(b.name)", isInput: isInput)
 		insertPoint(a, after: a)

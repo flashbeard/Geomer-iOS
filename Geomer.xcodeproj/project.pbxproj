@@ -78,7 +78,6 @@
 				A9CD6F29261C3BC300DA24BE /* Core */,
 				A9219C4B2619D43700F64514 /* Geomer */,
 				A9219C4A2619D43700F64514 /* Products */,
-				A9219C6B2619D58000F64514 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,18 +107,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		A9219C6B2619D58000F64514 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A9219C722619D67100F64514 /* System */ = {
 			isa = PBXGroup;
 			children = (
 				A9219C4C2619D43700F64514 /* AppDelegate.swift */,
 				A9219C4E2619D43700F64514 /* SceneDelegate.swift */,
+				A982A76F26B2063600E553A6 /* UI2 */,
 				A9692A4B26A4940900742A2D /* Controller */,
 				A92A0A84268C6B0400E628A6 /* UI */,
 				A9219C522619D43800F64514 /* Assets.xcassets */,
@@ -149,6 +142,13 @@
 				A9692A4C26A4941700742A2D /* Preparator.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A982A76F26B2063600E553A6 /* UI2 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,7 +381,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.5.9;
+				CURRENT_PROJECT_VERSION = 0.5.10;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = XHRWYM4T65;
 				ENABLE_PREVIEWS = YES;
@@ -405,7 +405,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0.5.9;
+				CURRENT_PROJECT_VERSION = 0.5.10;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = XHRWYM4T65;
 				ENABLE_PREVIEWS = YES;

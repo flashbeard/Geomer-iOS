@@ -12,30 +12,12 @@ import Math
 @available(iOS 10.0, *)
 public func loadInputData() {
 
-	let th1 = Theorem(name: "Theorem 1", inputTypes: [Point.self])
-	let th2 = Theorem(name: "Theorem 2", inputTypes: [Point.self])
+	let line = Line(name: "a")
 
-	var ref1 = Reference(from: [], by: th1)
-	var ref2 = Reference(from: [], by: th2)
+	line.insertPoint(Point(name: "A"))
+	line.insertPoint(Point(name: "C"), after: Point(name: "A"))
+	line.insertPoint(Point(name: "B"), after: Point(name: "A"))
+	line.insertPoint(Point(name: "D"), after: Point(name: "B"))
 
-	// should be false
-	print(ref1 == ref2)
-
-	ref1 = Reference(from: [], by: th1)
-	ref2 = Reference(from: [], by: th1)
-
-	// should be true
-	print(ref1 == ref2)
-
-	ref1 = Reference(from: [Point(name: "A")], by: th1)
-	ref2 = Reference(from: [Point(name: "A")], by: th1)
-
-	// should be true
-	print(ref1 == ref2)
-
-	ref1 = Reference(from: [Point(name: "A")], by: th1)
-	ref2 = Reference(from: [Point(name: "B")], by: th1)
-
-	// should be false
-	print(ref1 == ref2)
+	nodeRegistry.add(instances: line)
 }

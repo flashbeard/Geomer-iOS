@@ -26,16 +26,19 @@ public class Line: Node, GeometryObject {
 		}
 		let lhs = self
 		let rhs = to as! Line
-		return super.equal(rhs) || lhs.points.first != nil && rhs.points.first != nil && lhs.points.first!.equal(rhs.points.first!) && lhs.points.last != nil && rhs.points.last != nil && lhs.points.last!.equal(rhs.points.last!)
+		return super.equal(rhs) || lhs.points.count > 1 && rhs.points.count > 1 && lhs.points.equal(rhs.points)
 	}
 
 	// MARK: - Methods
-	public func insertPoint(_ point: Point, after: Point) {
+	public func insertPoint(_ point: Point, after: Point? = nil) {
 		var paramPoint: Node = point
 		nodeRegistry.find(instance: &paramPoint, put: true)
-		var paramAfter: Node = after
-		nodeRegistry.find(instance: &paramAfter)
-		let index = points.firstIndex(of: paramAfter as! Point)
+		var index: Int? = nil
+		if after != nil {
+			var paramAfter: Node = after!
+			nodeRegistry.find(instance: &paramAfter)
+			index = points.firstIndex(of: paramAfter as! Point)
+		}
 		points.insert(point, at: (index ?? -1) + 1)
 	}
 

@@ -77,6 +77,9 @@
          contextName = "Node.equal(_:):Node.swift">
       </ContextState>
       <ContextState
+         contextName = "NodeRegistry.contains(_:):Registries.swift">
+      </ContextState>
+      <ContextState
          contextName = "Task.init(name:task:):Task.swift">
       </ContextState>
       <ContextState
@@ -107,6 +110,22 @@
             </PersistentString>
             <PersistentString
                value = "tmp.info()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Data.isEqual(_:):Data.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Self">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static Data.== infix(_:_:):Data.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Self">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -150,12 +169,21 @@
          contextName = "closure #1 in closure #1 in closure #1 in closure #1 in NewDataPropertiesView.body.getter:AddNewDataView.swift">
       </ContextState>
       <ContextState
+         contextName = "NodeRegistry.findEqual(instance:):Registries.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static Node.== infix(_:_:):Node.swift">
+      </ContextState>
+      <ContextState
          contextName = "TaskRegistry.checkAchieved(instances:):TaskRegistry.swift">
          <PersistentStrings>
             <PersistentString
                value = "node.info()">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Registry.find(instance:put:):Registries.swift">
       </ContextState>
       <ContextState
          contextName = "TriangleEqualityByThreeSides.execute():TriangleEqualityBySides.swift">
@@ -217,6 +245,9 @@
       </ContextState>
       <ContextState
          contextName = "Polygon.cycleShifted():Polygon.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Segment.init(a:b:length:isInput:):Segment.swift">
       </ContextState>
       <ContextState
          contextName = "Data.info():Data.swift">

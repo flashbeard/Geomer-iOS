@@ -25,9 +25,13 @@ public func description(node: Node, with_references references: Bool = false) ->
 	case Angle.dataTypeString:
 		let t = node as! Angle
 		str += " vertex: \(t.vertex.name) | value: \(t.value?.name ?? undefined) | rays: [ \(t.r1.name); \(t.r2.name) ] |"
-//	case Line.dataTypeString:
-//		let t = node as! Line
-//		str += " A: \(t.points.first!.name) B: \(t.points.last!.name) |"
+	case Line.dataTypeString:
+		let t = node as! Line
+		str += " points: [ "
+		for p in t.points {
+			str += "\(p.name) "
+		}
+		str += "] |"
 	case Ray.dataTypeString:
 		let t = node as! Ray
 		str += " from: \(t.from.name) through: \(t.through.name) |"
@@ -38,10 +42,10 @@ public func description(node: Node, with_references references: Bool = false) ->
 	case Polygon.dataTypeString, Triangle.dataTypeString:
 		let t = node as! Polygon
 		str += " from: [ "
-		for i in 0 ..< t.vertexes.count - 1 {
-			str += "\(t.vertexes[i].name); "
+		for v in t.vertexes {
+			str += "\(v.name) "
 		}
-		str += "\(t.vertexes.last!.name) ] |"
+		str += "] |"
 		
 	// MARK: - Binary expression
 	case BEBelong.dataTypeString, BEEquality.dataTypeString, BEParallelism.dataTypeString, BEPerpendicularity.dataTypeString:
@@ -134,7 +138,7 @@ public func description(solution: Solution, depth: Int = 0) -> String {
 public func descriptionNodeRegistry() -> String {
 	var str = "{NodeRegistry}\n"
 	for type in nodeRegistry.dataTypes {
-		str += "\(type.metatype.dataTypeString) [\(nodeRegistry.countInstances(for_type: type.metatype)) instances]:"
+		str += "\(type.metatype.dataTypeString) [\(nodeRegistry.countInstances(for_type: type.metatype)) instances]:\n"
 		for node in nodeRegistry.getInstances(for_type: type.metatype) {
 			str += "\t\(description(node: node, with_references: true))"
 		}

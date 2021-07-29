@@ -32,8 +32,11 @@ public class Task: Data, DataInheritor {
 		lhs.task < rhs.task
 	}
 
-	public static func == (lhs: Task, rhs: Task) -> Bool {
-		lhs as Data == rhs as Data && lhs.task == rhs.task
+	open override func isEqual(_ object: Any?) -> Bool {
+		if let obj = object as? Self {
+			return self.dataType == obj.dataType && self.task  == obj.task
+		}
+		return false
 	}
 
 	static func hashValue(for object: Task) -> Int {

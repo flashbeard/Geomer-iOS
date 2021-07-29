@@ -9,7 +9,6 @@ import Foundation
 
 protocol ComparableData {
 	static func <(lhs: Self, rhs: Self) -> Bool
-	static func ==(lhs: Self, rhs: Self) -> Bool
 }
 
 protocol HashableData {
@@ -38,7 +37,7 @@ protocol DataInheritor: ComparableData, HashableData {
 	}
 	
 	public static func == (lhs: Data, rhs: Data) -> Bool {
-		lhs.dataType == rhs.dataType
+		lhs.isEqual(rhs)
 	}
 
 	// MARK: - HashableData
@@ -54,9 +53,9 @@ protocol DataInheritor: ComparableData, HashableData {
 	}
 
 	open override func isEqual(_ object: Any?) -> Bool {
-		if object == nil || !(object! is Self) {
-			return false
+		if let obj = object as? Self {
+			return self.dataType == obj.dataType
 		}
-		return self == object as! Self
+		return false
 	}
 }
