@@ -1,5 +1,5 @@
 //
-    //  SearchRay.swift
+    //  SearchLine.swift
     //
     //
     //  Created by GeomerParser.
@@ -10,11 +10,11 @@
     import Core
 
     @available(iOS 10.0, *)
-    internal class SearchRay: Theorem {
+    internal class SearchLine: Theorem {
 
     	// MARK: Initialization
     	internal init() {
-    		super.init(name: "Search Ray",
+    		super.init(name: "Search Line",
     				   description: "",
     				   inputTypes: [Point.dataType, Point.dataType])
     	}
@@ -27,14 +27,19 @@
 			let point2 = input[1] as! Point
 
             // MARK: Preparation
-    		if point1.equal(point2) {
+    		
+
+            // MARK: Theorem
+    		if point1 == point2 {
 				result = []
 				return
 			}
-
-            // MARK: Theorem
-    		result.append(Ray(from: point1, through: point2))
-			result.append(Ray(from: point2, through: point1))
+			
+			if (true) {
+				var res: Node
+				res = Line(a: point1, b: point2)
+				result.append(res)
+			}
 
     	}
     }
