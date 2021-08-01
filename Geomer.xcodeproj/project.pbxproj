@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		A902225D266593F700BCAB58 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902225C266593F700BCAB58 /* UIExtensions.swift */; };
 		A903B2BB26661CB0000A6559 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903B2BA26661CB0000A6559 /* HistoryView.swift */; };
+		A914A9EE26B4612000C690B5 /* Math in Frameworks */ = {isa = PBXBuildFile; productRef = A914A9ED26B4612000C690B5 /* Math */; };
+		A914A9F026B4612400C690B5 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = A914A9EF26B4612400C690B5 /* Core */; };
+		A914A9F226B4612800C690B5 /* BasicTheorems in Frameworks */ = {isa = PBXBuildFile; productRef = A914A9F126B4612800C690B5 /* BasicTheorems */; };
+		A914A9F426B4617600C690B5 /* Developer in Frameworks */ = {isa = PBXBuildFile; productRef = A914A9F326B4617600C690B5 /* Developer */; };
+		A914A9F626B4617E00C690B5 /* Solver in Frameworks */ = {isa = PBXBuildFile; productRef = A914A9F526B4617E00C690B5 /* Solver */; };
 		A9219C4D2619D43700F64514 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9219C4C2619D43700F64514 /* AppDelegate.swift */; };
 		A9219C4F2619D43700F64514 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9219C4E2619D43700F64514 /* SceneDelegate.swift */; };
 		A9219C532619D43800F64514 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9219C522619D43800F64514 /* Assets.xcassets */; };
@@ -17,11 +22,6 @@
 		A92A0A83268C6AEC00E628A6 /* NewDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A0A82268C6AEC00E628A6 /* NewDataProperties.swift */; };
 		A92A0A86268C6C2600E628A6 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A0A85268C6C2600E628A6 /* UIConstants.swift */; };
 		A9478E5D265B92F300308C62 /* NewProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9478E5C265B92F200308C62 /* NewProblemView.swift */; };
-		A950175726B0CCB8005C6848 /* Math in Frameworks */ = {isa = PBXBuildFile; productRef = A950175626B0CCB8005C6848 /* Math */; };
-		A950175926B0CCBD005C6848 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = A950175826B0CCBD005C6848 /* Core */; };
-		A950175B26B0CCC2005C6848 /* BasicTheorems in Frameworks */ = {isa = PBXBuildFile; productRef = A950175A26B0CCC2005C6848 /* BasicTheorems */; };
-		A950175D26B0CCC6005C6848 /* Developer in Frameworks */ = {isa = PBXBuildFile; productRef = A950175C26B0CCC6005C6848 /* Developer */; };
-		A950175F26B0CCCA005C6848 /* Solver in Frameworks */ = {isa = PBXBuildFile; productRef = A950175E26B0CCCA005C6848 /* Solver */; };
 		A9692A4D26A4941700742A2D /* Preparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9692A4C26A4941700742A2D /* Preparator.swift */; };
 		A96D1C7C266611DD00D4CD60 /* AddNewDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D1C7B266611DD00D4CD60 /* AddNewDataView.swift */; };
 		A96D1C7E2666169700D4CD60 /* SwitchInputTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D1C7D2666169700D4CD60 /* SwitchInputTaskView.swift */; };
@@ -57,11 +57,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A950175F26B0CCCA005C6848 /* Solver in Frameworks */,
-				A950175726B0CCB8005C6848 /* Math in Frameworks */,
-				A950175B26B0CCC2005C6848 /* BasicTheorems in Frameworks */,
-				A950175926B0CCBD005C6848 /* Core in Frameworks */,
-				A950175D26B0CCC6005C6848 /* Developer in Frameworks */,
+				A914A9F626B4617E00C690B5 /* Solver in Frameworks */,
+				A914A9EE26B4612000C690B5 /* Math in Frameworks */,
+				A914A9F226B4612800C690B5 /* BasicTheorems in Frameworks */,
+				A914A9F026B4612400C690B5 /* Core in Frameworks */,
+				A914A9F426B4617600C690B5 /* Developer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +78,7 @@
 				A9CD6F29261C3BC300DA24BE /* Core */,
 				A9219C4B2619D43700F64514 /* Geomer */,
 				A9219C4A2619D43700F64514 /* Products */,
+				A95A644926B45B51004DBF66 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +137,13 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		A95A644926B45B51004DBF66 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A9692A4B26A4940900742A2D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,11 +176,11 @@
 			);
 			name = Geomer;
 			packageProductDependencies = (
-				A950175626B0CCB8005C6848 /* Math */,
-				A950175826B0CCBD005C6848 /* Core */,
-				A950175A26B0CCC2005C6848 /* BasicTheorems */,
-				A950175C26B0CCC6005C6848 /* Developer */,
-				A950175E26B0CCCA005C6848 /* Solver */,
+				A914A9ED26B4612000C690B5 /* Math */,
+				A914A9EF26B4612400C690B5 /* Core */,
+				A914A9F126B4612800C690B5 /* BasicTheorems */,
+				A914A9F326B4617600C690B5 /* Developer */,
+				A914A9F526B4617E00C690B5 /* Solver */,
 			);
 			productName = Geomer;
 			productReference = A9219C492619D43700F64514 /* Geomer.app */;
@@ -260,6 +268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -290,14 +299,14 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -312,6 +321,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100 -Onone";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -322,6 +332,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -358,7 +369,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -368,6 +379,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100\n -Xfrontend -warn-long-function-bodies=100";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -391,8 +403,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100 -Onone";
 				PRODUCT_BUNDLE_IDENTIFIER = heartsker.Geomer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -417,6 +431,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = heartsker.Geomer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -447,23 +462,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A950175626B0CCB8005C6848 /* Math */ = {
+		A914A9ED26B4612000C690B5 /* Math */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Math;
 		};
-		A950175826B0CCBD005C6848 /* Core */ = {
+		A914A9EF26B4612400C690B5 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
 		};
-		A950175A26B0CCC2005C6848 /* BasicTheorems */ = {
+		A914A9F126B4612800C690B5 /* BasicTheorems */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BasicTheorems;
 		};
-		A950175C26B0CCC6005C6848 /* Developer */ = {
+		A914A9F326B4617600C690B5 /* Developer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Developer;
 		};
-		A950175E26B0CCCA005C6848 /* Solver */ = {
+		A914A9F526B4617E00C690B5 /* Solver */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Solver;
 		};

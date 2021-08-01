@@ -1,36 +1,36 @@
 //
-    //  TheoremSimilarityTrianglesSideAngleSide.swift
-    //
-    //
-    //  Created by GeomerParser.
-    //
+//  TheoremSimilarityTrianglesSideAngleSide.swift
+//
+//
+//  Created by GeomerParser.
+//
 
-    import Foundation
+import Foundation
 
-    import Core
+import Core
 
-    @available(iOS 10.0, *)
-    internal class TheoremSimilarityTrianglesSideAngleSide: Theorem {
-
-    	// MARK: Initialization
-    	internal init() {
-    		super.init(name: "Theorem Similarity Triangles Side Angle Side",
-    				   description: "If two sides of one triangle are proportional to two sides of another triangle and the angles enclosed between these sides are equal, then such triangles are similar.",
-    				   inputTypes: [Triangle.dataType(), Triangle.dataType()])
-    	}
-
-    	// MARK: Methods
-    	internal override func execute() {
-    		super.execute()
-            // MARK: Parameters
-    		let triangle1 = input[0] as! Triangle
-			let triangle2 = input[1] as! Triangle
-
-            // MARK: Preparation
-    		
-
-            // MARK: Theorem
-    		for i in 0...2 {
+@available(iOS 10.0, *)
+internal class TheoremSimilarityTrianglesSideAngleSide: Theorem {
+	
+	// MARK: Initialization
+	internal init() {
+		super.init(name: "Theorem Similarity Triangles Side Angle Side",
+				   description: "If two sides of one triangle are proportional to two sides of another triangle and the angles enclosed between these sides are equal, then such triangles are similar.",
+				   inputTypes: [Triangle.dataType(), Triangle.dataType()])
+	}
+	
+	// MARK: Methods
+	internal override func execute() {
+		super.execute()
+		// MARK: Parameters
+		let triangle1 = input[0] as! Triangle
+		let triangle2 = input[1] as! Triangle
+		
+		// MARK: Preparation
+		
+		
+		// MARK: Theorem
+		for i in 0...2 {
 			let shifted = triangle1.shifted(by: Shift(i))
 			let shifted_reversed = triangle1.shifted(by: Shift(i, reversed: true))
 			if shifted == triangle2 || shifted_reversed == triangle2 {
@@ -43,5 +43,5 @@
 				res = BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i, reversed = true))
 			}
 		}
-    	}
-    }
+	}
+}

@@ -17,4 +17,8 @@ public func loadTheorems() {
 	theoremRegistry.add(instances: TestTheorem())
 	#endif
 
+	theoremRegistry.add(instances: TheoremEqualityTriangleSideSideSide())
+	theoremRegistry.add(instances: TheoremEqualityTriangleSideAngleSide())
+	theoremRegistry.add(instances: TheoremEqualityTriangleAngleSideAngle())
+
 }
