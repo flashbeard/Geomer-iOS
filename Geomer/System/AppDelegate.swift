@@ -6,8 +6,17 @@
 //
 
 import UIKit
+import SwiftUI
 
 @main
+struct GeomerApp: App {
+	var body: some Scene {
+		WindowGroup {
+			HomeView()
+		}
+	}
+}
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

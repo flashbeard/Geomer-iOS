@@ -10,8 +10,4 @@ import Foundation
 @available(iOS 10.0, *)
 public class Point: Node, GeometryObject {
 	
-	// MARK: - Initialization
-	public override init(name: String, isInput: Bool = false) {
-		super.init(name: name, isInput: isInput)
-	}
 }

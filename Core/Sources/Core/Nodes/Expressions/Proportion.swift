@@ -20,7 +20,7 @@ public class Proportion: Node, Expression {
 	public var operands: [Fraction]
 
 	// MARK: - Initialization
-	public init(operands: [Fraction], isInput: Bool = false) throws {
+	public init(operands: [Fraction]) throws {
 		let n = operands.count
 		guard n >= 2 else {
 			throw ProportionError.invalidOperandsCount
@@ -35,6 +35,6 @@ public class Proportion: Node, Expression {
 			paramName += "\(paramOperands[i].name) : "
 		}
 		paramName += paramOperands.last!.name
-		super.init(name: paramName, isInput: isInput)
+		super.init(name: paramName)
 	}
 }

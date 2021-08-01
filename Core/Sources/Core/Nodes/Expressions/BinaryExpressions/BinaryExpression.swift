@@ -15,10 +15,10 @@ public class BinaryExpression: Node, Expression {
 	public class var sign: String { "🏳️‍🌈" }
 	
 	// MARK: - Initialization
-	public required init(left: Node, right: Node, isInput: Bool = false) {
+	public required init(left: Node, right: Node) {
 		self.left = left
 		self.right = right
 		let paramName = "\(left.name) \(type(of: self).sign) \(right.name)"
-		super.init(name: paramName, isInput: isInput)
+		super.init(name: paramName)
 	}
 }

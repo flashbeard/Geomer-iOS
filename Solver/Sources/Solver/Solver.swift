@@ -58,14 +58,6 @@ public class Solver {
 				}
 			}
 
-			for i in 0 ... 10000 {
-				var p: Node = Point(name: String(i))
-
-				nodeRegistry.find(instance: &p, put: Bool.random())
-			}
-
-			print("done")
-
 			// MARK: - Result info
 			#if DEBUG
 			print("================================================================\n")

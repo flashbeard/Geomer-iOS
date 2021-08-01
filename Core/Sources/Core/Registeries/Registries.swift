@@ -167,7 +167,7 @@ public class Registry<T: Data> {
 /// Registries are used to store data
 @available(iOS 10.0, *)
 public class NodeRegistry: Registry<Node> {
-	
+
 	// MARK: - Singleton pattern
 	static let shared = NodeRegistry()
 	

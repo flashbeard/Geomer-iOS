@@ -1,0 +1,106 @@
+{
+	"theorems": [
+		{
+			"class": "TheoremSimilarityTrianglesAngleAngle",
+			"name": "Theorem Similarity Triangles Angle Angle",
+			"description": "If two angles of one triangle are equal to two angles of another triangle, then such triangles are similar.",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					"if triangle1 == triangle2 {",
+					"\treturn",
+					"}"
+				],
+				"algorithm": [
+					"for i in 0...2 {",
+					"\tfor reversed in [true, false] {",
+					"\t\tlet shifted = triangle1.shifted(by: Shift(i, reversed: reversed))",
+					"\t\tlet EqualitySidesAB = shifted.side(.AB).equal(triangle2.side(.AB))",
+					"\t\tlet EqualitySidesBC = shifted.side(.BC).equal(triangle2.side(.BC))",
+					"\t\tlet EqualitySidesCA = shifted.side(.CA).equal(triangle2.side(.CA))",
+					"\t\tlet EqualityAnglesA = shifted.angle(.A).equal(triangle2.angle(.A))",
+					"\t\tlet EqualityAnglesB = shifted.angle(.B).equal(triangle2.angle(.B))",
+					"\t\tlet EqualityAnglesC = shifted.angle(.C).equal(triangle2.angle(.C))",
+					"\t\tif ((EqualityAnglesA && EqualityAnglesB) || (EqualityAnglesB && EqualityAnglesC) || (EqualityAnglesC && EqualityAnglesA)) {",
+					"\t\t\tresult.append(BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed)))",
+					"\t\t}",
+					"\t}",
+					"}"
+				]	
+			}
+		},
+		{
+			"class": "TheoremSimilarityTrianglesSideAngleSide",
+			"name": "Theorem Similarity Triangles Side Angle Side",
+			"description": "If two sides of one triangle are proportional to two sides of another triangle and the angles enclosed between these sides are equal, then such triangles are similar.",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"for i in 0...2 {",
+					"\tlet shifted = triangle1.shifted(by: Shift(i))",
+					"\tlet shifted_reversed = triangle1.shifted(by: Shift(i, reversed: true))",
+					"\tif shifted == triangle2 || shifted_reversed == triangle2 {",
+					"\t\tcontinue",
+					"\t}",
+					"\tif ((shifted.angle(.A).equal(triangle2.angle(.A)) && (shifted.side(.AB).value / shifted.side(.AC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.AC).value).fraction()) || (shifted.angle(.B).equal(triangle2.angle(.B)) && (shifted.side(.AB).value / shifted.side(.BC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.BC).value).fraction()) || (shifted.angle(.C).equal(triangle2.angle(.C)) && (shifted.side(.BC).value / shifted.side(.CA).value).fraction() == (triangle2.side(.BC).value / triangle2.side(.CA).value).fraction())) {",
+					"\t\tresult.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i)))",
+					"\t}",
+					"\tif ((shifted_reversed.angle(.A).equal(triangle2.angle(.A)) && (shifted_reversed.side(.AB).value / shifted_reversed.side(.AC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.AC).value).fraction()) || (shifted_reversed.angle(.B).equal(triangle2.angle(.B)) && (shifted_reversed.side(.AB).value / shifted_reversed.side(.BC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.BC).value).fraction()) || (shifted_reversed.angle(.C).equal(triangle2.angle(.C)) && (shifted_reversed.side(.BC).value / shifted_reversed.side(.CA).value).fraction() == (triangle2.side(.BC).value / triangle2.side(.CA).value).fraction())) {",
+					"\t\tresult.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i, reversed = true)))",
+					"\t}",
+					"}"
+				]	
+			}
+		},
+		{
+			"class": "TheoremSimilarityTrianglesSideSideSide",
+			"name": "Theorem Similarity Triangles Side Side Side",
+			"description": "If the three sides of one triangle are proportional to the three sides of another triangle, then such triangles are similar.",
+			"input types": [
+				"Triangle",
+				"Triangle"
+			],
+			"parameters": [
+				"triangle1",
+				"triangle2"
+			],
+			"swift": {
+				"preparation": [
+					
+				],
+				"algorithm": [
+					"for i in 0...2 {",
+					"\tlet shifted = triangle1.shifted(by: Shift(i))",
+					"\tlet shifted_reversed = triangle1.shifted(by: Shift(i, reversed: true))",
+					"\tif shifted == triangle2 || shifted_reversed == triangle2 {",
+					"\t\tcontinue",
+					"\t}",
+					"\tif ((shifted.side(.AB).value / shifted.side(.BC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.BC).value).fraction()) && (shifted.side(.BC).value / shifted.side(.CA).value).fraction() == (triangle2.side(.BC).value / triangle2.side(.CA).value).fraction())) {",
+					"\t\tresult.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i)))",
+					"\t}",
+					"\tif ((shifted_reversed.side(.AB).value / shifted_reversed.side(.BC).value).fraction() == (triangle2.side(.AB).value / triangle2.side(.BC).value).fraction()) && (shifted_reversed.side(.BC).value / shifted_reversed.side(.CA).value).fraction() == (triangle2.side(.BC).value / triangle2.side(.CA).value).fraction())) {",
+					"\t\tresult.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i, reversed = true)))",
+					"\t}",
+					"}"
+				]	
+			}
+		}
+	]
+}

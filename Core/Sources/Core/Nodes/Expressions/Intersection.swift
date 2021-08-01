@@ -15,13 +15,14 @@ public class BELineIntersection: BinaryExpression {
 	public override class var sign: String { "∩" }
 
 	// MARK: - Initialization
-	public init(left: Line, right: Line, intersectionPoint: Point? = nil, isInput: Bool = false) {
+	public init(left: Line, right: Line, intersectionPoint: Point? = nil) {
 		self.intersectionPoint = intersectionPoint
-		super.init(left: left, right: right, isInput: isInput)
+		super.init(left: left, right: right)
 	}
 
-	public required init(left: Node, right: Node, isInput: Bool = false) {
-		fatalError("init(left:right:isInput:) has not been implemented")
+	public required init(left: Node, right: Node) {
+		fatalError("init(left:right:) has not been implemented")
 	}
+	
 
 }

@@ -12,11 +12,21 @@ public class Segment: Line {
 	
 	// MARK: - Properties
 	public var value: LinearUnit?
+	public var pointA: Point
+	public var pointB: Point
 	
 	// MARK: - Initialization
-	public init(a: Point, b: Point, length: LinearUnit? = nil, isInput: Bool = false) {
-		self.value = length
-		super.init(a: a, b: b, commutative: true, isInput: isInput)
+	public init(a: Point, b: Point, length: LinearUnit? = nil) {
+		var paramA: Node = a
+		var paramB: Node = b
+		nodeRegistry.findEqual(instance: &paramA)
+		nodeRegistry.findEqual(instance: &paramB)
+		pointA = paramA as! Point
+		pointB = paramB as! Point
+		value = length
+		super.init(name: "\(a.name)\(b.name)")
+		insertPoint(a, after: a)
+		insertPoint(b, after: a)
 	}
 	
 	// MARK: - Operators

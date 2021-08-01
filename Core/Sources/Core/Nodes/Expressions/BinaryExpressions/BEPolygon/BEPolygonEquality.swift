@@ -14,11 +14,12 @@ public class BEPolygonEquality: BEPolygon {
 	public override class var sign: String { "=" }
 
 	// MARK: - Initialization
-	public override init(left: Polygon, right: Polygon, leftShift: Shift, isInput: Bool = false) {
-		super.init(left: left, right: right, leftShift: leftShift, isInput: isInput)
+	public override init(left: Polygon, right: Polygon, leftShift: Shift) {
+		super.init(left: left, right: right, leftShift: leftShift)
+	}
+
+	public required init(left: Node, right: Node) {
+		fatalError("init(left:right:) has not been implemented")
 	}
 	
-	public required init(left: Node, right: Node, isInput: Bool = false) {
-		fatalError("init(left:right:isInput:) has not been implemented")
-	}
 }

@@ -21,14 +21,13 @@ public class Node: Data, DataInheritor {
 
 	// MARK: - Properties
 	public let name: String
-	public let isInput: Bool
+	public var isInput: Bool { references.count == 0 }
 	public private (set) var references: Set<Reference>
 	private var addidionalKinds: Dictionary<ProtocolWrapper, AdditionalKind> = [:]
 	
 	// MARK: - Initialization
-	public init(name: String, isInput: Bool = false) {
+	public init(name: String) {
 		references = []
-		self.isInput = isInput
 		self.name = name
 	}
 	
@@ -60,8 +59,11 @@ public class Node: Data, DataInheritor {
 		lhs.name < rhs.name || lhs.name == rhs.name && String(describing: lhs.dataType) < String(describing: rhs.dataType)
 	}
 
-	public static func == (lhs: Node, rhs: Node) -> Bool {
-		lhs as Data == rhs as Data && lhs.name == rhs.name
+	open override func isEqual(_ object: Any?) -> Bool {
+		if let obj = object as? Self {
+			return self.dataType == obj.dataType && self.name  == obj.name
+		}
+		return false
 	}
 
 	static func hashValue(for object: Node) -> Int {

@@ -62,6 +62,7 @@ open class Theorem: Data, DataInheritor {
 				fatalError("Wrong types of inputs for theorem \(name)")
 			}
 		}
+		result = []
 	}
 
 	// MARK: - DataInheritor
@@ -69,8 +70,11 @@ open class Theorem: Data, DataInheritor {
 		lhs.name < rhs.name || lhs.name == rhs.name && lhs.theoremDescription ?? "" < rhs.theoremDescription ?? ""
 	}
 
-	public static func == (lhs: Theorem, rhs: Theorem) -> Bool {
-		lhs as Data == rhs as Data && lhs.name == rhs.name && lhs.theoremDescription == rhs.theoremDescription
+	open override func isEqual(_ object: Any?) -> Bool {
+		if let obj = object as? Self {
+			return self.dataType == obj.dataType && self.name  == obj.name && self.theoremDescription == obj.theoremDescription
+		}
+		return false
 	}
 
 	static func hashValue(for object: Theorem) -> Int {

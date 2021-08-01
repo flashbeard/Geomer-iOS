@@ -1,0 +1,102 @@
+{
+	"theorems": [
+		{
+			"class": "SearchAngle",
+			"name": "Search Angle",
+			"description": "",
+			"input types": [
+				"Ray",
+				"Ray"
+			],
+			"parameters": [
+				"ray1",
+				"ray2"
+			],
+			"swift": {
+				"preparation": [
+					"if ray1.equal(ray2) {",
+                    "\treturn",
+                    "}"
+				],
+				"algorithm": [
+                    "if (ray1.from.equal(ray2.from)) {",
+                    "\tresult.append(Angle(ray1: ray1, ray2: ray2))",
+                    "}"
+				]	
+			}
+		},
+        {
+			"class": "SearchRay",
+			"name": "Search Ray",
+			"description": "",
+			"input types": [
+				"Point",
+				"Point"
+			],
+			"parameters": [
+				"point1",
+				"point2"
+			],
+			"swift": {
+				"preparation": [
+					"if point1.equal(point2) {",
+                    "\treturn",
+                    "}"
+				],
+				"algorithm": [
+                    "result.append(Ray(from: point1, through: point2))",
+                    "result.append(Ray(from: point2, through: point1))"
+				]	
+			}
+		},
+        {
+			"class": "SearchSegment",
+			"name": "Search Segment",
+			"description": "",
+			"input types": [
+				"Point",
+				"Point"
+			],
+			"parameters": [
+				"point1",
+				"point2"
+			],
+			"swift": {
+				"preparation": [
+					"if point1.equal(point2) {",
+                    "\treturn",
+                    "}"
+				],
+				"algorithm": [
+                    "result.append(Segment(a: point1, b: point2))",
+                    "result.append(Segment(a: point2, b: point1))"
+				]	
+			}
+		},
+        {
+			"class": "SearchTriangle",
+			"name": "Search Triangle",
+			"description": "",
+			"input types": [
+				"Point",
+				"Point",
+                "Point"
+			],
+			"parameters": [
+				"point1",
+				"point2",
+                "point3"
+			],
+			"swift": {
+				"preparation": [
+					"if point1.equal(point2) || point2.equal(point3) || point3.equal(point1) {",
+                    "\treturn",
+                    "}"
+				],
+				"algorithm": [
+                    "\tresult.append(Triangle(vertexes: [point1, point2, point3]))"
+				]	
+			}
+		}
+	]
+}

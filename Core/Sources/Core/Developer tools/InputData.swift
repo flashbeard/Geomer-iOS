@@ -12,30 +12,19 @@ import Math
 @available(iOS 10.0, *)
 public func loadInputData() {
 
-	let th1 = Theorem(name: "Theorem 1", inputTypes: [Point.self])
-	let th2 = Theorem(name: "Theorem 2", inputTypes: [Point.self])
+	let a = Point(name: "A")
+	let b = Point(name: "B")
+	let c = Point(name: "C")
+	let d = Point(name: "D")
 
-	var ref1 = Reference(from: [], by: th1)
-	var ref2 = Reference(from: [], by: th2)
+	nodeRegistry.add(instances: a, b, c, d)
 
-	// should be false
-	print(ref1 == ref2)
+	let abc = Angle(a: a, b: b, c: c, value: AngularUnit.new(value: 60))
+	let bac = Angle(a: b, b: a, c: c, value: AngularUnit.new(value: 30))
 
-	ref1 = Reference(from: [], by: th1)
-	ref2 = Reference(from: [], by: th1)
+	let abd = Angle(a: a, b: b, c: d, value: AngularUnit.new(value: 60))
+	let bad = Angle(a: b, b: a, c: d, value: AngularUnit.new(value: 30))
 
-	// should be true
-	print(ref1 == ref2)
+	nodeRegistry.add(instances: abc, bac, abd, bad)
 
-	ref1 = Reference(from: [Point(name: "A")], by: th1)
-	ref2 = Reference(from: [Point(name: "A")], by: th1)
-
-	// should be true
-	print(ref1 == ref2)
-
-	ref1 = Reference(from: [Point(name: "A")], by: th1)
-	ref2 = Reference(from: [Point(name: "B")], by: th1)
-
-	// should be false
-	print(ref1 == ref2)
 }
