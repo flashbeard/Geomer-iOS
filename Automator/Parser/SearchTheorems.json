@@ -14,18 +14,13 @@
 			],
 			"swift": {
 				"preparation": [
-					
+					"if ray1.equal(ray2) {",
+                    "\treturn",
+                    "}"
 				],
 				"algorithm": [
-					"if ray1 == ray2 {",
-                    "\tresult = []",
-                    "\treturn",
-                    "}",
-                    "",
-                    "if (ray1.a.equal(ray2.a)) {",
-                    "\tvar res: Node",
-                    "\tres = Angle(ray1: ray1, ray2: ray2)",
-                    "\tresult.append(res)",
+                    "if (ray1.from.equal(ray2.from)) {",
+                    "\tresult.append(Angle(ray1: ray1, ray2: ray2))",
                     "}"
 				]	
 			}
@@ -44,51 +39,13 @@
 			],
 			"swift": {
 				"preparation": [
-					
+					"if point1.equal(point2) {",
+                    "\treturn",
+                    "}"
 				],
 				"algorithm": [
-					"if point1 == point2 {",
-                    "\tresult = []",
-                    "\treturn",
-                    "}",
-                    "",
-                    "if (true) {",
-                    "\tvar res: Node",
-                    "\tres = Ray(from: point1, through: point2)",
-                    "\tresult.append(res)",
-                    "\tres = Ray(from: point2, through: point1)",
-                    "\tresult.append(res)",
-                    "}"
-				]	
-			}
-		},
-        {
-			"class": "SearchLine",
-			"name": "Search Line",
-			"description": "",
-			"input types": [
-				"Point",
-				"Point"
-			],
-			"parameters": [
-				"point1",
-				"point2"
-			],
-			"swift": {
-				"preparation": [
-					
-				],
-				"algorithm": [
-					"if point1 == point2 {",
-                    "\tresult = []",
-                    "\treturn",
-                    "}",
-                    "",
-                    "if (true) {",
-                    "\tvar res: Node",
-                    "\tres = Line(a: point1, b: point2)",
-                    "\tresult.append(res)",
-                    "}"
+                    "result.append(Ray(from: point1, through: point2))",
+                    "result.append(Ray(from: point2, through: point1))"
 				]	
 			}
 		},
@@ -106,21 +63,13 @@
 			],
 			"swift": {
 				"preparation": [
-					
+					"if point1.equal(point2) {",
+                    "\treturn",
+                    "}"
 				],
 				"algorithm": [
-					"if point1 == point2 {",
-                    "\tresult = []",
-                    "\treturn",
-                    "}",
-                    "",
-                    "if (true) {",
-                    "\tvar res: Node",
-                    "\tres = Segment(a: point1, b: point2)",
-                    "\tresult.append(res)",
-                    "\tres = Segment(a: point2, b: point1)",
-                    "\tresult.append(res)",
-                    "}"
+                    "result.append(Segment(a: point1, b: point2))",
+                    "result.append(Segment(a: point2, b: point1))"
 				]	
 			}
 		},
@@ -140,19 +89,12 @@
 			],
 			"swift": {
 				"preparation": [
-					
+					"if point1.equal(point2) || point2.equal(point3) || point3.equal(point1) {",
+                    "\treturn",
+                    "}"
 				],
 				"algorithm": [
-					"if point1 == point2 || point2 == point3 || point3 == point1 {",
-                    "\tresult = []",
-                    "\treturn",
-                    "}",
-                    "",
-                    "if (true) {",
-                    "\tvar res: Node",
-                    "\tres = Triangle(vertexes: [point1, point2, point3])",
-                    "\tresult.append(res)",
-                    "}"
+                    "\tresult.append(Triangle(vertexes: [point1, point2, point3]))"
 				]	
 			}
 		}

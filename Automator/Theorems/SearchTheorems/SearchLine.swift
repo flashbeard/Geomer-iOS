@@ -16,7 +16,7 @@
     	internal init() {
     		super.init(name: "Search Line",
     				   description: "",
-    				   inputTypes: [Point.dataType(), Point.dataType()])
+    				   inputTypes: [Point.dataType, Point.dataType])
     	}
 
     	// MARK: Methods
@@ -31,14 +31,15 @@
 
             // MARK: Theorem
     		if point1 == point2 {
-			result = []
-			return
-		}
-		
-		if (true) {
-			var res: Node
-			res = Line(a: point1, b: point2)
-			result.append(res)
-		}
+				result = []
+				return
+			}
+			
+			if (true) {
+				var res: Node
+				res = Line(a: point1, b: point2)
+				result.append(res)
+			}
+
     	}
     }

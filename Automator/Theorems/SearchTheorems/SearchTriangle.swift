@@ -16,7 +16,7 @@
     	internal init() {
     		super.init(name: "Search Triangle",
     				   description: "",
-    				   inputTypes: [Point.dataType(), Point.dataType(), Point.dataType()])
+    				   inputTypes: [Point.dataType, Point.dataType, Point.dataType])
     	}
 
     	// MARK: Methods
@@ -28,18 +28,13 @@
 			let point3 = input[2] as! Point
 
             // MARK: Preparation
-    		
+    		if point1.equal(point2) || point2.equal(point3) || point3.equal(point1) {
+				result = []
+				return
+			}
 
             // MARK: Theorem
-    		if point1 == point2 || point2 == point3 || point3 == point1 {
-			result = []
-			return
-		}
-		
-		if (true) {
-			var res: Node
-			res = Triangle(vertexes: [point1, point2, point3])
-			result.append(res)
-		}
+    			result.append(Triangle(vertexes: [point1, point2, point3]))
+
     	}
     }

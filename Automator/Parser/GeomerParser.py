@@ -3,12 +3,30 @@ import os
 
 theoremsModule = ['EqualityTheorems', 'SimilarityTheorems', 'SearchTheorems']
 
+loadCode = """//
+//  AddTheorem.swift
+//
+//
+//  Created by GeomerParser.
+//
+import Foundation
+
+import Core
+
+@available(iOS 10.0, *)
+public func loadTheorems() {
+
+"""
+
 for index in range(len(theoremsModule)):
     path = '../Theorems/{0}'.format(theoremsModule[index])
     json_file = open("{0}.json".format(theoremsModule[index]))
     theoremsList = []
     data = json.loads(json_file.read())
     theoremsCount = len(data['theorems'])
+
+    #loadTheorems creating
+    loadCode += "\t// MARK: {0}\n".format(theoremsModule[index])
 
     # Theorems
     for fileNumber in range(theoremsCount):
@@ -38,7 +56,7 @@ for index in range(len(theoremsModule)):
         inputTypesCount = len(theorem['input types'])
         inputTypes = ""
         for i in range(inputTypesCount):
-            inputTypes += str(theorem['input types'][i]) + ".dataType(), "
+            inputTypes += str(theorem['input types'][i]) + ".dataType, "
         inputTypes = inputTypes[:-2]
 
         # Variables
@@ -56,7 +74,7 @@ for index in range(len(theoremsModule)):
         preparationLength = len(swift['preparation'])
         preparation = ""
         for i in range(preparationLength - 1):
-            preparation += str(swift['preparation'][i]) + "\n" + "\t\t"
+            preparation += str(swift['preparation'][i]) + "\n" + "\t\t\t"
         if preparationLength:
            preparation += str(swift['preparation'][preparationLength - 1])
 
@@ -64,7 +82,7 @@ for index in range(len(theoremsModule)):
         algorithmCount = len(swift['algorithm'])
         algorithm = ""
         for i in range(algorithmCount):
-            algorithm += swift['algorithm'][i] + "\n\t\t"
+            algorithm += swift['algorithm'][i] + "\n\t\t\t"
 
         algorithm = algorithm[0:-3]
 
@@ -112,6 +130,9 @@ for index in range(len(theoremsModule)):
         fileCode = fileCode.replace('{preparation}', preparation)
         fileCode = fileCode.replace('{algorithm}', algorithm)
 
+        #Adding theorems to loadTheorems
+        loadCode += "\ttheoremRegistry.add(instances: {0}())\n".format(theoremClass)
+
         # File saving
         if not os.path.exists(path):
             os.makedirs(path)
@@ -124,3 +145,18 @@ for index in range(len(theoremsModule)):
         file = open(fileName, "w+")
         file.write(fileCode)
         file.close()
+
+    loadCode += "\n"
+
+loadCode += "}"
+
+if not os.path.exists('../Theorems'):
+    os.makedirs('../Theorems')
+
+fileName = "{0}/loadTheorems.swift".format('../Theorems')
+
+if not os.path.exists(fileName):
+    open(fileName, "a")
+file = open(fileName, "w+")
+file.write(loadCode)
+file.close()

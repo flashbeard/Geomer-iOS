@@ -16,7 +16,7 @@
     	internal init() {
     		super.init(name: "Search Angle",
     				   description: "",
-    				   inputTypes: [Ray.dataType(), Ray.dataType()])
+    				   inputTypes: [Ray.dataType, Ray.dataType])
     	}
 
     	// MARK: Methods
@@ -27,18 +27,15 @@
 			let ray2 = input[1] as! Ray
 
             // MARK: Preparation
-    		
+    		if ray1.equal(ray2) {
+				result = []
+				return
+			}
 
             // MARK: Theorem
-    		if ray1 == ray2 {
-			result = []
-			return
-		}
-		
-		if (ray1.a.equal(ray2.a)) {
-			var res: Node
-			res = Angle(ray1: ray1, ray2: ray2)
-			result.append(res)
-		}
+    		if (ray1.from.equal(ray2.from)) {
+				result.append(Angle(ray1: ray1, ray2: ray2))
+			}
+
     	}
     }

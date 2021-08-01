@@ -62,6 +62,7 @@ open class Theorem: Data, DataInheritor {
 				fatalError("Wrong types of inputs for theorem \(name)")
 			}
 		}
+		result = []
 	}
 
 	// MARK: - DataInheritor
