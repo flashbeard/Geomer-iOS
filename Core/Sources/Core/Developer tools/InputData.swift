@@ -12,12 +12,19 @@ import Math
 @available(iOS 10.0, *)
 public func loadInputData() {
 
-	let line = Line(name: "a")
+	let a = Point(name: "A")
+	let b = Point(name: "B")
+	let c = Point(name: "C")
+	let d = Point(name: "D")
 
-	line.insertPoint(Point(name: "A"))
-	line.insertPoint(Point(name: "C"), after: Point(name: "A"))
-	line.insertPoint(Point(name: "B"), after: Point(name: "A"))
-	line.insertPoint(Point(name: "D"), after: Point(name: "B"))
+	nodeRegistry.add(instances: a, b, c, d)
 
-	nodeRegistry.add(instances: line)
+	let abc = Angle(a: a, b: b, c: c, value: AngularUnit.new(value: 60))
+	let bac = Angle(a: b, b: a, c: c, value: AngularUnit.new(value: 30))
+
+	let abd = Angle(a: a, b: b, c: d, value: AngularUnit.new(value: 60))
+	let bad = Angle(a: b, b: a, c: d, value: AngularUnit.new(value: 30))
+
+	nodeRegistry.add(instances: abc, bac, abd, bad)
+
 }

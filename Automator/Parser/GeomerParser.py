@@ -19,7 +19,7 @@ public func loadTheorems() {
 """
 
 for index in range(len(theoremsModule)):
-    path = '../Theorems/{0}'.format(theoremsModule[index])
+    path = '../BasicTheorems/{0}'.format(theoremsModule[index])
     json_file = open("{0}.json".format(theoremsModule[index]))
     theoremsList = []
     data = json.loads(json_file.read())
@@ -100,16 +100,16 @@ for index in range(len(theoremsModule)):
     @available(iOS 10.0, *)
     internal class {theoremClass}: Theorem {
 
-    	// MARK: Initialization
+    	// MARK: - Initialization
     	internal init() {
     		super.init(name: "{theoremName}",
     				   description: "{theoremDescription}",
     				   inputTypes: [{inputTypes}])
     	}
 
-    	// MARK: Methods
+    	// MARK: - Methods
     	internal override func execute() {
-    		super.execute()
+
             // MARK: Parameters
     		{parameters}
 
@@ -150,10 +150,10 @@ for index in range(len(theoremsModule)):
 
 loadCode += "}"
 
-if not os.path.exists('../Theorems'):
-    os.makedirs('../Theorems')
+if not os.path.exists('../BasicTheorems'):
+    os.makedirs('../BasicTheorems')
 
-fileName = "{0}/loadTheorems.swift".format('../Theorems')
+fileName = "{0}/loadTheorems.swift".format('../BasicTheorems')
 
 if not os.path.exists(fileName):
     open(fileName, "a")

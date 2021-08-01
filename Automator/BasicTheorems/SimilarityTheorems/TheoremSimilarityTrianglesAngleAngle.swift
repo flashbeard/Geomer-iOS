@@ -1,5 +1,5 @@
 //
-    //  TheoremEqualityTriangleSideSideSide.swift
+    //  TheoremSimilarityTrianglesAngleAngle.swift
     //
     //
     //  Created by GeomerParser.
@@ -10,12 +10,12 @@
     import Core
 
     @available(iOS 10.0, *)
-    internal class TheoremEqualityTriangleSideSideSide: Theorem {
+    internal class TheoremSimilarityTrianglesAngleAngle: Theorem {
 
     	// MARK: - Initialization
     	internal init() {
-    		super.init(name: "Theorem equality triangle side side side",
-    				   description: "If three sides of one triangle are equal to three corresponding sides of the other triangle then these triangles are equal to each other",
+    		super.init(name: "Theorem Similarity Triangles Angle Angle",
+    				   description: "If two angles of one triangle are equal to two angles of another triangle, then such triangles are similar.",
     				   inputTypes: [Triangle.dataType, Triangle.dataType])
     	}
 
@@ -27,7 +27,7 @@
 			let triangle2 = input[1] as! Triangle
 
             // MARK: Preparation
-    		if triangle1.equal(triangle2) {
+    		if triangle1 == triangle2 {
 				return
 			}
 
@@ -38,7 +38,10 @@
 					let EqualitySidesAB = shifted.side(.AB).equal(triangle2.side(.AB))
 					let EqualitySidesBC = shifted.side(.BC).equal(triangle2.side(.BC))
 					let EqualitySidesCA = shifted.side(.CA).equal(triangle2.side(.CA))
-					if (EqualitySidesAB && EqualitySidesBC && EqualitySidesCA) {
+					let EqualityAnglesA = shifted.angle(.A).equal(triangle2.angle(.A))
+					let EqualityAnglesB = shifted.angle(.B).equal(triangle2.angle(.B))
+					let EqualityAnglesC = shifted.angle(.C).equal(triangle2.angle(.C))
+					if ((EqualityAnglesA && EqualityAnglesB) || (EqualityAnglesB && EqualityAnglesC) || (EqualityAnglesC && EqualityAnglesA)) {
 						result.append(BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed)))
 					}
 				}

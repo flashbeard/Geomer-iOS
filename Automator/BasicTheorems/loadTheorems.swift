@@ -18,8 +18,8 @@ public func loadTheorems() {
 
 	// MARK: SimilarityTheorems
 	theoremRegistry.add(instances: TheoremSimilarityTrianglesAngleAngle())
-//	theoremRegistry.add(instances: TheoremSimilarityTrianglesSideAngleSide())
-//	theoremRegistry.add(instances: TheoremSimilarityTrianglesSideSideSide())
+	theoremRegistry.add(instances: TheoremSimilarityTrianglesSideAngleSide())
+	theoremRegistry.add(instances: TheoremSimilarityTrianglesSideSideSide())
 
 	// MARK: SearchTheorems
 	theoremRegistry.add(instances: SearchAngle())
