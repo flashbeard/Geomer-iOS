@@ -53,7 +53,7 @@ public func description(node: Node, with_references references: Bool = false) ->
 	case BEPolygonSimilarity.dataTypeString:
 		let t = node as! BEPolygonSimilarity
 		str += " left shift: \(t.leftShift.name) |"
-		str += " proportion: \(t.proportion?.name ?? undefined) |"
+		str += " ratio: \(t.ratio?.name ?? undefined) |"
 	case BEPolygonEquality.dataTypeString:
 		let t = node as! BEPolygonEquality
 		str += " left shift: \(t.leftShift.name) |"
