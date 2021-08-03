@@ -33,7 +33,7 @@
 			}
 
             // MARK: Theorem
-    			result.append(Triangle(vertexes: [point1, point2, point3]))
+    		result.append(Triangle(vertexes: [point1, point2, point3].sorted()))
 
     	}
     }

@@ -16,15 +16,25 @@ public func loadInputData() {
 	let b = Point(name: "B")
 	let c = Point(name: "C")
 	let d = Point(name: "D")
+	let e = Point(name: "E")
+	let f = Point(name: "F")
 
-	nodeRegistry.add(instances: a, b, c, d)
+	nodeRegistry.add(instances: a, b, c, d, e, f)
 
-	let abc = Angle(a: a, b: b, c: c, value: AngularUnit.new(value: 60))
-	let bac = Angle(a: b, b: a, c: c, value: AngularUnit.new(value: 30))
+	let ab = Segment(a: a, b: b, length: LinearUnit.new(value: 10))
+	let bc = Segment(a: b, b: c, length: LinearUnit.new(value: 15))
+	let ca = Segment(a: c, b: a, length: LinearUnit.new(value: 20))
 
-	let abd = Angle(a: a, b: b, c: d, value: AngularUnit.new(value: 60))
-	let bad = Angle(a: b, b: a, c: d, value: AngularUnit.new(value: 30))
+	nodeRegistry.add(instances: ab, bc, ca)
 
-	nodeRegistry.add(instances: abc, bac, abd, bad)
+	let de = Segment(a: d, b: e, length: LinearUnit.new(value: 10))
+	let ef = Segment(a: e, b: f, length: LinearUnit.new(value: 15))
+	let fd = Segment(a: f, b: d, length: LinearUnit.new(value: 20))
+
+	nodeRegistry.add(instances: de, ef, fd)
+
+	let task = Task(task: BEEquality(left: Triangle(vertexes: [a, b, c]), right: Triangle(vertexes: [d, e, f])))
+
+	taskRegistry.add(instances: task)
 
 }

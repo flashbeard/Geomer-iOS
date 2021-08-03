@@ -39,7 +39,7 @@
 					let equalityAnglesB = shifted.angle(.B).equal(triangle2.angle(.B))
 					let equalityAnglesC = shifted.angle(.C).equal(triangle2.angle(.C))
 					if ((equalityAnglesA && equalityAnglesB) || (equalityAnglesB && equalityAnglesC) || (equalityAnglesC && equalityAnglesA)) {
-						result.append(BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed)))
+						result.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed)))
 					}
 				}
 			}

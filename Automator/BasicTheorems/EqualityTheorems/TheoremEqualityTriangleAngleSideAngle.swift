@@ -35,10 +35,13 @@
     		for i in 0...2 {
 				for reversed in [true, false] {
 					let shifted = triangle1.shifted(by: Shift(i, reversed: reversed))
+					let equalitySidesAB = shifted.side(.AB).equal(triangle2.side(.AB))
+					let equalitySidesBC = shifted.side(.BC).equal(triangle2.side(.BC))
+					let equalitySidesCA = shifted.side(.CA).equal(triangle2.side(.CA))
 					let equalityAnglesA = shifted.angle(.A).equal(triangle2.angle(.A))
 					let equalityAnglesB = shifted.angle(.B).equal(triangle2.angle(.B))
 					let equalityAnglesC = shifted.angle(.C).equal(triangle2.angle(.C))
-					if (equalitySidesAB && equalityAnglesA && equalityAnglesB) || (equalitySidesBC && equalityAnglesB && equalityAnglesC) || (equalitySidesCA && equalityAnglesC && equalityAnglesA)) {
+					if (equalitySidesAB && equalityAnglesA && equalityAnglesB) || (equalitySidesBC && equalityAnglesB && equalityAnglesC) || (equalitySidesCA && equalityAnglesC && equalityAnglesA) {
 						result.append(BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed)))
 					}
 				}
