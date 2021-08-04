@@ -8,7 +8,7 @@
 import Foundation
 
 @available(iOS 10.0, *)
-public class BELineIntersection: BinaryExpression {
+public class BELineIntersection: BECommutative {
 
 	// MARK: - Properties
 	public private (set) var intersectionPoint: Point?

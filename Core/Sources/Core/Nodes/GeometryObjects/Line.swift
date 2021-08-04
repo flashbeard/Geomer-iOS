@@ -24,9 +24,19 @@ public class Line: Node, GeometryObject {
 		if dataType != to.dataType {
 			return false
 		}
-		let lhs = self
 		let rhs = to as! Line
-		return super.equal(rhs) || lhs.points.count > 1 && rhs.points.count > 1 && lhs.points.equal(rhs.points)
+		if super.equal(rhs) {
+			return true
+		}
+
+		for i in 0 ..< points.count {
+			for j in i + 1 ..< points.count {
+				if rhs.points.contains(where: { $0.equal(points[i]) }) && rhs.points.contains(where: { $0.equal(points[j]) }) {
+					return true
+				}
+			}
+		}
+		return false
 	}
 
 	// MARK: - Methods

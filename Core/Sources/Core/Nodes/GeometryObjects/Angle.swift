@@ -51,8 +51,7 @@ public class Angle: Node, GeometryObject {
 		if dataType != to.dataType {
 			return false
 		}
-		let lhs = self
 		let rhs = to as! Angle
-		return super.equal(rhs) || lhs.r1.equal(rhs.r1) && lhs.r2.equal(rhs.r2) || lhs.value != nil && lhs.value == rhs.value
+		return super.equal(rhs) || r1.equal(rhs.r1) && r2.equal(rhs.r2) || value != nil && value == rhs.value
 	}
 }

@@ -36,9 +36,8 @@ public class Node: Data, DataInheritor {
 		if dataType != to.dataType {
 			return false
 		}
-		let lhs = self
 		let rhs = to
-		return lhs == rhs || nodeRegistry.contains(BEEquality(left: lhs, right: rhs))
+		return self == rhs || nodeRegistry.contains(BEEquality(left: self, right: rhs))
 	}
 	
 	// MARK: - Methods
@@ -74,6 +73,4 @@ public class Node: Data, DataInheritor {
 		hasher.combine(object.references)
 		return hasher.finalize()
 	}
-
-
 }

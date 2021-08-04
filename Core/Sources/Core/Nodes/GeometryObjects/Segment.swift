@@ -34,8 +34,7 @@ public class Segment: Line {
 		if dataType != to.dataType {
 			return false
 		}
-		let lhs = self
 		let rhs = to as! Segment
-		return super.equal(rhs) || lhs.value != nil && lhs.value == rhs.value
+		return value != nil && value == rhs.value || pointA.equal(rhs.pointA) && pointB.equal(rhs.pointB) || pointA.equal(rhs.pointB) && pointB.equal(rhs.pointA)
 	}
 }

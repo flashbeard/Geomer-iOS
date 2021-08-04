@@ -57,6 +57,24 @@ public class Polygon: Node, Figure {
 		nodeRegistry.add(instances: vertexes)
 	}
 
+	// MARK: - Operators
+	public override func equal(_ to: Node) -> Bool {
+		if dataType != to.dataType {
+			return false
+		}
+		let rhs = to as! Polygon
+
+		for shift in 0 ..< vertexes.count {
+			for reversed in [true, false] {
+				if shifted(by: Shift(shift, reversed: reversed)).vertexes.equal(rhs.vertexes) {
+					return true
+				}
+			}
+		}
+
+		return false
+	}
+
 	// MARK: - Methods
 	public func shifted(by shift: Shift) -> Self {
 		Self(vertexes: vertexes.shifted(by: shift))

@@ -22,5 +22,4 @@ public class BEPolygon: BinaryExpression {
 	public required init(left: Node, right: Node) {
 		fatalError("init(left:right:) has not been implemented")
 	}
-	
 }

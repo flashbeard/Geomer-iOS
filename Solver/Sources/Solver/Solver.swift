@@ -45,10 +45,14 @@ public class Solver {
 		// MARK: - Main loop
 		
 		//	taskRegistry.checkAchieved(instances: nodeRegistry)
-		
+
+		var iteration = 0
+
 		while nodeRegistry.hasChanges {
 			
 			nodeRegistry.fixState()
+			print(iteration)
+			iteration += 1
 			
 			for theorem in theoremRegistry.getAllInstances() {
 				let inputs = nodeRegistry.getKit(for_pattern: theorem.inputTypes)
@@ -58,16 +62,9 @@ public class Solver {
 				}
 			}
 
-			// MARK: - Result info
-			#if DEBUG
-			print("================================================================\n")
-			print("\t\t\tResult data:")
-			print(descriptionNodeRegistry())
-			#endif
-			
 			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
 			
-			// MARK: - this code stops computing solution if all the tasks are achieved, even if there are another solutions for them (possible easier)
+			// MARK: this code stops computing solution if all the tasks are achieved, even if there are another solutions for them (possible easier)
 			//		if taskRegistry.allAchieved { break }
 		}
 		
@@ -102,12 +99,6 @@ public class Solver {
 			print(description(solution: solution))
 		}
 		#endif
-
-		for node in nodeRegistry.getAllInstances() {
-			let solution = Solution(for: node)
-			solution.backtrack()
-			print(description(solution: solution))
-		}
 		
 		// MARK: - Testing data
 		#if DEBUG
