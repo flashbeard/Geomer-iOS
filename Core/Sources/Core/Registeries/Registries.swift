@@ -22,7 +22,7 @@ public class Registry<T: Data> {
 	// MARK: - Properties
 	public private (set) var dataTypes: Set<MetatypeWrapper>
 	private (set) var instances: Dictionary<MetatypeWrapper, Set<T>>
-	public private (set) var newInstances: Set<T>
+	public private (set) var newInstances: Dictionary<MetatypeWrapper, Set<T>>
 	public private (set) var hasChanges: Bool
 	public var count: Int {
 		get {
@@ -38,14 +38,14 @@ public class Registry<T: Data> {
 	fileprivate init() {
 		dataTypes = []
 		instances = [:]
-		newInstances = []
+		newInstances = [:]
 		hasChanges = true
 	}
 	
 	// MARK: - Methods
 	public func fixState() {
 		hasChanges = false
-		newInstances = []
+		newInstances = [:]
 	}
 
 	func contains(_ instance: T) -> Bool {
@@ -122,9 +122,13 @@ public class Registry<T: Data> {
 				dataTypes.insert(MetatypeWrapper(metatype: type))
 				instances[type] = []
 			}
+
+			if !newInstances.keys.contains(MetatypeWrapper(metatype: type)) {
+				newInstances[type] = []
+			}
 			
 			instances[type]!.insert(instance)
-			newInstances.insert(instance)
+			newInstances[type]!.insert(instance)
 			hasChanges = true
 		}
 	}
@@ -186,30 +190,55 @@ public class NodeRegistry: Registry<Node> {
 		}
 	}
 
-	public func getKit(for_pattern pattern: [DataType], with_protocols protocols: [Protocol]? = nil) -> [[Node]] {
+	public func getKit(for_pattern pattern: [DataType]) -> [[Node]] {
 
 		var kit: [[Node]] = [[]]
+
+		let time = DispatchTime.now()
 
 		for patternType in pattern {
 			var tmpKit: [[Node]] = []
 			for line in kit {
-				for type in dataTypes {
-					if type.metatype.isSubclass(of: patternType) {
-						for instance in instances[type] ?? [] {
+//				for type in dataTypes {
+//					if type.metatype == patternType {
+						for instance in instances[patternType] ?? [] {
+							if line.contains(where: { $0 > instance || $0 == instance }) {
+								continue
+							}
 							tmpKit.append(line)
 							tmpKit[tmpKit.endIndex - 1].append(instance)
 						}
-					}
-//					if type.wrappedType.isSubclass(of: patternType) && (protocols == nil || type.wrappedType.conforms(to: protocols![patternIndex])){
-//						for instance in instances[type] ?? [] {
-//							tmpKit.append(line)
-//							tmpKit[tmpKit.endIndex - 1].append(instance)
-//						}
 //					}
-				}
+//				}
 			}
 			kit = tmpKit
 		}
+
+		print("Time elapsed for theorem kit: ", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
+
+//		var i = 0, j = 1
+//
+//		while i < kit.count {
+//			j = i + 1
+//			while j < kit.count {
+//				if Set(kit[i]) == Set(kit[j]) || Set(kit[j]).count < kit[j].count {
+//					kit.remove(at: j)
+//				} else {
+//					j += 1
+//				}
+//			}
+//			i += 1
+//		}
+
+		for line in kit {
+			for instance in line {
+				print(instance.name, terminator: " ")
+			}
+			print()
+		}
+
+
+
 		return kit
 	}
 }
@@ -236,9 +265,9 @@ public class TaskRegistry: Registry<Task> {
 	
 	public var allAchieved: Bool { achievedCount == count }
 	
-	public func checkAchieved(instances data: Set<Node>) {
-		for node in data {
-			for task in instances[Task] ?? [] {
+	public func checkAchieved(instances data: Dictionary<MetatypeWrapper, Set<Node>>) {
+		for task in instances[Task] ?? [] {
+			for node in data[task.task.dataType] ?? [] {
 				if task.task.equal(node) {
 					task.achieve()
 				}

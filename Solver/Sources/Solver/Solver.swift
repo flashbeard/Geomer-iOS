@@ -46,21 +46,36 @@ public class Solver {
 		
 		//	taskRegistry.checkAchieved(instances: nodeRegistry)
 
-		var iteration = 0
-
 		while nodeRegistry.hasChanges {
 			
 			nodeRegistry.fixState()
-			print(iteration)
-			iteration += 1
-			
+
+
 			for theorem in theoremRegistry.getAllInstances() {
+				print(theorem.name)
+				var time = DispatchTime.now()
 				let inputs = nodeRegistry.getKit(for_pattern: theorem.inputTypes)
+				print("get kit time: ", terminator: "")
+				print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
+				time = DispatchTime.now()
+				print("Number of inputs: \(inputs.count)")
 				for input in inputs {
 					theorem.input = input
 					theorem.apply()
 				}
+				print("execution time: ", terminator: "")
+				print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
+				print()
+
+//				if theorem.dataTypeString == "TheoremSimilarityTrianglesAngleAngle" {
+//					for input in inputs {
+//						print(input[0].name, input[1].name)
+//					}
+//				}
 			}
+
+			print("Time similarity: \(timesSimilarity.reduce(0.0, +)/Double(timesSimilarity.count))")
+			print("Time angles: \(timesAngles.reduce(0.0, +)/Double(timesAngles.count))")
 
 			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
 			

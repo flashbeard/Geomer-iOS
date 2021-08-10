@@ -33,7 +33,7 @@ public func loadInputData() {
 
 	nodeRegistry.add(instances: de, ef, fd)
 
-	let task = Task(task: BEEquality(left: Triangle(vertexes: [a, b, c]), right: Triangle(vertexes: [d, e, f])))
+	let task = Task(task: BEPolygonEquality(left: Triangle(vertexes: [a, b, c]), right: Triangle(vertexes: [d, e, f])))
 
 	taskRegistry.add(instances: task)
 

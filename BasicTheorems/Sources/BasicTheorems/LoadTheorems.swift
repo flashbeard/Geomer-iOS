@@ -8,6 +8,9 @@ import Foundation
 
 import Core
 
+public var timesSimilarity: [Double] = []
+public var timesAngles: [Double] = []
+
 @available(iOS 10.0, *)
 public func loadTheorems() {
 

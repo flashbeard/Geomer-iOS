@@ -31,6 +31,7 @@
 				return
 			}
 
+			let time = DispatchTime.now()
             // MARK: Theorem
     		for i in 0...2 {
 				for reversed in [true, false] {
@@ -43,6 +44,7 @@
 					}
 				}
 			}
+			timesSimilarity.append(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
 
     	}
     }

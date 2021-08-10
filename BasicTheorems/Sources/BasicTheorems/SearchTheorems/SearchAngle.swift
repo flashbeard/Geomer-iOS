@@ -22,6 +22,8 @@
     	// MARK: - Methods
     	internal override func execute() {
 
+			let time = DispatchTime.now()
+
             // MARK: Parameters
     		let ray1 = input[0] as! Ray
 			let ray2 = input[1] as! Ray
@@ -35,6 +37,8 @@
     		if (ray1.from.equal(ray2.from)) {
 				result.append(Angle(ray1: ray1, ray2: ray2))
 			}
+
+			timesAngles.append(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
 
     	}
     }
