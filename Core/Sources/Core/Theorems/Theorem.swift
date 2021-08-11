@@ -9,18 +9,14 @@ import Foundation
 
 /// Theorem is a tool to produce new data from some input by some rule
 @available(iOS 10.0, *)
-open class Theorem: Data, DataInheritor {
-
-
-
-
+open class Theorem: Data {
 
 	// MARK: - Properties
 	public let name: String
 	public let theoremDescription: String?
 	public let inputTypes: [DataType]
-	public var input: [Node]!
-	public var protocols: [Protocol]?
+	public private (set) var input: [Node]!
+	public let protocols: [Protocol]?
 	public var result: [Node]
 
 	// MARK: - Initialization
@@ -33,9 +29,20 @@ open class Theorem: Data, DataInheritor {
 	}
 
 	// MARK: - Methods
+	public func setInput(input: [Node]) {
+		self.input = input
+	}
+
 	public func apply() {
+		let testPrint = false
+//			name == "Theorem Equality triangle side side side"
+		var time = DispatchTime.now()
 		checkInput()
+		if testPrint { print("\tapply:: check elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
+		time = DispatchTime.now()
 		execute()
+		if testPrint { print("\tapply:: execute elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
+		time = DispatchTime.now()
 		for i in 0 ..< result.count {
 			var res = result[i]
 			nodeRegistry.find(instance: &res)
@@ -43,7 +50,11 @@ open class Theorem: Data, DataInheritor {
 			res.addReference(reference: ref)
 			result[i] = res
 		}
+		if testPrint { print("\tapply:: result check elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
+		time = DispatchTime.now()
 		nodeRegistry.add(instances: result)
+		if testPrint { print("\tapply:: add result elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
+		time = DispatchTime.now()
 	}
 
 	open func execute() {
@@ -65,25 +76,9 @@ open class Theorem: Data, DataInheritor {
 		result = []
 	}
 
-	// MARK: - DataInheritor
-	public static func < (lhs: Theorem, rhs: Theorem) -> Bool {
-		lhs.name < rhs.name || lhs.name == rhs.name && lhs.theoremDescription ?? "" < rhs.theoremDescription ?? ""
-	}
-
-	open override func isEqual(_ object: Any?) -> Bool {
-		if let obj = object as? Self {
-			return self.dataType == obj.dataType && self.name  == obj.name && self.theoremDescription == obj.theoremDescription
-		}
-		return false
-	}
-
-	static func hashValue(for object: Theorem) -> Int {
-		var hasher = Hasher()
-		hasher.combine(object.dataTypeString)
-		hasher.combine(object.name)
-		hasher.combine(object.theoremDescription)
-		hasher.combine(object.inputTypes.map({ $0.dataTypeString }))
-		hasher.combine(object.protocols.map({ String(describing: $0) }))
-		return hasher.finalize()
+	// MARK: - Hashable
+	public override func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+		hasher.combine(name)
 	}
 }

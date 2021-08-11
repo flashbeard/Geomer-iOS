@@ -16,13 +16,13 @@ public func loadTheorems() {
 
 	// MARK: EqualityTheorems
 	theoremRegistry.add(instances: TheoremEqualityTriangleSideSideSide())
-	theoremRegistry.add(instances: TheoremEqualityTriangleSideAngleSide())
-	theoremRegistry.add(instances: TheoremEqualityTriangleAngleSideAngle())
+//	theoremRegistry.add(instances: TheoremEqualityTriangleSideAngleSide())
+//	theoremRegistry.add(instances: TheoremEqualityTriangleAngleSideAngle())
 
 	// MARK: SimilarityTheorems
-	theoremRegistry.add(instances: TheoremSimilarityTrianglesAngleAngle())
-	theoremRegistry.add(instances: TheoremSimilarityTrianglesSideAngleSide())
-	theoremRegistry.add(instances: TheoremSimilarityTrianglesSideSideSide())
+//	theoremRegistry.add(instances: TheoremSimilarityTrianglesAngleAngle())
+//	theoremRegistry.add(instances: TheoremSimilarityTrianglesSideAngleSide())
+//	theoremRegistry.add(instances: TheoremSimilarityTrianglesSideSideSide())
 
 	// MARK: SearchTheorems
 	theoremRegistry.add(instances: SearchAngle())

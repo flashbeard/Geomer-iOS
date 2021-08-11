@@ -52,32 +52,32 @@ public class Solver {
 
 
 			for theorem in theoremRegistry.getAllInstances() {
-				print(theorem.name)
+				let testPrint = theorem.dataTypeString == "TheoremEqualityTriangleSideSideSide"
+				if testPrint { print(theorem.name) }
 				var time = DispatchTime.now()
 				let inputs = nodeRegistry.getKit(for_pattern: theorem.inputTypes)
-				print("get kit time: ", terminator: "")
-				print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
+				if testPrint { print("get kit elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
 				time = DispatchTime.now()
-				print("Number of inputs: \(inputs.count)")
+				if testPrint { print("number of inputs: \(inputs.count)") }
+				var settingTime = 0.0
+				var applyTime = 0.0
 				for input in inputs {
-					theorem.input = input
+					settingTime -= Double(DispatchTime.now().uptimeNanoseconds)
+					theorem.setInput(input: input)
+					settingTime += Double(DispatchTime.now().uptimeNanoseconds)
+					applyTime -= Double(DispatchTime.now().uptimeNanoseconds)
 					theorem.apply()
+					applyTime += Double(DispatchTime.now().uptimeNanoseconds)
 				}
-				print("execution time: ", terminator: "")
-				print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
-				print()
-
-//				if theorem.dataTypeString == "TheoremSimilarityTrianglesAngleAngle" {
-//					for input in inputs {
-//						print(input[0].name, input[1].name)
-//					}
-//				}
+				if testPrint { print("setting input time:", settingTime / 1e6, "(ms)") }
+				if testPrint { print("apply time:", applyTime / 1e6, "(ms)") }
+				if testPrint { print("execution time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
+				if testPrint { print() }
 			}
 
-			print("Time similarity: \(timesSimilarity.reduce(0.0, +)/Double(timesSimilarity.count))")
-			print("Time angles: \(timesAngles.reduce(0.0, +)/Double(timesAngles.count))")
+			//			print(descriptionNodeRegistry())
 
-			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
+//			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
 			
 			// MARK: this code stops computing solution if all the tasks are achieved, even if there are another solutions for them (possible easier)
 			//		if taskRegistry.allAchieved { break }

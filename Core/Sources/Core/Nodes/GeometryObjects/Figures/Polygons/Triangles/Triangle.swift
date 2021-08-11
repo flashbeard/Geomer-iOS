@@ -22,9 +22,6 @@ public enum TriangleSideName {
 @available(iOS 10.0, *)
 public class Triangle: Polygon {
 
-	// MARK: - Properties
-	
-
 	// MARK: - Initialization
 	public required init(vertexes: [Point]) {
 
@@ -68,5 +65,4 @@ public class Triangle: Polygon {
 			return sides[2]
 		}
 	}
-
 }

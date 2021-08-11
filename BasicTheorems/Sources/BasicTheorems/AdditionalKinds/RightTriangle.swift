@@ -34,7 +34,6 @@ class TheoremFindRightTriangle: Theorem {
 		if triangle.angle(.A).value == AngularUnit.new(value: 90) ||
 			triangle.angle(.B).value == AngularUnit.new(value: 90) ||
 			triangle.angle(.C).value == AngularUnit.new(value: 90) {
-
 		}
 	}
 }

@@ -28,13 +28,4 @@ public class Segment: Line {
 		insertPoint(a, after: a)
 		insertPoint(b, after: a)
 	}
-	
-	// MARK: - Operators
-	public override func equal(_ to: Node) -> Bool {
-		if dataType != to.dataType {
-			return false
-		}
-		let rhs = to as! Segment
-		return value != nil && value == rhs.value || pointA.equal(rhs.pointA) && pointB.equal(rhs.pointB) || pointA.equal(rhs.pointB) && pointB.equal(rhs.pointA)
-	}
 }

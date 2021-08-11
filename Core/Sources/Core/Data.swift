@@ -7,20 +7,8 @@
 
 import Foundation
 
-protocol ComparableData {
-	static func <(lhs: Self, rhs: Self) -> Bool
-}
-
-protocol HashableData {
-	static func hashValue(for object: Self) -> Int
-}
-
-protocol DataInheritor: ComparableData, HashableData {
-
-}
-
 /// Basic class for all stored objects
-@objc open class Data: NSObject, Comparable {
+open class Data: Comparable, Hashable {
 
 	// MARK: - Properties
 	public static var dataType: DataType { Self.self }
@@ -28,34 +16,19 @@ protocol DataInheritor: ComparableData, HashableData {
 
 	public var dataType: DataType { get { return type(of: self).dataType } }
 	public var dataTypeString: String { get { return type(of: self).dataTypeString } }
-	
-	// MARK: - Initialization
-	
-	// MARK: - ComparableData
+
+	// MARK: - Comparable
 	public static func < (lhs: Data, rhs: Data) -> Bool {
-		lhs.dataTypeString < rhs.dataTypeString
+		lhs.dataTypeString < rhs.dataTypeString || lhs.dataType == rhs.dataType && lhs.hashValue < rhs.hashValue
 	}
-	
+
+	// MARK: - Equatable
 	public static func == (lhs: Data, rhs: Data) -> Bool {
-		lhs.isEqual(rhs)
+		lhs.hashValue == rhs.hashValue
 	}
 
-	// MARK: - HashableData
-	static func hashValue(for object: Data) -> Int {
-		var hasher: Hasher = Hasher()
-		hasher.combine(object.dataTypeString)
-		return hasher.finalize()
-	}
-	
-	// MARK: - Overriding NSObject hash for Data
-	override open var hash: Int {
-		Self.hashValue(for: self)
-	}
-
-	open override func isEqual(_ object: Any?) -> Bool {
-		if let obj = object as? Self {
-			return self.dataType == obj.dataType
-		}
-		return false
+	// MARK: - Hashable
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(dataTypeString)
 	}
 }

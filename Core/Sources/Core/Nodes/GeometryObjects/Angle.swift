@@ -45,13 +45,4 @@ public class Angle: Node, GeometryObject {
 		let r2 = Ray(from: b, through: c)
 		self.init(ray1: r1, ray2: r2, angular: value)
 	}
-	
-	// MARK: - Operators
-	public override func equal(_ to: Node) -> Bool {
-		if dataType != to.dataType {
-			return false
-		}
-		let rhs = to as! Angle
-		return super.equal(rhs) || r1.equal(rhs.r1) && r2.equal(rhs.r2) || value != nil && value == rhs.value
-	}
 }

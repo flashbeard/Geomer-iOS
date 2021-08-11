@@ -17,7 +17,7 @@ public protocol AdditionalKindProtocol {
 
 /// Basic class for stored objects avaliable for user.
 @available(iOS 10.0, *)
-public class Node: Data, DataInheritor {
+public class Node: Data {
 
 	// MARK: - Properties
 	public let name: String
@@ -53,24 +53,9 @@ public class Node: Data, DataInheritor {
 		addidionalKinds[ProtocolWrapper(proto: proto)]
 	}
 
-	// MARK: - DataInheritor
-	public static func < (lhs: Node, rhs: Node) -> Bool {
-		lhs.name < rhs.name || lhs.name == rhs.name && String(describing: lhs.dataType) < String(describing: rhs.dataType)
-	}
-
-	open override func isEqual(_ object: Any?) -> Bool {
-		if let obj = object as? Self {
-			return self.dataType == obj.dataType && self.name  == obj.name
-		}
-		return false
-	}
-
-	static func hashValue(for object: Node) -> Int {
-		var hasher = Hasher()
-		hasher.combine(object.dataTypeString)
-		hasher.combine(object.name)
-		hasher.combine(object.isInput)
-		hasher.combine(object.references)
-		return hasher.finalize()
+	// MARK: - Hashable
+	public override func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+		hasher.combine(name)
 	}
 }

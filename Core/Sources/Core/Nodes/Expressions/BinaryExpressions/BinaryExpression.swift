@@ -22,13 +22,10 @@ public class BinaryExpression: Node, Expression {
 		super.init(name: paramName)
 	}
 
-	// MARK: - Operators
-	public override func equal(_ to: Node) -> Bool {
-		if dataType != to.dataType {
-			return false
-		}
-		let rhs = to as! BinaryExpression
-
-		return left.equal(rhs.left) && right.equal(rhs.right)
+	// MARK: - Hashable
+	public override func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+		hasher.combine(left)
+		hasher.combine(right)
 	}
 }

@@ -14,7 +14,7 @@ public class Polygon: Node, Figure {
 	public var sides: [Segment]
 	public var vertexes: [Point]
 	public var angles: [Angle]
-	public let count: Int
+	public var count: Int { vertexes.count }
 	public var area: Area?
 	public var perimeter: Perimeter?
 
@@ -24,8 +24,6 @@ public class Polygon: Node, Figure {
 		if count <= 2 {
 			fatalError("\(Self.dataType) cannot have \(count) \(count == 1 ? "vertex" : "vertexes")")
 		}
-
-		self.count = count
 
 		var paramVertexes: [Node] = vertexes
 		for i in 0 ..< count {
@@ -57,26 +55,21 @@ public class Polygon: Node, Figure {
 		nodeRegistry.add(instances: vertexes)
 	}
 
-	// MARK: - Operators
+	// MARK: - Geometry equality
 	public override func equal(_ to: Node) -> Bool {
 		if dataType != to.dataType {
 			return false
 		}
-		let rhs = to as! Polygon
-
-		for shift in 0 ..< vertexes.count {
-			for reversed in [true, false] {
-				if shifted(by: Shift(shift, reversed: reversed)).vertexes.equal(rhs.vertexes) {
-					return true
-				}
-			}
-		}
-
-		return false
+		let rhs = to
+		return self == rhs || nodeRegistry.contains(BEPolygonEquality(left: self, right: rhs))
 	}
 
 	// MARK: - Methods
 	public func shifted(by shift: Shift) -> Self {
-		Self(vertexes: vertexes.shifted(by: shift))
+		let result = self
+		result.sides = sides.shifted(by: shift)
+		result.vertexes = vertexes.shifted(by: shift)
+		result.angles = angles.shifted(by: shift)
+		return result
 	}
 }
