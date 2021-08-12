@@ -9,18 +9,22 @@ import Foundation
 
 extension Array {
 
-	func shifted(by shift: Shift) -> Array<Element> {
-		guard self.count > 0, (shift.value % self.count) != 0 else { return shift.reversed ? self.reversed() : self }
+	mutating func shift(by shift: Shift) {
+		guard self.count > 0, (shift.value % self.count) != 0 else {
+			self = shift.reversed ? self.reversed() : self
+			return
+		}
 
 		let shiftModulo = shift.value % self.count
 		let shiftIsNegative = shift.value < 0
 		let shiftNormalized = shiftIsNegative ? shiftModulo + self.count : shiftModulo
+		let count = self.count
 
-		let performShift: (Int) -> Int = { return $0 + shiftNormalized >= self.count ? $0 + shiftNormalized - self.count : $0 + shiftNormalized }
+		let performShift: (Int) -> Int = { return $0 + shiftNormalized >= count ? $0 + shiftNormalized - count : $0 + shiftNormalized }
 
-		let res = self.enumerated().sorted(by: { performShift($0.offset) < performShift($1.offset) }).map { $0.element }
+		self = self.enumerated().sorted(by: { performShift($0.offset) < performShift($1.offset) }).map { $0.element }
 
-		return shift.reversed ? res.reversed() : res
+		self = shift.reversed ? self.reversed() : self
 	}
 
 //	func shifted(by shift: Shift) -> Array<Element> {

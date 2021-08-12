@@ -21,10 +21,16 @@ open class Data: Comparable, Hashable {
 	public static func < (lhs: Data, rhs: Data) -> Bool {
 		lhs.dataTypeString < rhs.dataTypeString || lhs.dataType == rhs.dataType && lhs.hashValue < rhs.hashValue
 	}
+	public static func > (lhs: Data, rhs: Data) -> Bool {
+		!(lhs < rhs) && lhs != rhs
+	}
 
 	// MARK: - Equatable
 	public static func == (lhs: Data, rhs: Data) -> Bool {
 		lhs.hashValue == rhs.hashValue
+	}
+	public static func != (lhs: Data, rhs: Data) -> Bool {
+		lhs.hashValue != rhs.hashValue
 	}
 
 	// MARK: - Hashable

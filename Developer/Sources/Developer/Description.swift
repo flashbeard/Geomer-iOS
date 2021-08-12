@@ -148,9 +148,8 @@ public func descriptionNodeRegistry() -> String {
 
 @available(iOS 10.0, *)
 public func descriptionTaskRegistry() -> String {
-	var str = "{NodeRegistry}\n"
+	var str = "{TaskRegistry}\n"
 	for type in taskRegistry.dataTypes {
-		str += "\(type.metatype.dataTypeString):"
 		for task in taskRegistry.getInstances(for_type: type.metatype) {
 			str += "\t\(description(task: task))"
 		}

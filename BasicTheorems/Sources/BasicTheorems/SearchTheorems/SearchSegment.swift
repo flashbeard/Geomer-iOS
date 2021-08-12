@@ -33,7 +33,6 @@
 
             // MARK: Theorem
     		result.append(Segment(a: point1, b: point2))
-			result.append(Segment(a: point2, b: point1))
 
     	}
     }

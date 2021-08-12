@@ -34,7 +34,8 @@
             // MARK: Theorem
     		for i in 0...2 {
 				for reversed in [true, false] {
-					let shifted = triangle1.shifted(by: Shift(i, reversed: reversed))
+					let shifted = triangle1
+					shifted.shift(by: Shift(i, reversed: reversed))
 					let equalitySidesAB = shifted.side(.AB).equal(triangle2.side(.AB))
 					let equalitySidesBC = shifted.side(.BC).equal(triangle2.side(.BC))
 					let equalitySidesCA = shifted.side(.CA).equal(triangle2.side(.CA))

@@ -14,6 +14,10 @@ public var timesAngles: [Double] = []
 @available(iOS 10.0, *)
 public func loadTheorems() {
 
+	// MARK: Test
+//	theoremRegistry.add(instances: TestTheorem())
+	theoremRegistry.add(instances: TheoremEqualitySegments())
+
 	// MARK: EqualityTheorems
 	theoremRegistry.add(instances: TheoremEqualityTriangleSideSideSide())
 //	theoremRegistry.add(instances: TheoremEqualityTriangleSideAngleSide())

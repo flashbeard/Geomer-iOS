@@ -32,13 +32,13 @@
             // MARK: Theorem
     		for i in 0...2 {
 				for reversed in [true, false] {
-					let shifted = triangle1.shifted(by: Shift(i, reversed: reversed))
-					let ratioSidesAB = try? ((shifted.side(.AB).value?.value ?? Double.nan) / (triangle2.side(.AB).value?.value ?? Double.nan)).fraction()
-					let ratioSidesBC = try? ((shifted.side(.BC).value?.value ?? Double.nan) / (triangle2.side(.BC).value?.value ?? Double.nan)).fraction()
-					let ratioSidesCA = try? ((shifted.side(.CA).value?.value ?? Double.nan) / (triangle2.side(.CA).value?.value ?? Double.nan)).fraction()
-					if  ratioSidesAB != nil && ratioSidesAB == ratioSidesBC && ratioSidesBC == ratioSidesCA {
-						result.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed), ratio: ratioSidesAB))
-					}
+//					let shifted = triangle1.shifted(by: Shift(i, reversed: reversed))
+//					let ratioSidesAB = try? ((shifted.side(.AB).value?.value ?? Double.nan) / (triangle2.side(.AB).value?.value ?? Double.nan)).fraction()
+//					let ratioSidesBC = try? ((shifted.side(.BC).value?.value ?? Double.nan) / (triangle2.side(.BC).value?.value ?? Double.nan)).fraction()
+//					let ratioSidesCA = try? ((shifted.side(.CA).value?.value ?? Double.nan) / (triangle2.side(.CA).value?.value ?? Double.nan)).fraction()
+//					if  ratioSidesAB != nil && ratioSidesAB == ratioSidesBC && ratioSidesBC == ratioSidesCA {
+//						result.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed), ratio: ratioSidesAB))
+//					}
 				}
 			}
 

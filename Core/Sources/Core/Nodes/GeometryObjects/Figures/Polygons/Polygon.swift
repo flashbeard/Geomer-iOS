@@ -29,6 +29,7 @@ public class Polygon: Node, Figure {
 		for i in 0 ..< count {
 			nodeRegistry.findEqual(instance: &paramVertexes[i])
 		}
+		self.vertexes = paramVertexes as! [Point]
 
 		var paramAngles: [Node] = []
 		for i in 0 ..< count {
@@ -36,8 +37,6 @@ public class Polygon: Node, Figure {
 			nodeRegistry.findEqual(instance: &paramAngles[i])
 		}
 		angles = paramAngles as! [Angle]
-
-		self.vertexes = paramVertexes as! [Point]
 
 		var paramSides: [Node] = []
 		for i in 0 ..< count {
@@ -52,7 +51,7 @@ public class Polygon: Node, Figure {
 		}
 		super.init(name: paramName)
 
-		nodeRegistry.add(instances: vertexes)
+		nodeRegistry.add(instances: paramVertexes)
 	}
 
 	// MARK: - Geometry equality
@@ -60,16 +59,14 @@ public class Polygon: Node, Figure {
 		if dataType != to.dataType {
 			return false
 		}
-		let rhs = to
-		return self == rhs || nodeRegistry.contains(BEPolygonEquality(left: self, right: rhs))
+		let rhs = to as! Polygon
+		return self == rhs || nodeRegistry.contains(BEPolygonEquality(left: self, right: rhs, leftShift: Shift()))
 	}
 
 	// MARK: - Methods
-	public func shifted(by shift: Shift) -> Self {
-		let result = self
-		result.sides = sides.shifted(by: shift)
-		result.vertexes = vertexes.shifted(by: shift)
-		result.angles = angles.shifted(by: shift)
-		return result
+	public func shift(by shift: Shift) {
+		sides.shift(by: shift)
+		vertexes.shift(by: shift)
+		angles.shift(by: shift)
 	}
 }

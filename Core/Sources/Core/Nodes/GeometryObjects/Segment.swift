@@ -21,11 +21,14 @@ public class Segment: Line {
 		var paramB: Node = b
 		nodeRegistry.findEqual(instance: &paramA)
 		nodeRegistry.findEqual(instance: &paramB)
+		if paramA > paramB {
+			swap(&paramA, &paramB)
+		}
 		pointA = paramA as! Point
 		pointB = paramB as! Point
 		value = length
-		super.init(name: "\(a.name)\(b.name)")
-		insertPoint(a, after: a)
-		insertPoint(b, after: a)
+		super.init(name: "\(pointA.name)\(pointB.name)")
+		insertPoint(pointA)
+		insertPoint(pointB, after: pointA)
 	}
 }

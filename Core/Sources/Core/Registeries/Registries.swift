@@ -256,7 +256,7 @@ public class TaskRegistry: Registry<Task> {
 	public var allAchieved: Bool { achievedCount == count }
 	
 	public func checkAchieved(instances data: Dictionary<MetatypeWrapper, Set<Node>>) {
-		for task in instances[Task] ?? [] {
+		for task in getAllInstances() {
 			for node in data[task.task.dataType] ?? [] {
 				if task.task.equal(node) {
 					task.achieve()

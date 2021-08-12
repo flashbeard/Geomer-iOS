@@ -75,9 +75,9 @@ public class Solver {
 				if testPrint { print() }
 			}
 
-			//			print(descriptionNodeRegistry())
+			print(descriptionNodeRegistry())
 
-//			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
+			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
 			
 			// MARK: this code stops computing solution if all the tasks are achieved, even if there are another solutions for them (possible easier)
 			//		if taskRegistry.allAchieved { break }

@@ -31,40 +31,19 @@
 				return
 			}
 
-//			var time = DispatchTime.now()
-
             // MARK: Theorem
-    		for i in 0...2 {
+			for i in 0...2 {
+				triangle1.shift(by: Shift(1))
 				for reversed in [true, false] {
-
-//					print(triangle1.name, triangle2.name)
-
-//					var time = DispatchTime.now()
-					let shifted = triangle1.shifted(by: Shift(i, reversed: reversed))
-//					print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6)
-//					time = DispatchTime.now()
-					let equalitySidesAB = shifted.side(.AB).equal(triangle2.side(.AB))
-//					print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6)
-//					time = DispatchTime.now()
-					let equalitySidesBC = shifted.side(.BC).equal(triangle2.side(.BC))
-//					print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6)
-//					time = DispatchTime.now()
-					let equalitySidesCA = shifted.side(.CA).equal(triangle2.side(.CA))
-//					print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6)
-//					time = DispatchTime.now()
+					triangle1.shift(by: Shift(reversed: true))
+					let equalitySidesAB = triangle1.side(.AB).equal(triangle2.side(.AB))
+					let equalitySidesBC = triangle1.side(.BC).equal(triangle2.side(.BC))
+					let equalitySidesCA = triangle1.side(.CA).equal(triangle2.side(.CA))
 					if (equalitySidesAB && equalitySidesBC && equalitySidesCA) {
-//						print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6)
-//						time = DispatchTime.now()
-						result.append(BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed)))
-//						print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6)
-//						time = DispatchTime.now()
+						result.append(BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift((i + 1) % 3, reversed: reversed)))
 					}
-//					print(i, reversed, Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6)
-//					print()
 				}
 			}
-
-//			print("|->", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)")
 
     	}
     }
