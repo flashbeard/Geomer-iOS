@@ -51,27 +51,28 @@ public class Solver {
 			
 			nodeRegistry.fixState()
 
-
-			for theorem in theoremRegistry.getAllInstances() {
-				let inputs = nodeRegistry.getKit(for_pattern: theorem.inputTypes)
-				for input in inputs {
-					theorem.setInput(input: input)
-					theorem.apply()
+			for theoremType in theoremRegistry.theoremsOrder {
+				for theorem in theoremRegistry.getInstances(for_type: theoremType) {
+					let inputs = nodeRegistry.getKit(for_pattern: theorem.inputTypes)
+					for input in inputs {
+						theorem.setInput(input: input)
+						theorem.apply()
+					}
 				}
 			}
+
+
 
 //			print(descriptionNodeRegistry())
 
 			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
 			
 			// MARK: this code stops computing solution if all the tasks are achieved, even if there are another solutions for them (possible easier)
-					if taskRegistry.allAchieved { break }
+//			if taskRegistry.allAchieved { break }
 		}
 		
 		// MARK: - Result info
 		#if DEBUG
-		let runtime = Double(DispatchTime.now().uptimeNanoseconds - startTime.uptimeNanoseconds) / 1e6
-		print("Computing finished in \(runtime) ms")
 		print("================================================================\n")
 		print("\t\t\tResult data:")
 		print(descriptionNodeRegistry())
@@ -104,6 +105,8 @@ public class Solver {
 		
 		// MARK: - Testing data
 		#if DEBUG
+		let runtime = Double(DispatchTime.now().uptimeNanoseconds - startTime.uptimeNanoseconds) / 1e6
+		print("Computing finished in \(runtime) ms")
 		print("End")
 		#endif
 	}
