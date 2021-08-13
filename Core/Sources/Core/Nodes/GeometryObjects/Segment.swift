@@ -21,9 +21,6 @@ public class Segment: Line {
 		var paramB: Node = b
 		nodeRegistry.findEqual(instance: &paramA)
 		nodeRegistry.findEqual(instance: &paramB)
-		if paramA > paramB {
-			swap(&paramA, &paramB)
-		}
 		pointA = paramA as! Point
 		pointB = paramB as! Point
 		value = length
