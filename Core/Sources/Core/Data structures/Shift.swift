@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Shift {
+public class Shift {
 	public let value: Int
 	public let reversed: Bool
 	

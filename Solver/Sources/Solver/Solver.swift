@@ -40,6 +40,7 @@ public class Solver {
 		print("================================================================\n")
 		print("\t\t\tInput data:")
 		print(descriptionNodeRegistry())
+		let startTime = DispatchTime.now()
 		#endif
 		
 		// MARK: - Main loop
@@ -52,39 +53,25 @@ public class Solver {
 
 
 			for theorem in theoremRegistry.getAllInstances() {
-				print(theorem.name)
-				var time = DispatchTime.now()
 				let inputs = nodeRegistry.getKit(for_pattern: theorem.inputTypes)
-				print("get kit time: ", terminator: "")
-				print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
-				time = DispatchTime.now()
-				print("Number of inputs: \(inputs.count)")
 				for input in inputs {
-					theorem.input = input
+					theorem.setInput(input: input)
 					theorem.apply()
 				}
-				print("execution time: ", terminator: "")
-				print(Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
-				print()
-
-//				if theorem.dataTypeString == "TheoremSimilarityTrianglesAngleAngle" {
-//					for input in inputs {
-//						print(input[0].name, input[1].name)
-//					}
-//				}
 			}
 
-			print("Time similarity: \(timesSimilarity.reduce(0.0, +)/Double(timesSimilarity.count))")
-			print("Time angles: \(timesAngles.reduce(0.0, +)/Double(timesAngles.count))")
+//			print(descriptionNodeRegistry())
 
 			taskRegistry.checkAchieved(instances: nodeRegistry.newInstances)
 			
 			// MARK: this code stops computing solution if all the tasks are achieved, even if there are another solutions for them (possible easier)
-			//		if taskRegistry.allAchieved { break }
+					if taskRegistry.allAchieved { break }
 		}
 		
 		// MARK: - Result info
 		#if DEBUG
+		let runtime = Double(DispatchTime.now().uptimeNanoseconds - startTime.uptimeNanoseconds) / 1e6
+		print("Computing finished in \(runtime) ms")
 		print("================================================================\n")
 		print("\t\t\tResult data:")
 		print(descriptionNodeRegistry())
@@ -105,7 +92,7 @@ public class Solver {
 		#if DEBUG
 		print("================================================================\n")
 		print("\t\t\tTasks solution:\n")
-		for task in taskRegistry.getInstances(for_type: Task.self) {
+		for task in taskRegistry.getAllInstances() {
 			print("\n--------------------------------\n")
 			var node = task.task
 			nodeRegistry.find(instance: &node)

@@ -14,7 +14,7 @@ public class Polygon: Node, Figure {
 	public var sides: [Segment]
 	public var vertexes: [Point]
 	public var angles: [Angle]
-	public let count: Int
+	public var count: Int { vertexes.count }
 	public var area: Area?
 	public var perimeter: Perimeter?
 
@@ -25,12 +25,11 @@ public class Polygon: Node, Figure {
 			fatalError("\(Self.dataType) cannot have \(count) \(count == 1 ? "vertex" : "vertexes")")
 		}
 
-		self.count = count
-
 		var paramVertexes: [Node] = vertexes
 		for i in 0 ..< count {
 			nodeRegistry.findEqual(instance: &paramVertexes[i])
 		}
+		self.vertexes = paramVertexes as! [Point]
 
 		var paramAngles: [Node] = []
 		for i in 0 ..< count {
@@ -38,8 +37,6 @@ public class Polygon: Node, Figure {
 			nodeRegistry.findEqual(instance: &paramAngles[i])
 		}
 		angles = paramAngles as! [Angle]
-
-		self.vertexes = paramVertexes as! [Point]
 
 		var paramSides: [Node] = []
 		for i in 0 ..< count {
@@ -54,29 +51,22 @@ public class Polygon: Node, Figure {
 		}
 		super.init(name: paramName)
 
-		nodeRegistry.add(instances: vertexes)
+		nodeRegistry.add(instances: paramVertexes)
 	}
 
-	// MARK: - Operators
+	// MARK: - Geometry equality
 	public override func equal(_ to: Node) -> Bool {
 		if dataType != to.dataType {
 			return false
 		}
 		let rhs = to as! Polygon
-
-		for shift in 0 ..< vertexes.count {
-			for reversed in [true, false] {
-				if shifted(by: Shift(shift, reversed: reversed)).vertexes.equal(rhs.vertexes) {
-					return true
-				}
-			}
-		}
-
-		return false
+		return self == rhs || nodeRegistry.contains(BEPolygonEquality(left: self, right: rhs, leftShift: Shift()))
 	}
 
 	// MARK: - Methods
-	public func shifted(by shift: Shift) -> Self {
-		Self(vertexes: vertexes.shifted(by: shift))
+	public func shift(by shift: Shift) {
+		sides.shift(by: shift)
+		vertexes.shift(by: shift)
+		angles.shift(by: shift)
 	}
 }

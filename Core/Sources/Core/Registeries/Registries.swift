@@ -20,10 +20,10 @@ public let taskRegistry = TaskRegistry.shared
 public class Registry<T: Data> {
 	
 	// MARK: - Properties
-	public private (set) var dataTypes: Set<MetatypeWrapper>
-	private (set) var instances: Dictionary<MetatypeWrapper, Set<T>>
-	public private (set) var newInstances: Dictionary<MetatypeWrapper, Set<T>>
-	public private (set) var hasChanges: Bool
+	public fileprivate (set) var dataTypes: Set<MetatypeWrapper>
+	fileprivate (set) var instances: Dictionary<MetatypeWrapper, Set<T>>
+	public fileprivate (set) var newInstances: Dictionary<MetatypeWrapper, Set<T>>
+	public fileprivate (set) var hasChanges: Bool
 	public var count: Int {
 		get {
 			var cnt = 0
@@ -48,7 +48,7 @@ public class Registry<T: Data> {
 		newInstances = [:]
 	}
 
-	func contains(_ instance: T) -> Bool {
+	public func contains(_ instance: T) -> Bool {
 		let type = instance.dataType
 		
 		return (instances[type] ?? []).contains(instance)
@@ -71,7 +71,7 @@ public class Registry<T: Data> {
 		}
 	}
 	
-	private func replace(instance: T) {
+	fileprivate func replace(instance: T) {
 		let type = instance.dataType
 		
 		for tmp in instances[type] ?? [] {
@@ -104,7 +104,7 @@ public class Registry<T: Data> {
 		return union
 	}
 	
-	func instancesCount(for_type type: DataType) -> Int {
+	public func instancesCount(for_type type: DataType) -> Int {
 		(instances[type] ?? []).count
 	}
 	
@@ -139,7 +139,7 @@ public class Registry<T: Data> {
 		}
 	}
 	
-	func remove(instances data: T...) {
+	public func remove(instances data: T...) {
 		for var instance in data {
 			let type = instance.dataType
 			
@@ -160,7 +160,7 @@ public class Registry<T: Data> {
 		}
 	}
 	
-	func remove(instances data: [T]) {
+	public func remove(instances data: [T]) {
 		for instance in data {
 			remove(instances: instance)
 		}
@@ -176,25 +176,17 @@ public class NodeRegistry: Registry<Node> {
 	static let shared = NodeRegistry()
 	
 	// MARK: - Methods
-	
 	func findEqual(instance: inout Node) {
 		let type = instance.dataType
 		if !dataTypes.contains(MetatypeWrapper(metatype: type)) {
 			return
 		}
-		for tmp in instances[type]! {
-			if tmp.equal(instance) {
-				instance = tmp
-				return
-			}
-		}
+		instance = instances[type]!.first(where: { $0.equal(instance) }) ?? instance
 	}
 
 	public func getKit(for_pattern pattern: [DataType]) -> [[Node]] {
 
 		var kit: [[Node]] = [[]]
-
-		let time = DispatchTime.now()
 
 		for patternType in pattern {
 			var tmpKit: [[Node]] = []
@@ -214,8 +206,6 @@ public class NodeRegistry: Registry<Node> {
 			kit = tmpKit
 		}
 
-		print("Time elapsed for theorem kit: ", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e9)
-
 //		var i = 0, j = 1
 //
 //		while i < kit.count {
@@ -230,12 +220,13 @@ public class NodeRegistry: Registry<Node> {
 //			i += 1
 //		}
 
-		for line in kit {
-			for instance in line {
-				print(instance.name, terminator: " ")
-			}
-			print()
-		}
+		// MARK: Print current kit
+//		for line in kit {
+//			for instance in line {
+//				print(instance.name, terminator: " ")
+//			}
+//			print()
+//		}
 
 
 
@@ -252,7 +243,6 @@ public class TaskRegistry: Registry<Task> {
 	static let shared = TaskRegistry()
 	
 	// MARK: - Methods
-	
 	public var achievedCount: Int {
 		var cnt = 0
 		for type in dataTypes {
@@ -266,12 +256,43 @@ public class TaskRegistry: Registry<Task> {
 	public var allAchieved: Bool { achievedCount == count }
 	
 	public func checkAchieved(instances data: Dictionary<MetatypeWrapper, Set<Node>>) {
-		for task in instances[Task] ?? [] {
+		for task in getAllInstances() {
 			for node in data[task.task.dataType] ?? [] {
 				if task.task.equal(node) {
 					task.achieve()
 				}
 			}
+		}
+	}
+
+	public override func contains(_ instance: Task) -> Bool {
+		let type = instance.task.dataType
+
+		return (instances[type] ?? []).contains(instance)
+	}
+
+	public override func add(instances data: Task...) {
+		for instance in data {
+
+			if contains(instance) {
+				replace(instance: instance)
+				continue
+			}
+
+			let type = instance.task.dataType
+
+			if !dataTypes.contains(MetatypeWrapper(metatype: type)) {
+				dataTypes.insert(MetatypeWrapper(metatype: type))
+				instances[type] = []
+			}
+
+			if !newInstances.keys.contains(MetatypeWrapper(metatype: type)) {
+				newInstances[type] = []
+			}
+
+			instances[type]!.insert(instance)
+			newInstances[type]!.insert(instance)
+			hasChanges = true
 		}
 	}
 	

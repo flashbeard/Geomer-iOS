@@ -9,7 +9,7 @@ import Foundation
 
 /// Tasks are used for declaration a problem to solve
 @available(iOS 10.0, *)
-public class Task: Data, DataInheritor {
+public class Task: Data {
 	
 	// MARK: - Properties
 	public private (set) var task: Node
@@ -27,23 +27,9 @@ public class Task: Data, DataInheritor {
 		achieved = true
 	}
 
-	// MARK: - DataInheritor
-	public static func < (lhs: Task, rhs: Task) -> Bool {
-		lhs.task < rhs.task
-	}
-
-	open override func isEqual(_ object: Any?) -> Bool {
-		if let obj = object as? Self {
-			return self.dataType == obj.dataType && self.task  == obj.task
-		}
-		return false
-	}
-
-	static func hashValue(for object: Task) -> Int {
-		var hasher = Hasher()
-		hasher.combine(object.dataTypeString)
-		hasher.combine(object.task)
-		hasher.combine(object.achieved)
-		return hasher.finalize()
+	// MARK: - Hashable
+	public override func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+		hasher.combine(task)
 	}
 }

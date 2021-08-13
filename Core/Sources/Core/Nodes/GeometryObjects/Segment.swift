@@ -21,20 +21,14 @@ public class Segment: Line {
 		var paramB: Node = b
 		nodeRegistry.findEqual(instance: &paramA)
 		nodeRegistry.findEqual(instance: &paramB)
+		if paramA > paramB {
+			swap(&paramA, &paramB)
+		}
 		pointA = paramA as! Point
 		pointB = paramB as! Point
 		value = length
-		super.init(name: "\(a.name)\(b.name)")
-		insertPoint(a, after: a)
-		insertPoint(b, after: a)
-	}
-	
-	// MARK: - Operators
-	public override func equal(_ to: Node) -> Bool {
-		if dataType != to.dataType {
-			return false
-		}
-		let rhs = to as! Segment
-		return value != nil && value == rhs.value || pointA.equal(rhs.pointA) && pointB.equal(rhs.pointB) || pointA.equal(rhs.pointB) && pointB.equal(rhs.pointA)
+		super.init(name: "\(pointA.name)\(pointB.name)")
+		insertPoint(pointA)
+		insertPoint(pointB, after: pointA)
 	}
 }

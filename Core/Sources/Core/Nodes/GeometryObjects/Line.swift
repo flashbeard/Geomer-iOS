@@ -19,26 +19,6 @@ public class Line: Node, GeometryObject {
 		super.init(name: name)
 	}
 
-	// MARK: - Operators
-	public override func equal(_ to: Node) -> Bool {
-		if dataType != to.dataType {
-			return false
-		}
-		let rhs = to as! Line
-		if super.equal(rhs) {
-			return true
-		}
-
-		for i in 0 ..< points.count {
-			for j in i + 1 ..< points.count {
-				if rhs.points.contains(where: { $0.equal(points[i]) }) && rhs.points.contains(where: { $0.equal(points[j]) }) {
-					return true
-				}
-			}
-		}
-		return false
-	}
-
 	// MARK: - Methods
 	public func insertPoint(_ point: Point, after: Point? = nil) {
 		var paramPoint: Node = point
