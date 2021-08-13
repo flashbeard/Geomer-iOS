@@ -32,21 +32,20 @@
 			}
 
             // MARK: Theorem
-    		for i in 0...2 {
+			for i in 0...2 {
+				triangle1.shift(by: Shift(1))
 				for reversed in [true, false] {
-					let shifted = triangle1
-					shifted.shift(by: Shift(i, reversed: reversed))
-					let equalitySidesAB = shifted.side(.AB).equal(triangle2.side(.AB))
-					let equalitySidesBC = shifted.side(.BC).equal(triangle2.side(.BC))
-					let equalitySidesCA = shifted.side(.CA).equal(triangle2.side(.CA))
-					let equalityAnglesA = shifted.angle(.A).equal(triangle2.angle(.A))
-					let equalityAnglesB = shifted.angle(.B).equal(triangle2.angle(.B))
-					let equalityAnglesC = shifted.angle(.C).equal(triangle2.angle(.C))
+					triangle1.shift(by: Shift(reversed: true))
+					let equalitySidesAB = triangle1.side(.AB).equal(triangle2.side(.AB))
+					let equalitySidesBC = triangle1.side(.BC).equal(triangle2.side(.BC))
+					let equalitySidesCA = triangle1.side(.CA).equal(triangle2.side(.CA))
+					let equalityAnglesA = triangle1.angle(.A).equal(triangle2.angle(.A))
+					let equalityAnglesB = triangle1.angle(.B).equal(triangle2.angle(.B))
+					let equalityAnglesC = triangle1.angle(.C).equal(triangle2.angle(.C))
 					if (equalitySidesAB && equalitySidesBC && equalityAnglesB) || (equalitySidesAB && equalitySidesCA && equalityAnglesA) || (equalitySidesBC && equalitySidesCA && equalityAnglesC) {
 						result.append(BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed)))
 					}
 				}
 			}
-
     	}
     }

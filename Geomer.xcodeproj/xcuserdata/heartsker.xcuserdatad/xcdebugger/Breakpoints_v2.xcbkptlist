@@ -7,55 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B6119CFC-8376-4CBE-A006-6EF264D6C466"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BasicTheorems/Sources/BasicTheorems/EqualityTheorems/TheoremEqualityTriangleSideSideSide.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "execute()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CB11EA4E-81E3-421A-86C3-67A37D52F1D0"
-            shouldBeEnabled = "No"
-            condition = "triangle1.name == &quot;ABC&quot; &amp;&amp; triangle2.name == &quot;DEF&quot;"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BasicTheorems/Sources/BasicTheorems/EqualityTheorems/TheoremEqualityTriangleSideSideSide.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "execute()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "97272E73-2DF8-4058-96A9-84CA69AB8EEA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BasicTheorems/Sources/BasicTheorems/EqualityTheorems/TheoremEqualityTriangleSideSideSide.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "execute()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EDD8A567-AB21-494C-BC87-4D47AFD99F50"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -66,38 +17,6 @@
             startingLineNumber = "68"
             endingLineNumber = "68"
             landmarkName = "shift(by:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E8F56BB5-4E67-4A68-9A1D-40610C5A13FD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BasicTheorems/Sources/BasicTheorems/EqualityTheorems/TheoremEqualityTriangleSideSideSide.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "execute()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E3A55BD3-B479-4369-86B0-7957C653CC1C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Solver/Sources/Solver/Solver.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "solve()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

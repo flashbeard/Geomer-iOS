@@ -126,6 +126,11 @@ public func description(solution: Solution, depth: Int = 0) -> String {
 
 		if reference != nil {
 			depth += 1
+			str += String(repeating: "   ", count: depth - 1)
+			str += "|\n"
+			str += String(repeating: "   ", count: depth - 1)
+			str += reference!.byTheorem.name
+			str += "\n"
 		}
 	}
 

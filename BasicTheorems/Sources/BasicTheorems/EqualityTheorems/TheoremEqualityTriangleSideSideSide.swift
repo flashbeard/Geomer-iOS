@@ -14,7 +14,7 @@
 
     	// MARK: - Initialization
     	internal init() {
-    		super.init(name: "Theorem Equality triangle side side side",
+    		super.init(name: "Theorem Equality Triangle Side Side Side",
     				   description: "If three sides of one triangle are equal to three corresponding sides of the other triangle then these triangles are equal to each other",
     				   inputTypes: [Triangle.dataType, Triangle.dataType])
     	}

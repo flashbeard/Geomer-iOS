@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TheoremEqualitySegments.swift
 //  
 //
 //  Created by Daniel Pustotin on 12.08.2021.
@@ -15,7 +15,7 @@ class TheoremEqualitySegments: Theorem {
 	// MARK: - Initialization
 
 	init() {
-		super.init(name: "Test", description: "Just test", inputTypes: [Segment.self, Segment.self])
+		super.init(name: "Theorem Equality Segments", description: "", inputTypes: [Segment.self, Segment.self])
 	}
 
 	// MARK: - Methods
