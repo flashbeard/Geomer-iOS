@@ -103,6 +103,14 @@
          contextName = "Proportion.init(operands:isInput:):Proportion.swift">
       </ContextState>
       <ContextState
+         contextName = "static Data.== infix(_:_:):Data.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Self">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Registry.have(instance:):Registry.swift">
          <PersistentStrings>
             <PersistentString
@@ -115,14 +123,6 @@
       </ContextState>
       <ContextState
          contextName = "Data.isEqual(_:):Data.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "Self">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "static Data.== infix(_:_:):Data.swift">
          <PersistentStrings>
             <PersistentString
                value = "Self">
@@ -166,10 +166,10 @@
          contextName = "Polygon.init(vertexes:angles:isInput:):Polygon.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in NewDataPropertiesView.body.getter:AddNewDataView.swift">
+         contextName = "NodeRegistry.findEqual(instance:):Registries.swift">
       </ContextState>
       <ContextState
-         contextName = "NodeRegistry.findEqual(instance:):Registries.swift">
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in NewDataPropertiesView.body.getter:AddNewDataView.swift">
       </ContextState>
       <ContextState
          contextName = "static Node.== infix(_:_:):Node.swift">
@@ -184,6 +184,14 @@
       </ContextState>
       <ContextState
          contextName = "Registry.find(instance:put:):Registries.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TheoremEqualityTriangleSideSideSide.execute():TheoremEqualityTriangleSideSideSide.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "triangle1.side(.AB)">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "TriangleEqualityByThreeSides.execute():TriangleEqualityBySides.swift">
@@ -248,6 +256,9 @@
       </ContextState>
       <ContextState
          contextName = "Segment.init(a:b:length:isInput:):Segment.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Theorem.correctInput():Theorem.swift">
       </ContextState>
       <ContextState
          contextName = "Data.info():Data.swift">

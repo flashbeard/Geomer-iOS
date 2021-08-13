@@ -18,6 +18,7 @@ open class Theorem: Data {
 	public private (set) var input: [Node]!
 	public let protocols: [Protocol]?
 	public var result: [Node]
+	public var usedKits: Set<[Node]>
 
 	// MARK: - Initialization
 	public init(name: String, description: String? = nil, inputTypes: [DataType], protocols: [Protocol]? = nil) {
@@ -26,6 +27,8 @@ open class Theorem: Data {
 		self.inputTypes = inputTypes
 		self.protocols = protocols
 		result = []
+		usedKits = []
+		theoremRegistry.theoremsOrder.append(Self.dataType)
 	}
 
 	// MARK: - Methods
@@ -34,46 +37,30 @@ open class Theorem: Data {
 	}
 
 	public func apply() {
-		let testPrint = false
-//			name == "Theorem Equality triangle side side side"
-		var time = DispatchTime.now()
-		checkInput()
-		if testPrint { print("\tapply:: check elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
-		time = DispatchTime.now()
+		guard correctInput() else {
+			return
+		}
 		execute()
-		if testPrint { print("\tapply:: execute elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
-		time = DispatchTime.now()
 		for i in 0 ..< result.count {
 			var res = result[i]
 			nodeRegistry.find(instance: &res)
 			let ref = Reference(from: input, by: self)
 			res.addReference(reference: ref)
-			result[i] = res
+			nodeRegistry.add(instances: res)
 		}
-		if testPrint { print("\tapply:: result check elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
-		time = DispatchTime.now()
-		nodeRegistry.add(instances: result)
-		if testPrint { print("\tapply:: add result elapsed time:", Double(DispatchTime.now().uptimeNanoseconds - time.uptimeNanoseconds) / 1e6, "(ms)") }
-		time = DispatchTime.now()
 	}
 
 	open func execute() {
 
 	}
 
-	private func checkInput() {
-		if input == nil {
-			fatalError("No inputs provided for theorem \(name)")
-		}
-		if input.count != inputTypes.count {
-			fatalError("Wrong number of inputs for theorem \(name)")
-		}
-		for i in 0 ..< input.count {
-			if input[i].dataType != inputTypes[i] {
-				fatalError("Wrong types of inputs for theorem \(name)")
-			}
-		}
+	private func correctInput() -> Bool {
 		result = []
+		if usedKits.contains(input) {
+			return false
+		}
+		usedKits.insert(input)
+		return true
 	}
 
 	// MARK: - Hashable

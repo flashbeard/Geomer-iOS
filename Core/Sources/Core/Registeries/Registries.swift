@@ -295,7 +295,6 @@ public class TaskRegistry: Registry<Task> {
 			hasChanges = true
 		}
 	}
-	
 }
 
 // MARK: - Theorem registry
@@ -305,4 +304,6 @@ public class TheoremRegistry: Registry<Theorem> {
 	
 	// MARK: - Singleton pattern
 	static let shared = TheoremRegistry()
+
+	public var theoremsOrder: [DataType] = []
 }
