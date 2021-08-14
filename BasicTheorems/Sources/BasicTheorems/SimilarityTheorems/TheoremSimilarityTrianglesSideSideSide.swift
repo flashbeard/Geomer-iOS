@@ -34,9 +34,9 @@ internal class TheoremSimilarityTrianglesSideSideSide: Theorem {
 			triangle1.shift(by: Shift(1))
 			for reversed in [true, false] {
 				triangle1.shift(by: Shift(reversed: true))
-				let ratioSidesAB = try? ((triangle1.side(.AB).value?.value ?? Double.nan) / (triangle2.side(.AB).value?.value ?? Double.nan)).fraction()
-				let ratioSidesBC = try? ((triangle1.side(.BC).value?.value ?? Double.nan) / (triangle2.side(.BC).value?.value ?? Double.nan)).fraction()
-				let ratioSidesCA = try? ((triangle1.side(.CA).value?.value ?? Double.nan) / (triangle2.side(.CA).value?.value ?? Double.nan)).fraction()
+				let ratioSidesAB = try? ((triangle1.side(.C).value?.value ?? Double.nan) / (triangle2.side(.C).value?.value ?? Double.nan)).fraction()
+				let ratioSidesBC = try? ((triangle1.side(.A).value?.value ?? Double.nan) / (triangle2.side(.A).value?.value ?? Double.nan)).fraction()
+				let ratioSidesCA = try? ((triangle1.side(.B).value?.value ?? Double.nan) / (triangle2.side(.B).value?.value ?? Double.nan)).fraction()
 				if  ratioSidesAB != nil && ratioSidesAB == ratioSidesBC && ratioSidesBC == ratioSidesCA {
 					result.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed), ratio: ratioSidesAB))
 				}

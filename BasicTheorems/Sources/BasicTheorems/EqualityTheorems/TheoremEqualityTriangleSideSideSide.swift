@@ -36,9 +36,9 @@
 				triangle1.shift(by: Shift(1))
 				for reversed in [true, false] {
 					triangle1.shift(by: Shift(reversed: true))
-					let equalitySidesAB = triangle1.side(.AB).equal(triangle2.side(.AB))
-					let equalitySidesBC = triangle1.side(.BC).equal(triangle2.side(.BC))
-					let equalitySidesCA = triangle1.side(.CA).equal(triangle2.side(.CA))
+					let equalitySidesAB = triangle1.side(.C).equal(triangle2.side(.C))
+					let equalitySidesBC = triangle1.side(.A).equal(triangle2.side(.A))
+					let equalitySidesCA = triangle1.side(.B).equal(triangle2.side(.B))
 					if (equalitySidesAB && equalitySidesBC && equalitySidesCA) {
 						result.append(BEPolygonEquality(left: triangle1, right: triangle2, leftShift: Shift((i + 1) % 3, reversed: reversed)))
 					}

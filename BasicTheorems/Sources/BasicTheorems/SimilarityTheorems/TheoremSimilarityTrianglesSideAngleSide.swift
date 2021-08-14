@@ -39,9 +39,9 @@ internal class TheoremSimilarityTrianglesSideAngleSide: Theorem {
 				let equalityAnglesA = triangle1.angle(.A).equal(triangle2.angle(.A))
 				let equalityAnglesB = triangle1.angle(.B).equal(triangle2.angle(.B))
 				let equalityAnglesC = triangle1.angle(.C).equal(triangle2.angle(.C))
-				let ratioSidesAB = try? ((triangle1.side(.AB).value?.value ?? Double.nan) / (triangle2.side(.AB).value?.value ?? Double.nan)).fraction()
-				let ratioSidesBC = try? ((triangle1.side(.BC).value?.value ?? Double.nan) / (triangle2.side(.BC).value?.value ?? Double.nan)).fraction()
-				let ratioSidesCA = try? ((triangle1.side(.CA).value?.value ?? Double.nan) / (triangle2.side(.CA).value?.value ?? Double.nan)).fraction()
+				let ratioSidesAB = try? ((triangle1.side(.C).value?.value ?? Double.nan) / (triangle2.side(.C).value?.value ?? Double.nan)).fraction()
+				let ratioSidesBC = try? ((triangle1.side(.A).value?.value ?? Double.nan) / (triangle2.side(.A).value?.value ?? Double.nan)).fraction()
+				let ratioSidesCA = try? ((triangle1.side(.B).value?.value ?? Double.nan) / (triangle2.side(.B).value?.value ?? Double.nan)).fraction()
 				if equalityAnglesA && ratioSidesCA != nil && ratioSidesCA == ratioSidesAB {
 					result.append(BEPolygonSimilarity(left: triangle1, right: triangle2, leftShift: Shift(i, reversed: reversed), ratio: ratioSidesAB))
 				} else if equalityAnglesB && ratioSidesAB != nil && ratioSidesAB == ratioSidesBC {

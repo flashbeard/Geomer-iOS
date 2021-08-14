@@ -36,9 +36,9 @@
 				triangle1.shift(by: Shift(1))
 				for reversed in [true, false] {
 					triangle1.shift(by: Shift(reversed: true))
-					let equalitySidesAB = triangle1.side(.AB).equal(triangle2.side(.AB))
-					let equalitySidesBC = triangle1.side(.BC).equal(triangle2.side(.BC))
-					let equalitySidesCA = triangle1.side(.CA).equal(triangle2.side(.CA))
+					let equalitySidesAB = triangle1.side(.C).equal(triangle2.side(.C))
+					let equalitySidesBC = triangle1.side(.A).equal(triangle2.side(.A))
+					let equalitySidesCA = triangle1.side(.B).equal(triangle2.side(.B))
 					let equalityAnglesA = triangle1.angle(.A).equal(triangle2.angle(.A))
 					let equalityAnglesB = triangle1.angle(.B).equal(triangle2.angle(.B))
 					let equalityAnglesC = triangle1.angle(.C).equal(triangle2.angle(.C))

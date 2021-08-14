@@ -12,7 +12,7 @@ public class Cevian: Node {
 
 	// MARK: - Properties
 	public var triangle: Triangle
-	public var vertex: TriangleVertexName
+	public var vertex: TriangleVertex
 	public var segment: Segment
 
 	// MARK: - Initialization
@@ -32,6 +32,7 @@ public class Cevian: Node {
 		}
 		self.triangle = triangle
 		self.segment = segment
+		triangle.side(vertex).insertPoint(segment.pointB, after: triangle.side(vertex).pointA)
 		super.init(name: "Cevian \(paramSegment.name) [\(paramTriangle.name)]")
 	}
 }

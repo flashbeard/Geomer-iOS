@@ -7,16 +7,10 @@
 
 import Foundation
 
-public enum TriangleVertexName {
+public enum TriangleVertex {
 	case A
 	case B
 	case C
-}
-
-public enum TriangleSideName {
-	case AB
-	case BC
-	case CA
 }
 
 @available(iOS 10.0, *)
@@ -33,8 +27,8 @@ public class Triangle: Polygon {
 	}
 
 	// MARK: - Methods
-	public func vertex(_ vertexName: TriangleVertexName) -> Point {
-		switch vertexName {
+	public func vertex(_ vertex: TriangleVertex) -> Point {
+		switch vertex {
 		case .A:
 			return vertexes[0]
 		case .B:
@@ -44,8 +38,8 @@ public class Triangle: Polygon {
 		}
 	}
 
-	public func angle(_ angleName: TriangleVertexName) -> Angle {
-		switch angleName {
+	public func angle(_ vertex: TriangleVertex) -> Angle {
+		switch vertex {
 		case .A:
 			return angles[0]
 		case .B:
@@ -55,13 +49,13 @@ public class Triangle: Polygon {
 		}
 	}
 
-	public func side(_ sideName: TriangleSideName) -> Segment {
-		switch sideName {
-		case .AB:
+	public func side(_ vertex: TriangleVertex) -> Segment {
+		switch vertex {
+		case .C:
 			return sides[0]
-		case .BC:
+		case .A:
 			return sides[1]
-		case .CA:
+		case .B:
 			return sides[2]
 		}
 	}
